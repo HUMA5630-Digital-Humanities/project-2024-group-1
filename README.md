@@ -2,13 +2,13 @@
 
 | Student Name | UID | UST email | Github username |
 | ------------ | --- | --------- | --------------- |
-|              |     |           |                 |
+| Wong Ching Man   | 20690332 |  cmwongas@connect.ust.hk    |    boooom12376       |
 |              |     |           |                 |
 |              |     |           |                 |
 |              |     |           |                 |
 
 # Topic
-xxxxx
+A Study on Marco Polo's View of China
 
 # URL
 xxxx
