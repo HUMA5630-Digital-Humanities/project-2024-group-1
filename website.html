@@ -219,7 +219,7 @@
                 <span class="productbtn btn12 btn-click" data-action="section-12"></span>
             </div>
             <div style="margin-top:50px;margin-bottom:40px;text-align:center;">
-                <div class="section-1" style="display:inline-block;">
+                <div class="section-1" style="display:inline-block;" onclick="scrollToMap()">
                     <div style="float:left; width:50%;">
                         <img class="shape" src="./images/quanzhou.jpg">
                     </div>
@@ -231,7 +231,7 @@
                 </div>
                 
         
-                <div class="section-2"  style="display:none">
+                <div class="section-2"  style="display:none" onclick="scrollToMap()">
                     <div style="float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -242,7 +242,7 @@
                     </div>
                 </div>
         
-                <div class="section-3"  style="display:none">
+                <div class="section-3"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -253,7 +253,7 @@
                     </div>
                 </div>
         
-                <div class="section-4"  style="display:none">
+                <div class="section-4"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -264,7 +264,7 @@
                     </div>
                 </div>
 
-                <div class="section-5"  style="display:none">
+                <div class="section-5"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -275,7 +275,7 @@
                     </div>
                 </div>
 
-                <div class="section-6"  style="display:none">
+                <div class="section-6"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -286,7 +286,7 @@
                     </div>
                 </div>
 
-                <div class="section-7"  style="display:none">
+                <div class="section-7"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -297,7 +297,7 @@
                     </div>
                 </div>
 
-                <div class="section-8"  style="display:none">
+                <div class="section-8"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -308,7 +308,7 @@
                     </div>
                 </div>
 
-                <div class="section-9"  style="display:none">
+                <div class="section-9"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -319,7 +319,7 @@
                     </div>
                 </div>
 
-                <div class="section-10"  style="display:none">
+                <div class="section-10"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -330,7 +330,7 @@
                     </div>
                 </div>
 
-                <div class="section-11"  style="display:none">
+                <div class="section-11"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -341,7 +341,7 @@
                     </div>
                 </div>
 
-                <div class="section-12"  style="display:none">
+                <div class="section-12"  style="display:none" onclick="scrollToMap()">
                     <div style=" float:left; width:50%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -382,6 +382,14 @@
             });
 
         </script>
+
+        <script>
+            function scrollToMap() {
+              var mapElement = document.getElementById("map");
+              mapElement.scrollIntoView({ behavior: "smooth" });
+            }
+      </script>
+        
     </section>
 
 </main>
