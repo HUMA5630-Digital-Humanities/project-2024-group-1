@@ -136,8 +136,8 @@ strong {
   SECTION               
 -----------------------------------------*/
 .section-padding {
-  padding-top: 10px;
-  padding-bottom: 15px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .section-bg1 {
@@ -699,20 +699,17 @@ strong {
 .shape { 
   height:600px;
   width:100%;
-  max-height:95%;
-  bottom:0px;
   display:inline-block;
+  text-align:center; 
   border-radius:20px 20px 20px;
   object-fit: cover;
-
 } 
 
 .box {
   height:600px;
   width:100%;
-  max-height:95%;
-  bottom:0px;
   display:inline-block;
+  text-align:center; 
   border-radius:20px 20px 20px;
   background-color: #1e80a7;
 }
@@ -749,6 +746,7 @@ strong {
 .arrow:hover{
   transform: scale(1.5);
 }
+
 
 /*---------------------------------------
   OUR MENU              
@@ -1141,8 +1139,8 @@ strong {
   }
 
   .section-padding {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   .hero-section {
