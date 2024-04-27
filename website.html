@@ -24,7 +24,7 @@
 
 <body>
 <main>
-    <section id="section_1" class="hero-section d-flex justify-content-center align-items-center">
+    <section id="page_1" class="hero-section d-flex justify-content-center align-items-center">
         <div class="container">
             <div class="align-items-center">
                 <div class="text-white">
@@ -49,7 +49,7 @@
 
     </section>
 
-    <section class="barista-section section-padding section-bg1" id="section_2">
+    <section class="barista-section section-padding section-bg1" id="page_2">
         <div class="container" style="height: 700px">
             <div class="align-items-center">
                 <p class="text-white" style="text-align:center; font-size:300%;">Introduction</p>
@@ -59,12 +59,12 @@
     </main>
 
 
-    <section class="barista-section section-padding section-bg2" style="height:800px" id="section_3">
+    <section class="barista-section section-padding section-bg2" style="height:800px" id="page_3">
         <div class="container">
             <p class="text-white" style="text-align:center; font-size:300%;">Map</p>
             <div style=" float:left; width:50%">
-                <p class="text-white" style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
                 <div id="map" style="height: 650px; width: 450px;"></div>
+                <p class="text-white" style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
             </div>
             <div style=" float:right; width:50%">
                 <div class="text-white map-select">
@@ -163,6 +163,7 @@
                     {lat: 40, lng: 116, icon:redIcon,  popupContent: "Dadu"},
                     {lat: 32, lng: 119, icon:blueIcon, popupContent: "Yangzhou"}
                 ];
+    
 
                 // Loop through the markers array and create a marker for each object
                 for (var i = 0; i < markers.length; i++) {
@@ -180,9 +181,10 @@
                         this.setOpacity(0.7)
                     });
                     marker.on('click',function(e) {
-                        console.log('Marker clicked');
+                        console.log(this._popup._content);
+                        $("#"+this._popup._content).click();
                         $('html, body').stop().animate({
-                        scrollTop: $('#m'+(i+1)).offset().top
+                        scrollTop: 2600
                     }, {
                         duration:100,
                         easing: 'linear'
@@ -202,28 +204,19 @@
         <span style="position: absolute; top: 0; left: 0; height: 50px; width: 100%; background-color: #2a5287;z-index: 1;"></span>
     </section>
 
-    <section class="barista-section section-padding section-bg3" style="height: 800px" id="section_2">
+    <section class="section-padding section-bg3" style="height: 715px" id="page_4">
         <div class="container">
-            <div style="text-align:center">
-                <span class="productbtn btn1 btn-click" data-action="section-1" id="m1"></span>
-                <span class="productbtn btn2 btn-click" data-action="section-2" id="m2"></span>
-                <span class="productbtn btn3 btn-click" data-action="section-3" id="m3"></span>
-                <span class="productbtn btn4 btn-click" data-action="section-4" id="m4"></span>
-                <span class="productbtn btn5 btn-click" data-action="section-5"></span>
-                <span class="productbtn btn6 btn-click" data-action="section-6"></span>
-                <span class="productbtn btn7 btn-click" data-action="section-7"></span>
-                <span class="productbtn btn8 btn-click" data-action="section-8"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9"></span>
-                <span class="productbtn btn10 btn-click" data-action="section-10"></span>
-                <span class="productbtn btn11 btn-click" data-action="section-11"></span>
-                <span class="productbtn btn12 btn-click" data-action="section-12"></span>
+            <div style="margin-top:5px;margin-bottom:5px;text-align:center;">
+                <img id="scrollToMap" class="arrow" src="./images/arrow.png"style="width:20px; height:20px;margin-top:2px;text-align:center;z-index: 1;" >
             </div>
-            <div style="margin-top:50px;margin-bottom:40px;text-align:center;">
-                <div class="section-1" style="display:inline-block;" onclick="scrollToMap()">
-                    <div style="float:left; width:50%;">
+            <div style="margin-top:10px;margin-bottom:10px;text-align:center; ">
+                <div class="section-1" style="display:inline-block;">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style="float:left; width:49%;">
                         <img class="shape" src="./images/quanzhou.jpg">
                     </div>
-                    <div style="float:left; width:50%;">
+                    <div style="float:left; width:2%;"></div>
+                    <div style="float:right; width:49%;">
                         <span class="box" >
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
@@ -231,121 +224,143 @@
                 </div>
                 
         
-                <div class="section-2"  style="display:none" onclick="scrollToMap()">
-                    <div style="float:left; width:50%">
+                <div class="section-2" style="display:none;">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style="float:left; width:49%;">
+                        <img class="shape" src="./images/dadu.jpg">
+                    </div>
+                    <div style="float:left; width:2%;"></div>
+                    <div style="float:right; width:49%;">
+                        <span class="box" >
+                            <p class="text-white" style="line-height:5;">any text</p>
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="section-3"  style="display:none" >
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
         
-                <div class="section-3"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-4"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
-                    </div>
-                </div>
-        
-                <div class="section-4"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
-                        <img class="shape" src="./images/dadu.jpg" >
-                    </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-5"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-5"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>>
-                    </div>
-                </div>
-
-                <div class="section-6"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
-                        <img class="shape" src="./images/dadu.jpg" >
-                    </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-7"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-6"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-8"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-7"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-9"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-8"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-10"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-9"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-11"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-10"  style="display:none" >
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
                     </div>
                 </div>
 
-                <div class="section-12"  style="display:none" onclick="scrollToMap()">
-                    <div style=" float:left; width:50%">
+                <div class="section-11"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style=" float:right; width:50%">
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
+                        <span class="box">
+                            <p class="text-white" style="line-height:5;">any text</p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="section-12"  style="display:none">
+                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <div style=" float:left; width:49%">
+                        <img class="shape" src="./images/dadu.jpg" >
+                    </div>
+                    <div style="float:left; width:2%;"></div>
+                    <div style=" float:right; width:49%">
                         <span class="box">
                             <p class="text-white" style="line-height:5;">any text</p>
                         </span>
@@ -353,44 +368,71 @@
                 </div>
             </div>
         </div>
+    
+
         <script>
-            $(function(){
-                $(".btn-click").click(function(){
-                    var target = $(this).data("action");
-                $("."+target).show().siblings("div[class*=section-]").hide();
-            })
-            }); 
-
-            $(function() {
-            // Get all the buttons with class "btn"
-            var buttons = $(".btn");
-
-            // Iterate over each button
-            buttons.each(function(index) {
-                // Get the corresponding section with class "section-{index+1}"
-                var section = $(".section-" + (index+1));
-
-                // Add a click event listener to the button
-                $(this).click(function() {
-                // Hide all sections except the current one
-                $(".section").not(section).hide();
-
-                // Show the current section
-                section.show();
-                });
+            var mapElement = document.getElementById("page_3");
+            var arrowElement = document.getElementById("scrollToMap");
+            arrowElement.addEventListener("click", function() {
+                mapElement.scrollIntoView({ behavior: "smooth" });
             });
-            });
-
         </script>
-
-        <script>
-            function scrollToMap() {
-              var mapElement = document.getElementById("map");
-              mapElement.scrollIntoView({ behavior: "smooth" });
-            }
-      </script>
         
     </section>
+
+    <section class="align-items-center" style="height: 50px" id="navbar">
+        <div style="margin-top:0px">
+            <div style="text-align:center; bottom:0px;">
+                <span class="productbtn btn1 btn-click" data-action="section-1" id="Quanzhou"></span>
+                <span class="productbtn btn2 btn-click" data-action="section-2" id="Dadu"></span>
+                <span class="productbtn btn3 btn-click" data-action="section-3" id="Yangzhou"></span>
+                <span class="productbtn btn4 btn-click" data-action="section-4" id="XiangYangFu"></span>
+                <span class="productbtn btn5 btn-click" data-action="section-5" id="m5"></span>
+                <span class="productbtn btn6 btn-click" data-action="section-6" id="m6"></span>
+                <span class="productbtn btn7 btn-click" data-action="section-7" id="m7"></span>
+                <span class="productbtn btn8 btn-click" data-action="section-8" id="m8"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="m9"></span>
+                <span class="productbtn btn10 btn-click" data-action="section-10" id="m10"></span>
+                <span class="productbtn btn11 btn-click" data-action="section-11" id="m11"></span>
+                <span class="productbtn btn12 btn-click" data-action="section-12" id="m12"></span>
+            </div>
+            <script>
+                $(function(){
+                    $(".btn-click").click(function(){
+                        var target = $(this).data("action");
+                    $("."+target).show().siblings("div[class*=section-]").hide();
+                })
+                }); 
+    
+                $(function() {
+                // Get all the buttons with class "btn"
+                var buttons = $(".btn");
+    
+                // Iterate over each button
+                buttons.each(function(index) {
+                    // Get the corresponding section with class "section-{index+1}"
+                    var section = $(".section-" + (index+1));
+    
+                    // Add a click event listener to the button
+                    $(this).click(function() {
+                    // Hide all sections except the current one
+                    $(".section").not(section).hide();
+    
+                    // Show the current section
+                    section.show();
+                    });
+                });
+                });
+    
+            </script>
+        </div>
+    </section>
+
+
+    <section class="barista-section section-padding section-bg3" style="height: 800px" id="page_5">
+    
+    </section>
+
 
 </main>
 
