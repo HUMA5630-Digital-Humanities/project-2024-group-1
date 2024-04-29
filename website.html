@@ -110,31 +110,59 @@
                 </div>
                 <div class="rec-2" style="height:100%;width:100%;display:none">
                     <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                        <svg id='rectangle' width="100%" height="100%">
-                            <rect id='stroke'class="my-rec" rx='50' ry='50'/>
+                        <svg id='rectangle' class="my-svg-2" width="100%" height="100%">
+                            <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
+                        <switch>
+                            <foreignObject width="100%" height="100%" >
+                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-2" class="select_text" style="color:#3e5e88;"><b>Overview</b></p>
+                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-2" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
+                            </foreignObject>
+                        </switch>
                         </svg>
                     </div>
-                    <!--<h1 style="color:#0d294f">Overview</h1>-->
                 </div>
 
-                <div class="rec-3" style="display:none">
-                    
+                <div class="rec-3" style="height:100%;width:100%;display:none">
+                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <svg id='rectangle' class="my-svg-3" width="100%" height="100%">
+                            <rect id='stroke'class="my-rec-3" stroke="#01204d" rx='50' ry='50'/>
+                        <switch>
+                            <foreignObject width="100%" height="100%" >
+                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-3" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-3" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
+                            </foreignObject>
+                        </switch>
+                        </svg>
+                    </div>
                 </div>
 
-                <div class="rec-4" style="display:none" >
-                    
+                <div class="rec-4" style="height:100%;width:100%;display:none" >
+                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <svg id='rectangle' class="my-svg-4" width="100%" height="100%">
+                            <rect id='stroke'class="my-rec-4" stroke="#01204d" rx='50' ry='50'/>
+                        <switch>
+                            <foreignObject width="100%" height="100%" >
+                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-4" class="select_text" style="color:#01204d;"><b>Specialty</b></p>
+                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
+                            </foreignObject>
+                        </switch>
+                        </svg>
+                    </div>
                 </div>
 
-                <div class="rec-5" style="display:none">
-                    
+                <div class="rec-5" style="height:100%;width:100%;display:none">
+                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <svg id='rectangle' class="my-svg-5" width="100%" height="100%">
+                            <rect id='stroke'class="my-rec-5" stroke="#01204d" rx='50' ry='50'/>
+                        <switch>
+                            <foreignObject width="100%" height="100%" >
+                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-5" class="select_text" style="color:#01204d;"><b>Industry</b></p>
+                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
+                            </foreignObject>
+                        </switch>
+                        </svg>
+                    </div>
                 </div>
-
-                
-
-
-
-
-
 
                 <script>
                 const observer = new IntersectionObserver(entries => {
@@ -179,18 +207,44 @@
                 });
                 });
 
-                var svg = document.querySelector('#rectangle');
-                var my_rect = document.querySelector('.my-rec');
 
+                //resize svg
+
+                // Loop through all five rectangles
+                for (let i = 2; i <= 5; i++) {
+                // Get the SVG and rectangle elements
+                const svg = document.querySelector(`.my-svg-${i}`);
+                const rect = document.querySelector(`.my-rec-${i}`);
+                // Define the resize function
                 function resize() {
-                var width = svg.clientWidth;
-                var height = svg.clientHeight;
-                my_rect.setAttribute('width', width);
-                my_rect.setAttribute('height', height);
+                    const width = svg.clientWidth;
+                    const height = svg.clientHeight;
+                    rect.setAttribute('width', width);
+                    rect.setAttribute('height', height);
                 }
-
+                // Add the resize event listener and call the function
                 window.addEventListener('resize', resize);
                 resize();
+                // Add the animationend event listener to show the text
+                const text = document.querySelector(`#text-${i}`);
+                const button_return = document.querySelector(`#button-return-${i}`);
+                svg.addEventListener('animationend', function(ev) {
+                    if (ev.animationName === 'fillIn') {
+                    text.style.display = 'flex';
+                    button_return.style.display = 'inline-block'
+                    }
+                });
+                }
+
+                function return_rec_1(){
+                    for (let i = 2; i <= 5; i++) {
+                        $(".rec-" + i).hide()
+                    }
+                    $(".rec-1").show();
+                }
+
+
+
 
                 </script>
             </div>
@@ -510,7 +564,7 @@
     <section class="barista-section section-padding section-bg5" style="height: 800px" id="page_6">
         <div class="max-width:100%">
             <h1 style="text-align:center"><b>References</b></h1>
-            <h6 style=" max-width:100%">cover Copyright © National Palace Museum. https://theme.npm.edu.tw/exh108/npm_anime/AlongtheRiver/ch/index.html</h3>
+            <p style=" word-break: break-all;max-width:100%">cover Copyright © National Palace Museum. https://theme.npm.edu.tw/exh108/npm_anime/AlongtheRiver/ch/index.html</p>
         </div>
     </section>
 
