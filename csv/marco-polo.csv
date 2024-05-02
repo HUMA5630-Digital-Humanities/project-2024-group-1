@@ -1,0 +1,64 @@
+Location,Religion,Specialty,Industry,Region,Currency,Funeral,Word,Parent
+origin,,,,,,,,
+hejianfu,"idolaters,christians",silk,"trade,craft",Cathy,paper money,burn the bodies of the dead,162,origin
+changlu,idolaters,"salt,peach",salt,Cathy,paper money,,180,origin
+jiangling,idolaters,,trade ,Cathy,paper money,,100,origin
+dongpingfu,,"silk,fruit",trade,,paper money,,115,origin
+xinzhou matou,idolaters,small vessel,"trade,craft,shipping",,paper money,,238,origin
+liucheng,,"animals,jujube,medium vessel","military,trade,handicraft,shipping",,,,131,origin
+pizhou,,silk ,"trade,craft",entrance of Manzi,,,83,origin
+suqian,,"wheat,grain",agriculture,,paper money,burn the bodies of the dead,79,origin
+huai'anzhou,idolaters,"big vessel,salt","trade,salt,shipping",Manzi,,burn the bodies of the dead,155,origin
+huaiyin,,,,Manzi,,,,origin
+baoying,"idolaters,turkish nestorian christian",silk,"trade,craft",,paper money,burn the bodies of the dead,114,origin
+gaoyou,idolaters ,"animals,fish","trade,craft",,paper money,,89,origin
+taizhou,idolaters,"vessel,animals","trade,craft,shipping",,paper money,,105,origin
+tongzhou,idolaters,salt,salt,,paper money,,71,origin
+yangzhou,idolaters,military accoutrements,"trade,craft,military",,paper money,,171,origin
+anqing,idolaters,"silk,grain,animals","trade,craft,agriculture",Manzi,paper money,burn the bodies of the dead,110,origin
+xiangyangfu,idolaters,"silk,animals","trade,handicraft",,paper money,burn the bodies of the dead,862,origin
+zhenzhou,idolaters,salt,"shipping,trade",,paper money,,536,origin
+guanzhou,idolaters,"corn,rice","agriculture,shipping",,paper money,,273,origin
+zhenjiangfu,"idolaters, nestorian christian","silk,animals,corn","trade,craft,agriculture",Manzi,,,168,origin
+changzhou,idolaters,"silk,animals,wine","trade,craft",,paper money,,304,origin
+suzhou,idolaters,"silk,rhubarb,ginger","trade,craft,literati,magician",,paper money,,293,origin
+wujiang,,,"trade,industry",,,,45,origin
+wuxing,idolaters,silk,"trade,craft",,paper money,,66,origin
+changxing,idolaters,"silk(sendal),animals","trade,handicraft",,paper money,,69,origin
+xingzai,"idolaters,nestorian christian","silk,hot bath,salt,sugar","trade,prostitute,astrologer,doctor,literati,artisans,craft,military,salt,sugar",Manzi,paper money,,4904,origin
+ganpu,,medium vessel,shipping ,,,,96,origin
+tonglu,idolaters,,"trade,craft",,paper money,burn the bodies of the dead,76,origin
+wuzhou,idolaters,,"trade,craft",,,,47,origin
+quzhou,idolaters,silk,"trade,craft",,,,80,origin
+suichang,idolaters,,"trade,craft",,paper money,,89,origin
+chuzhou,idolaters,,,,,,57,origin
+fuzhou(kingdom),idolaters,"animals,ginger,galangal,saffron(look like)","trade,craft",,,,358,origin
+jianningfu,,"silk,ginger,galangal,cotton cloth,black silky fowl","trade,craft",,,,198,origin
+houguan,,sugar,sugar,,,,148,origin
+fuzhou(city),"idolaters,christian","vessel,papiones,geese,lion,sugar,stones(pearl)","trade,craft,military,shipbuilding",Manzi,,,1694,origin
+zayton,idolaters ,,"trade,craft,shipping",,,,521,origin
+Tingzhou,,porcelain,,,,,217,origin
+,,,,,,,,origin
+zhuozhou,idolaters,fabrics、sendal,"trade, crafts",,,,68,origin
+Aq-baliq,,wild animals,emperor’s hunting grounds、,,,,133,origin
+Taiyuanfu,,military equipment 、wine、silk,"trade, industry",,,,119,origin
+Pingyangfu,,silk,"trade, crafts",,,,42,origin
+Xiezhou,,,,,,,921,origin
+Hezhongfu,idolaters,"silk,spices","trade, industry",,,,86,origin
+Chang’anfu,"idolaters, Christians, Saracens","silk,military equipment","trade, industry",,,,304,origin
+Guangyuan,"idolaters,Nestorian, Saracens",wild animals,"farming, hunting",,,,149,origin
+Aq-baliq Manzi,idolaters,"ginger, grains","trade, crafts",on the border,,,132,origin
+Chengdufu,idolaters,"wild animals,sendal","farming, industry",on the border,,,612,origin
+Tibet,idolaters,"canes, savage beasts, musk, camlets, the most skilled enchanters and the best astrologers,mastiffs, falcons","hunting, herding",,salt,,1480,origin
+Jiandu,idolaters,"pearls, turquoise, musk, fish,wild animals,wine with rice and spices, cloves, spices",,,"gold bars, salt blocks",,1179,origin
+Yachi,"idolaters, Muslims, Christians,Nestorians","fish,salt","trade, crafts",,white cowries,,389,origin
+Qarajang,idolaters,"gold,Huge snakes and serpents,horse",,,white cowries,,1283,origin
+Yongchang,idolaters,wine with rice and spices,,,"gold, cowries",,2759,origin
+Myanmar(province),,exotic wild beasts,(no people or dwellings ),,,,81,origin
+Pagan,idolaters,animals,,,,,539,origin
+Bengal,idolaters,"eunuchs, cotton,spices","farming,trade",,"gold, cowries",,200,origin
+Jiaozhi Guo,idolaters,"golds, spices,animals",,,"gold, cowries",,375,origin
+Amu,idolaters,"good horse,animals","herding, farming",,"gold, cowries",,133,origin
+Tulaman,idolaters,wine with rice and spices,"herding, farming",,"gold, cowries",burn the bodies of the dead then hang it in a cave on high mountain.,184,origin
+Kuizhou(province),,,,,,,8,origin
+Fuling,idolaters,"cloths made from bark, lions,silk","trade, crafts",,paper money(For let me say that from now on we are in the lands where the Great Khan’s paper money circulates),,492,origin

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" href="./images/pattern2.png">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
@@ -34,8 +36,8 @@
             $(function() {
               $('.hero-slides').vegas({
                   slides: [
-                      { src: './images/banner1.jpg' },
-                      { src: './images/banner4.jpg' },
+                      { src: './images/banner5.jpg' },
+                      { src: './images/banner6.jpg' },
                   ],
                   timer: false,
                   animation: 'kenburns',
@@ -102,7 +104,7 @@
                             <span class="my-span" style="--i:6.25">?</span>
                         </div>
                         <p><br></p>
-                        <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2">Overview</button>
+                        <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2" onclick="overview_map()">Overview</button>
                         <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3">Religion</button>
                         <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4">Specialty</button>
                         <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5">Industry</button>
@@ -116,6 +118,10 @@
                             <foreignObject width="100%" height="100%" >
                                 <p xmlns="http://www.w3.org/1999/xhtml" id="text-2" class="select_text" style="color:#3e5e88;"><b>Overview</b></p>
                                 <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-2" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
+                                <!-- Load d3.js -->
+                                <script src="https://d3js.org/d3.v4.js"></script>
+                                <!-- Create a div where the graph will take place -->
+                                <div id="my_dataviz" style="display:inline-block;text-align:center;"></div>
                             </foreignObject>
                         </switch>
                         </svg>
@@ -203,6 +209,10 @@
     
                     // Show the current section
                     section.show();
+
+
+
+
                     });
                 });
                 });
@@ -239,14 +249,84 @@
                 function return_rec_1(){
                     for (let i = 2; i <= 5; i++) {
                         $(".rec-" + i).hide()
+                        $("#text-" + i).hide()
+                        $("#button-return-" + i).hide()
                     }
                     $(".rec-1").show();
+                    return_map();
                 }
 
-
-
-
                 </script>
+                <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+                <script>
+                    // set the dimensions and margins of the graph
+                    var margin = {top: 5, right: 10, bottom: 5, left: 10},
+                    width = 650 - margin.left - margin.right,
+                    height = 450 - margin.top - margin.bottom;
+                    console.log(window.innerWidth)
+                    
+                    // append the svg object to the body of the page
+                    var svg = d3.select("#my_dataviz")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform",
+                            "translate(" + margin.left + "," + margin.top + ")");
+
+                    
+                    // Read data
+                    d3.csv('./csv/wordcount.csv', function(data) {
+                    
+                        // stratify the data: reformatting for d3.js
+                        var root = d3.stratify()
+                            .id(function(d) { return d.Location; })   // Name of the entity (column name is name in csv)
+                            .parentId(function(d) { return d.Parent; })   // Name of the parent (column name is parent in csv)
+                            (data);
+                        root.sum(function(d) { return +d.Word })   // Compute the numeric value for each entity
+                        
+                        // Then d3.treemap computes the position of each element of the hierarchy
+                        // The coordinates are added to the root object above
+                        d3.treemap()
+                            .size([width, height])
+                            .padding(4)
+                            (root)
+                        
+                            const color = d3.scaleSequential()
+                                .interpolator(d3.interpolateBlues)
+                                .domain([100, 1100]);
+                                //.domain([d3.max(data, d => d.Word), d3.min(data, d => d.Word)]);
+
+                        console.log(root.leaves())
+                        // use this information to add rectangles:
+                        svg
+                            .selectAll("rect")
+                            .data(root.leaves())
+                            .enter()
+                            .append("rect")
+                                .attr('x', function (d) { return d.x0; })
+                                .attr('y', function (d) { return d.y0; })
+                                .attr('width', function (d) { return d.x1 - d.x0; })
+                                .attr('height', function (d) { return d.y1 - d.y0; })
+                                .style("stroke", "black")
+                                .attr("fill", d => color(d.data.Word))
+                                .style("rx","20")
+                        
+                        // and to add the text labels
+                        svg
+                            .selectAll("text")
+                            .data(root.leaves())
+                            .enter()
+                            .append("text")
+                                .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+                                .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+                                .text(function(d){ return d.data.Location})
+                                .attr("font-size", "15px")
+                                .attr("fill", "white")
+                    })
+                </script>
+
             </div>
         </div>
             <script>
@@ -283,19 +363,73 @@
                     redIcon = new anyIcon({iconUrl: './images/red.png'}),
                     blueIcon = new anyIcon({iconUrl: './images/blue.png'}),
                     yellowIcon = new anyIcon({iconUrl: './images/yellow.png'});
+                    greyIcon = new anyIcon({iconUrl:"./images/grey.png"});
 
                 //info of each markers
-                var markers = [
-                    {lat: 25, lng: 118, icon:greenIcon, popupContent: "Quanzhou"},
+                const original_markers = Object.freeze([
+                    {lat: 25, lng: 118, icon:greenIcon, popupContent: "Zayton"},
                     {lat: 40, lng: 116, icon:redIcon,  popupContent: "Dadu"},
-                    {lat: 32, lng: 119, icon:blueIcon, popupContent: "Yangzhou"}
-                ];
+                    {lat: 32, lng: 119, icon:blueIcon, popupContent: "Xingzai"}
+                ]);
+
+                function copyMarker(marker) {
+                    return {
+                        lat: marker.lat,
+                        lng: marker.lng,
+                        icon: L.icon(marker.icon.options),
+                        popupContent: marker.popupContent
+                    };
+                }
+
+                const current_markers = original_markers.map(copyMarker);
+
+
+                
+                const location_overview=["Xingzai","Yongchang","Fuzhou","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+
+                function overview_map(){
+                    updateMarkerIcons(yellowIcon,"overview");
+                }
+
+                function return_map(){
+                    updateMarkerIcons(greyIcon,"return");
+                }
+
+                function updateMarkerIcons(color,check) {
+                    // Loop through the markers array and update the icon property
+                    current_markers.forEach(function(marker) {
+                        if (check=="overview"){
+                            if (location_overview.includes(marker.popupContent)) {
+                                marker.icon = color;
+                            } else {
+                                marker.icon = greyIcon;
+                            }
+                        }else if (check=="return"){
+                            for (var i=0;i<original_markers.length;i++){
+                                if (marker.popupContent==original_markers[i].popupContent){
+                                    
+                                    console.log(original_markers[i])
+                                    marker.icon=original_markers[i].icon
+                                }
+                            }
+                        }
+                    });
+                    // Loop through the marker layers on the map and update the icon
+                    map.eachLayer(function(layer) {
+                        if (layer instanceof L.Marker) {
+                            var marker = current_markers.find(function(m) {
+                                return m.popupContent === layer.getPopup().getContent();
+                            });
+                            layer.setIcon(marker.icon);
+                        }
+                    });
+                }
     
 
                 // Loop through the markers array and create a marker for each object
-                for (var i = 0; i < markers.length; i++) {
-                    var marker = L.marker([markers[i].lat, markers[i].lng],{icon:markers[i].icon, opacity:0.7}).addTo(map);
-                    marker.bindPopup(markers[i].popupContent,{
+                for (var i = 0; i < current_markers.length; i++) {
+                    var marker = L.marker([current_markers[i].lat, current_markers[i].lng],{icon:current_markers[i].icon, opacity:0.7}).addTo(map);
+                    marker.bindPopup(current_markers[i].popupContent,{
                         closeButton: false,
                         className:'stylePopup'
                     });
