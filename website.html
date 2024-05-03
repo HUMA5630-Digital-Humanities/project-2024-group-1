@@ -58,15 +58,16 @@
 
 
     <section class="barista-section section-padding section-bg2" style="height:800px;" id="page_3">
+        <div style="background-color:#fff;height: 680px;width:100%">
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
-            <div style=" float:left; width:50%; margin-top:10px">
+            <div style=" float:left; width:50%">
                 <div id="map" style="height: 650px; max-width: 500px;"></div>
-                <p class="text-white" style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
+                <p style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
             </div>
             <div class="align-items-center" style=" float:right; height:650px;width:50%; margin-top:10px;">
-                <div class="rec-1" style="display:inline-block">
-                    <div class="text-white map-select">
+                <div class="rec-1" style="display:inline-block;margin-top:30px;">
+                    <div class="map-select" style="color:#01204d">
                         <div class="my-word">
                             <span class="my-span" style="--i:0.5">W</span>
                             <span class="my-span" style="--i:0.75">h</span>
@@ -111,62 +112,36 @@
                     </div>
                 </div>
                 <div class="rec-2" style="height:100%;width:100%;display:none">
-                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                        <svg id='rectangle' class="my-svg-2" width="100%" height="100%">
-                            <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
-                        <switch>
-                            <foreignObject width="100%" height="100%" >
-                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-2" class="select_text" style="color:#3e5e88;"><b>Overview</b></p>
-                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-2" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
-                                <!-- Load d3.js -->
-                                <script src="https://d3js.org/d3.v4.js"></script>
-                                <!-- Create a div where the graph will take place -->
-                                <div id="my_dataviz" style="display:inline-block;text-align:center;"></div>
-                            </foreignObject>
-                        </switch>
-                        </svg>
+                    <div style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-2" class="select_text" style="color:#3e5e88; height:15%"><b>The Top 12 Mostly described Chinese Locations</b></p>
+                        <!-- Load d3.js -->
+                        <script src="https://d3js.org/d3.v4.js"></script>
+                        <!-- Create a div where the graph will take place -->
+                        <div id="my_dataviz" style="display:inline-block;text-align:center;height:60%;width:100%"></div>
+                        <p style="text-align:center;font-size:120%;height:7%">Number of Chinese Locations Marco-Polo have described: <mark>58</mark></p>
+                        <p style="text-align:center;font-size:120%;height:7%">Average Number of Words used to describe one location: <mark>427</mark></p>
+                        <button  id="button-return-2" class="button-return"onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-3" style="height:100%;width:100%;display:none">
-                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                        <svg id='rectangle' class="my-svg-3" width="100%" height="100%">
-                            <rect id='stroke'class="my-rec-3" stroke="#01204d" rx='50' ry='50'/>
-                        <switch>
-                            <foreignObject width="100%" height="100%" >
-                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-3" class="select_text" style="color:#01204d;"><b>Religion</b></p>
-                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-3" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
-                            </foreignObject>
-                        </switch>
-                        </svg>
+                    <div style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-3" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <button id="button-return-3" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-4" style="height:100%;width:100%;display:none" >
-                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                        <svg id='rectangle' class="my-svg-4" width="100%" height="100%">
-                            <rect id='stroke'class="my-rec-4" stroke="#01204d" rx='50' ry='50'/>
-                        <switch>
-                            <foreignObject width="100%" height="100%" >
-                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-4" class="select_text" style="color:#01204d;"><b>Specialty</b></p>
-                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
-                            </foreignObject>
-                        </switch>
-                        </svg>
+                    <div style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <button id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-5" style="height:100%;width:100%;display:none">
-                    <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                        <svg id='rectangle' class="my-svg-5" width="100%" height="100%">
-                            <rect id='stroke'class="my-rec-5" stroke="#01204d" rx='50' ry='50'/>
-                        <switch>
-                            <foreignObject width="100%" height="100%" >
-                                <p xmlns="http://www.w3.org/1999/xhtml" id="text-5" class="select_text" style="color:#01204d;"><b>Industry</b></p>
-                                <button xmlns="http://www.w3.org/1999/xhtml"  id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
-                            </foreignObject>
-                        </switch>
-                        </svg>
+                    <div style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <button id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
@@ -199,58 +174,44 @@
     
                 // Iterate over each button
                 rectangles.each(function(index) {
+                    console.log(index)
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".rec-" + (index+1));
-    
+                    
+                    
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
-                    $(".rec").not(section).hide();
-    
-                    // Show the current section
-                    section.show();
-
-
+                        $(".rec").not(section).hide();
+        
+                        // Show the current section
+                        section.show();
+                        
 
 
                     });
                 });
                 });
 
-
-                //resize svg
-
-                // Loop through all five rectangles
-                for (let i = 2; i <= 5; i++) {
-                // Get the SVG and rectangle elements
-                const svg = document.querySelector(`.my-svg-${i}`);
-                const rect = document.querySelector(`.my-rec-${i}`);
-                // Define the resize function
-                function resize() {
-                    const width = svg.clientWidth;
-                    const height = svg.clientHeight;
-                    rect.setAttribute('width', width);
-                    rect.setAttribute('height', height);
-                }
-                // Add the resize event listener and call the function
-                window.addEventListener('resize', resize);
-                resize();
-                // Add the animationend event listener to show the text
-                const text = document.querySelector(`#text-${i}`);
-                const button_return = document.querySelector(`#button-return-${i}`);
-                svg.addEventListener('animationend', function(ev) {
-                    if (ev.animationName === 'fillIn') {
-                    text.style.display = 'flex';
-                    button_return.style.display = 'inline-block'
+                $(document).ready(function(){
+                    for (let i = 2; i <= 5; i++) {
+                        const map_button=document.querySelector(`.rec${i}`);
+                        const text = document.querySelector(`#map-text-${i}`);
+                        const button_return = document.querySelector(`#button-return-${i}`);
+                        map_button.addEventListener("click",function(e) {
+                            text.style.display = 'flex';
+                            button_return.style.display = 'inline-block'
+                        })
                     }
-                });
-                }
+                })
+                
 
                 function return_rec_1(){
                     for (let i = 2; i <= 5; i++) {
                         $(".rec-" + i).hide()
-                        $("#text-" + i).hide()
+                        $("#map-text-" + i).hide()
                         $("#button-return-" + i).hide()
+                    
                     }
                     $(".rec-1").show();
                     return_map();
@@ -262,20 +223,21 @@
                 <script>
                     // set the dimensions and margins of the graph
                     var margin = {top: 5, right: 10, bottom: 5, left: 10},
-                    width = 650 - margin.left - margin.right,
-                    height = 450 - margin.top - margin.bottom;
-                    console.log(window.innerWidth)
-                    
+                    //width = 650 - margin.left - margin.right,
+                    //height = 400 - margin.top - margin.bottom;
+                    width = window.innerWidth * 0.4 - margin.left - margin.right,
+                    height =  window.innerHeight * 0.5 - margin.top - margin.bottom;
+                
                     // append the svg object to the body of the page
-                    var svg = d3.select("#my_dataviz")
-                    .append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                            "translate(" + margin.left + "," + margin.top + ")");
+                    var svg_overview = d3.select("#my_dataviz")
+                        .append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform",
+                                "translate(" + margin.left + "," + margin.top + ")");
 
-                    
+                
                     // Read data
                     d3.csv('./csv/wordcount.csv', function(data) {
                     
@@ -300,7 +262,7 @@
 
                         console.log(root.leaves())
                         // use this information to add rectangles:
-                        svg
+                        svg_overview
                             .selectAll("rect")
                             .data(root.leaves())
                             .enter()
@@ -314,7 +276,7 @@
                                 .style("rx","20")
                         
                         // and to add the text labels
-                        svg
+                        svg_overview
                             .selectAll("text")
                             .data(root.leaves())
                             .enter()
@@ -329,6 +291,7 @@
 
             </div>
         </div>
+        </div>
             <script>
                 var map = L.map('map',{
                 maxBounds:[[17, 100], [42, 123]],
@@ -341,10 +304,13 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
+                map.on('click', function(e) {
+                    alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+                });
 
 
                 //add historical map
-                var imageUrl = "./images/map05.png",
+                var imageUrl = "./images/map07.png",
                 //imageBounds = [[10, 80], [60, 130]];
                 imageBounds = [[17, 100], [42, 123]];
                 L.imageOverlay(imageUrl, imageBounds,{opacity:1}).addTo(map);
@@ -361,15 +327,66 @@
                 //import logos of different colors
                 var greenIcon = new anyIcon({iconUrl: './images/green.png'}),
                     redIcon = new anyIcon({iconUrl: './images/red.png'}),
-                    blueIcon = new anyIcon({iconUrl: './images/blue.png'}),
+                    blueIcon = new anyIcon({iconUrl: './images/blue02.png'}),
                     yellowIcon = new anyIcon({iconUrl: './images/yellow.png'});
                     greyIcon = new anyIcon({iconUrl:"./images/grey.png"});
 
                 //info of each markers
                 const original_markers = Object.freeze([
-                    {lat: 25, lng: 118, icon:greenIcon, popupContent: "Zayton"},
-                    {lat: 40, lng: 116, icon:redIcon,  popupContent: "Dadu"},
-                    {lat: 32, lng: 119, icon:blueIcon, popupContent: "Xingzai"}
+                    {lat: 28.462896451430616, lng: 118.21728517301383, icon:blueIcon, popupContent: "Xingzai"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yongchang"},
+                    {lat: 25.407554540244227, lng: 118.23925782926383, icon:blueIcon, popupContent: "Fuzhou(City)"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Qarajang"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiandu"},
+                    //{lat: 40, lng: 116, icon:redIcon,  popupContent: "Xiezhou"},
+                    {lat: 30.234391407813202, lng: 110.39501954801383, icon:blueIcon,  popupContent: "Xiangyangfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Daidu"},
+                    {lat: 30.091910087077462, lng: 102.02343751676382, icon:blueIcon,  popupContent: "Chengdufu"},
+                    {lat: 30.215405799706534, lng: 117.32739259488883, icon:blueIcon,  popupContent: "Zhenzhou"},
+                    {lat: 23.89990050209837, lng: 117.51416017301382, icon:blueIcon,  popupContent: "Zayton"},
+                    {lat: 29.3764310567375, lng: 106.15429689176382, icon:blueIcon,  popupContent: "Fuling"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yachi"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Fuzhou(Kingdom)"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chang’anfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guanzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Xinzhou Matou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tingzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jianningfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changlu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yangzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhenjiangfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Hejianfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Huai'anzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guangyuan"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Houguan"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq Manzi"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Liucheng"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taiyuanfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Dongpingfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Baoying"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Anqing"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taizhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiangling"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Ganpu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Gaoyou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suichang"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pizhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Quzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suqian"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tonglu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tongzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changxing"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhuozhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuxing"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chuzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuzhou"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wujiang"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pingyangfu"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Kuizhou(province)"},
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "huaiyin"}
                 ]);
 
                 function copyMarker(marker) {
@@ -382,13 +399,11 @@
                 }
 
                 const current_markers = original_markers.map(copyMarker);
-
-
                 
-                const location_overview=["Xingzai","Yongchang","Fuzhou","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+                const location_overview=["Xingzai","Yongchang","Fuzhou(City)","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
 
                 function overview_map(){
-                    updateMarkerIcons(yellowIcon,"overview");
+                    updateMarkerIcons(greenIcon,"overview");
                 }
 
                 function return_map(){
@@ -407,8 +422,6 @@
                         }else if (check=="return"){
                             for (var i=0;i<original_markers.length;i++){
                                 if (marker.popupContent==original_markers[i].popupContent){
-                                    
-                                    console.log(original_markers[i])
                                     marker.icon=original_markers[i].icon
                                 }
                             }
@@ -473,158 +486,243 @@
             <div style="margin-top:10px;margin-bottom:10px;text-align:center; ">
                 <div class="section-1" style="display:inline-block;">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style="float:left; width:49%;">
+                    <div style="float:left; width:49%;height:600px">
                         <img class="shape" src="./images/quanzhou.jpg">
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style="float:right; width:49%;">
-                        <span class="box" >
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style="float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-1" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-1" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-1" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
                 
         
                 <div class="section-2" style="display:none;">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style="float:left; width:49%;">
+                    <div style="float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg">
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style="float:right; width:49%;">
-                        <span class="box" >
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style="float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-2" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-2" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
         
                 <div class="section-3"  style="display:none" >
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-3" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-3" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-3" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
+
                     </div>
                 </div>
         
                 <div class="section-4"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-4" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-4" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-4" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-5"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-5" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-5" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-5" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-6"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-6" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-6" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-6" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-7"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-7" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-7" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-7" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-8"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-8" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-8" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-8" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-9"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-9" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-10"  style="display:none" >
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-10" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-10" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-10" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-11"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-11" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-11" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-11" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
                 <div class="section-12"  style="display:none">
                     <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%">
+                    <div style=" float:left; width:49%; height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
-                    <div style="float:left; width:2%;"></div>
-                    <div style=" float:right; width:49%">
-                        <span class="box">
-                            <p class="text-white" style="line-height:5;">any text</p>
-                        </span>
+                    <div style="float:left; width:2%;height:600px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-12" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-12" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-12" class="text-white" style="line-height:5;">any text</p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -677,13 +775,40 @@
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
-                    $(".section").not(section).hide();
+                    $(".section-").not(section).hide();
     
                     // Show the current section
                     section.show();
                     });
                 });
                 });
+
+                for(var i=1;i<=12;i++){
+                // Get the SVG and rectangle elements
+                const svg_rect = document.querySelector(`.my-svg-${i}`);
+                const rect = document.querySelector(`.my-rec-${i}`);
+                // Define the resize function
+                function resize() {
+                    const width = svg_rect.clientWidth;
+                    const height = svg_rect.clientHeight;
+                    rect.setAttribute('width', width);
+                    rect.setAttribute('height', height);
+                }
+                // Add the resize event listener and call the function
+                window.addEventListener('resize', resize);
+                resize();
+                // Add the animationend event listener to show the text
+                const text = document.querySelector(`#text-${i}`);
+                svg_rect.addEventListener('animationend', function(ev) {
+                    if (ev.animationName === 'fillIn') {
+                    text.style.display = 'flex';
+                    }
+                });
+
+
+                }
+                
+
     
             </script>
         </div>
