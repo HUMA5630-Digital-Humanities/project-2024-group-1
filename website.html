@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="./images/pattern2.png">
+    <link rel="icon" href="./images/logo.jpg">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -36,7 +36,7 @@
             $(function() {
               $('.hero-slides').vegas({
                   slides: [
-                      { src: './images/banner5.jpg' },
+                      { src: './images/banner7.jpg' },
                       { src: './images/banner6.jpg' },
                   ],
                   timer: false,
@@ -47,18 +47,28 @@
 
     </section>
 
-    <section class="barista-section section-padding section-bg1" id="page_2">
-        <div class="container" style="height: 700px">
-            <div class="align-items-center">
-                <p class="text-white" style="text-align:center; font-size:300%;">Introduction</p>
+    <section id="connect-bar" style="height:50px; background-color:#ffffff;">
+    </section>
+
+    <section class="barista-section section-padding section-bg1" style="height:800px" id="page_2">
+        <div class="container" style="height:700px;margin-top:30px;margin-bottom:30px">
+            <div style="width:100%;height:60%">
+                <img src="./images/Marco_Polo.jpg" style="overflow: hidden;height:100%;float:left; max-width:800px; width:50%;" >
+                <h5 class="intro_marco" style="margin-top:20px;height:45%; width:40%; float:right;color:#eaeaea"><mark class="text-white" style="background-color:#61a0ff; font-size:140%">Marco Polo(1254—1324)</mark>, was an Italian merchant and traveler.At the age of 17, he embarked on a journey to the Orient with his father and uncle. During his 17-year stay in China, he explored many regions, including southwest mountain area and the southeastern coastal area. Upon his return to Italy, Marco Polo was captured in a battle and imprisoned. While in prison, he recounted his experiences and adventures during his travels. With the assistance of his cellmate Rustichello, he documented his travels in the famous book ——<mark class="text-white" style="background-color:#333d4d">The Travels</mark>.</h5>
+            </div>
+            <div style="width:100%;height:40%;margin-top:30px">
+                <h5 class="intro_marco" style="color:#9f9f9f" ><mark class="text-white" style="background-color:#61a0ff; font-size:140%">The Objective</mark> of this project is to utilize ancient cartographic maps of China, dating back to the time of Marco Polo, to showcase the locations he visited during his travels in China and the concerns he expressed about them in his narratives. Unlike the travelogues of Chinese literati of the same period, Marco Polo's preoccupations were unique. As a merchant, he was naturally interested in local industries and specialties, and meticulously recorded the prices of goods in his books. Additionally, as a devout religious believer, he was also concerned about the state of faith of the local people. Therefore, we decided to present the cities mentioned in Marco Polo's travels in three areas: religion, specialties and industry, which he frequently mentioned in his accounts. The website will provide an interactive and informative experience for users, enabling them to explore and comprehend the historical routes of Marco Polo's travels in China, while also gaining insight into the local customs he described.</h5>
             </div>
         </div>
         </section>
     </main>
 
+    <section id="connect-bar" style="height:50px; background-color:#ffffff;">
+    </section>
 
-    <section class="barista-section section-padding section-bg2" style="height:800px;" id="page_3">
-        <div style="background-color:#fff;height: 680px;width:100%">
+
+    <section class="barista-section section-padding section-bg2" style="height:700px" id="page_3">
+        <div style="background-color:#d9ecff;height: 680px;width:100%">
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
             <div style=" float:left; width:50%">
@@ -66,7 +76,7 @@
                 <p style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
             </div>
             <div class="align-items-center" style=" float:right; height:650px;width:50%; margin-top:10px;">
-                <div class="rec-1" style="display:inline-block;margin-top:30px;">
+                <div class="rec-1" style="display:inline-block;margin-top:20px;">
                     <div class="map-select" style="color:#01204d">
                         <div class="my-word">
                             <span class="my-span" style="--i:0.5">W</span>
@@ -87,7 +97,7 @@
                             <span  class="my-span"style="--i:3.25">u&nbsp;</span>
                         </div>
                         <div class="my-word">
-                            <span class="my-span"style="--i:3.5">l</span>
+                            <span class="my-span"style="--i:3.5">L</span>
                             <span class="my-span"style="--i:3.75">i</span>
                             <span class="my-span" style="--i:4">k</span>
                             <span class="my-span" style="--i:4.25">e&nbsp;</span>
@@ -97,7 +107,7 @@
                             <span class="my-span"style="--i:4.75">o&nbsp;</span>
                         </div>
                         <div class="my-word">
-                            <span class="my-span"style="--i:5">l</span>
+                            <span class="my-span"style="--i:5">L</span>
                             <span class="my-span"style="--i:5.25">e</span>
                             <span class="my-span" style="--i:5.5">a</span>
                             <span class="my-span" style="--i:5.75">r</span>
@@ -106,41 +116,45 @@
                         </div>
                         <p><br></p>
                         <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2" onclick="overview_map()">Overview</button>
-                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3">Religion</button>
-                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4">Specialty</button>
-                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5">Industry</button>
+                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3"  onclick="button_start()">Religion</button>
+                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4" onclick="button_start()">Specialty</button>
+                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5" onclick="button_start()">Economic Activities</button>
                     </div>
                 </div>
                 <div class="rec-2" style="height:100%;width:100%;display:none">
-                    <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-2" class="select_text" style="color:#3e5e88; height:15%"><b>The Top 12 Mostly described Chinese Locations</b></p>
+                    <div id="overview_viz"style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-2" class="select_text" style="color:#3e5e88; height:8%"><b>The Top 12 Mostly described Chinese Locations(words)</b></p>
                         <!-- Load d3.js -->
                         <script src="https://d3js.org/d3.v4.js"></script>
                         <!-- Create a div where the graph will take place -->
-                        <div id="my_dataviz" style="display:inline-block;text-align:center;height:60%;width:100%"></div>
-                        <p style="text-align:center;font-size:120%;height:7%">Number of Chinese Locations Marco-Polo have described: <mark>58</mark></p>
-                        <p style="text-align:center;font-size:120%;height:7%">Average Number of Words used to describe one location: <mark>427</mark></p>
-                        <button  id="button-return-2" class="button-return"onclick="return_rec_1()"><u>Return</u></button>
+                        <div id="my_dataviz_1" class="dataviz-2"style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations Marco-Polo have described: <mark>56</mark><br>Average Number of Words used to describe one location: <mark>427.3</mark></p>
+                        <!--<p style="text-align:center;font-size:110%;height:6%;line-height:1">Average Number of Words used to describe one location: <mark>427</mark></p>-->
+                        <button  id="button-return-2" class="button-return" style="height:5%" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-3" style="height:100%;width:100%;display:none">
                     <div style="margin-left:20px;height:100%;width:100%">
                         <p id="map-text-3" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <div id="my_dataviz_2" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75">Over 70% of places were recorded to have Idolaters living</p>
                         <button id="button-return-3" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-4" style="height:100%;width:100%;display:none" >
                     <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Specialty</b></p>
+                        <div id="my_dataviz_3" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
                         <button id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-5" style="height:100%;width:100%;display:none">
                     <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Economic Activities</b></p>
+                        <div id="my_dataviz_4" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
                         <button id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
@@ -220,7 +234,7 @@
                 </script>
                 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-                <script>
+                <script>/*
                     // set the dimensions and margins of the graph
                     var margin = {top: 5, right: 10, bottom: 5, left: 10},
                     //width = 650 - margin.left - margin.right,
@@ -229,7 +243,7 @@
                     height =  window.innerHeight * 0.5 - margin.top - margin.bottom;
                 
                     // append the svg object to the body of the page
-                    var svg_overview = d3.select("#my_dataviz")
+                    var svg_overview = d3.select("#my_dataviz_1")
                         .append("svg")
                         .attr("width", width + margin.left + margin.right)
                         .attr("height", height + margin.top + margin.bottom)
@@ -272,8 +286,15 @@
                                 .attr('width', function (d) { return d.x1 - d.x0; })
                                 .attr('height', function (d) { return d.y1 - d.y0; })
                                 .style("stroke", "black")
+                                .style("opacity","0.7")
                                 .attr("fill", d => color(d.data.Word))
                                 .style("rx","20")
+                                .on("mouseover", function(d) {
+                                    d3.select(this).style("opacity","1");
+                                })
+                                .on("mouseout", function(d) {
+                                    d3.select(this).style("opacity","0.7");
+                                });
                         
                         // and to add the text labels
                         svg_overview
@@ -287,7 +308,275 @@
                                 .attr("font-size", "15px")
                                 .attr("fill", "white")
                     })
+                */</script>
+
+                <script>/*
+                    // set the dimensions and margins of the graph
+                    var margin = {top: 5, right: 10, bottom: 5, left: 10},
+                    //width = 650 - margin.left - margin.right,
+                    //height = 400 - margin.top - margin.bottom;
+                    width = window.innerWidth * 0.4 - margin.left - margin.right,
+                    height =  window.innerHeight * 0.5 - margin.top - margin.bottom;
+
+                    // append the svg object to the body of the page
+                    var svg_religion = d3.select("#my_dataviz_2")
+                        .append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform",
+                                "translate(" + margin.left + "," + margin.top + ")");
+
+
+                    // Read data
+                    d3.csv('./csv/Religion.csv', function(data) {
+                    
+                        // stratify the data: reformatting for d3.js
+                        var root = d3.stratify()
+                            .id(function(d) { return d.Religion; })   // Name of the entity (column name is name in csv)
+                            .parentId(function(d) { return d.Parent; })   // Name of the parent (column name is parent in csv)
+                            (data);
+                        root.sum(function(d) { return +d.Percent })   // Compute the numeric value for each entity
+                        
+                        // Then d3.treemap computes the position of each element of the hierarchy
+                        // The coordinates are added to the root object above
+                        d3.treemap()
+                            .size([width, height])
+                            .padding(4)
+                            (root)
+                        
+                            const color = d3.scaleSequential()
+                                .interpolator(d3.interpolateCubehelixDefault)
+                                .domain([0.1, 3]);
+                                //.domain([d3.max(data, d => d.Percent), d3.min(data, d => d.Word)]);
+
+                        console.log(root.leaves())
+                        // use this information to add rectangles:
+                        svg_religion
+                            .selectAll("rect")
+                            .data(root.leaves())
+                            .enter()
+                            .append("rect")
+                                .attr('x', function (d) { return d.x0; })
+                                .attr('y', function (d) { return d.y0; })
+                                .attr('width', function (d) { return d.x1 - d.x0; })
+                                .attr('height', function (d) { return d.y1 - d.y0; })
+                                .style("stroke", "black")
+                                .attr("fill", d => color(d.data.Percent))
+                                .style("rx","20")
+                                .style("opacity","0.7")
+                                .on("mouseover", function(d) {
+                                    d3.select(this).style("opacity","1");
+                                })
+                                .on("mouseout", function(d) {
+                                    d3.select(this).style("opacity","0.7");
+                                });
+                        
+                        // and to add the text labels
+                        svg_religion
+                            .selectAll("text")
+                            .data(root.leaves())
+                            .enter()
+                            .append("text")
+                                .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+                                .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+                                .text(function(d){ return d.data.Religion})
+                                .attr("font-size", "15px")
+                                .attr("fill", "white")
+                    })
+                */</script>
+                <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+                <script>
+                    var plt_width=window.innerWidth*0.4;
+                    function reportWindowSize() {
+                        plt_width= window.innerWidth*0.4;
+                        console.log(plt_width)
+                    }
+                    window.onresize = reportWindowSize;
+
+                    svg_overview = d3.csv('csv/wordcount.csv', function (err, rows) {
+                        function unpack(rows, key) {
+                            return rows.map(function (row) {
+                                return row[key]
+                            });
+                        }
+
+                        var data = [{
+                            type: "treemap",
+                            values: unpack(rows, 'Word'),
+                            labels: unpack(rows, 'Location'),
+                            textinfo: "label+value",
+                            parents: unpack(rows, ''),
+                        }];
+                        
+                        var layout = {
+                            treemapcolorway: ["royalblue", "lightblue"],
+                            margin: {
+                                l: 0,  // Set the left margin to 50 pixels
+                                r: 5,  // Set the right margin to 50 pixels
+                                b: 0,  // Set the bottom margin to 50 pixels
+                                t: 0   // Set the top margin to 50 pixels
+                            },
+                            // Set the padding of the plot area to 0 pixels
+                            //xaxis: {zeroline:false, showline:false},
+                            //yaxis: {zeroline:false, showline:false},
+                            autosize: true,
+                            width: plt_width
+                            //height:window.innerHieght*0.2
+
+                        }
+                        var config = {
+                            responsive: true,
+                            
+                        }
+                        Plotly.newPlot('my_dataviz_1', data, layout, config);
+                    })
                 </script>
+
+                <script>
+                    d3.csv('csv/Religion.csv', function (err, rows) {
+                        function unpack(rows, key) {
+                            return rows.map(function (row) {
+                                return row[key]
+                            });
+                        }
+
+                        var data = [{
+                            type: "treemap",
+                            values: unpack(rows, 'Percent'),
+                            labels: unpack(rows, 'Religion'),
+                            textinfo: "label+value",
+                            parents: unpack(rows, ''),
+                        }];
+                        var layout = {
+                            treemapcolorway: ["royalblue", "lightblue"],
+                            margin: {
+                                l: 0,  // Set the left margin to 50 pixels
+                                r: 0,  // Set the right margin to 50 pixels
+                                b: 0,  // Set the bottom margin to 50 pixels
+                                t: 0   // Set the top margin to 50 pixels
+                            },
+                            autosize: true,
+                            width: window.innerWidth*0.4,
+                        }
+                        var config = {
+                            responsive: true
+                        }
+                        Plotly.newPlot('my_dataviz_2', data, layout, config);
+
+                        var getback = 0;
+                        document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
+                            var point = data.points[0];
+                            console.log(getback)
+                            religion_map(point.label,getback)
+                            if (getback===0){
+                                getback++;
+                            }else{
+                                getback=0
+                            }
+                        });
+                        
+                    })
+                </script>
+
+                <script>
+                    d3.csv('csv/specialty.csv', function (err, rows) {
+                        function unpack(rows, key) {
+                            return rows.map(function (row) {
+                                return row[key]
+                            });
+                        }
+
+                        var data = [{
+                            type: "treemap",
+                            values: unpack(rows, 'Number'),
+                            labels: unpack(rows, 'Specialty'),
+                            textinfo: "label+value",
+                            parents: unpack(rows, ''),
+                        }];
+                        var layout = {
+                            treemapcolorway: ["royalblue", "lightblue"],
+                            margin: {
+                                l: 0,  // Set the left margin to 50 pixels
+                                r: 0,  // Set the right margin to 50 pixels
+                                b: 0,  // Set the bottom margin to 50 pixels
+                                t: 0   // Set the top margin to 50 pixels
+                            },
+                            autosize: true,
+                            width: window.innerWidth*0.4,
+                        }
+                        var config = {
+                            responsive: true
+                        }
+                        Plotly.newPlot('my_dataviz_3', data, layout, config);
+
+                        var getback = 0;
+                        document.getElementById('my_dataviz_3').on('plotly_click', function(data) {
+                            var point = data.points[0];
+                            console.log(getback)
+                            specialty_map(point.label,getback)
+                            if (getback===0){
+                                getback++;
+                            }else{
+                                getback=0
+                            }
+                        });
+                        
+                    })
+                </script>
+                <script>
+                    d3.csv('csv/economics.csv', function (err, rows) {
+                        function unpack(rows, key) {
+                            return rows.map(function (row) {
+                                return row[key]
+                            });
+                        }
+
+                        var data = [{
+                            type: "treemap",
+                            values: unpack(rows, 'Percent'),
+                            labels: unpack(rows, 'economics'),
+                            textinfo: "label+value",
+                            parents: unpack(rows, ''),
+                        }];
+                        var layout = {
+                            treemapcolorway: ["royalblue", "lightblue"],
+                            margin: {
+                                l: 0,  // Set the left margin to 50 pixels
+                                r: 0,  // Set the right margin to 50 pixels
+                                b: 0,  // Set the bottom margin to 50 pixels
+                                t: 0   // Set the top margin to 50 pixels
+                            },
+                            autosize: true,
+                            width: window.innerWidth*0.4,
+                        }
+                        var config = {
+                            responsive: true
+                        }
+                        Plotly.newPlot('my_dataviz_4', data, layout, config);
+
+                        var getback = 0;
+                        document.getElementById('my_dataviz_4').on('plotly_click', function(data) {
+                            var point = data.points[0];
+                            console.log(getback)
+                            economics_map(point.label,getback)
+                            if (getback===0){
+                                getback++;
+                            }else{
+                                getback=0
+                            }
+                        });
+                        
+                    })
+                </script>
+
+
+
+
+
+
+
 
             </div>
         </div>
@@ -304,9 +593,9 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
-                map.on('click', function(e) {
+                /*map.on('click', function(e) {
                     alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-                });
+                });*/
 
 
                 //add historical map
@@ -326,19 +615,39 @@
 
                 //import logos of different colors
                 var greenIcon = new anyIcon({iconUrl: './images/green.png'}),
+                    greenIcon01 = new anyIcon({iconUrl: './images/green01.png'}),
+                    greenIcon02 = new anyIcon({iconUrl: './images/green02.png'}),
+                    greenIcon03 = new anyIcon({iconUrl: './images/green03.png'}),
+                    greenIcon04 = new anyIcon({iconUrl: './images/green04.png'}),
                     redIcon = new anyIcon({iconUrl: './images/red.png'}),
+                    redIcon01 = new anyIcon({iconUrl: './images/red01.png'}),
+                    redIcon02 = new anyIcon({iconUrl: './images/red02.png'}),
+                    redIcon03 = new anyIcon({iconUrl: './images/red03.png'}),
+                    redIcon04 = new anyIcon({iconUrl: './images/red04.png'}),
+                    redIcon05 = new anyIcon({iconUrl: './images/red05.png'}),
+                    redIcon06 = new anyIcon({iconUrl: './images/red06.png'}),
+                    redIcon07 = new anyIcon({iconUrl: './images/red07.png'}),
+                    redIcon08 = new anyIcon({iconUrl: './images/red08.png'}),
+                    redIcon09 = new anyIcon({iconUrl: './images/red09.png'}),
+                    redIcon10 = new anyIcon({iconUrl: './images/red10.png'}),
+                    redIcon11 = new anyIcon({iconUrl: './images/red11.png'}),
+                    redIcon12 = new anyIcon({iconUrl: './images/red12.png'}),
                     blueIcon = new anyIcon({iconUrl: './images/blue02.png'}),
+                    blueIcon01 = new anyIcon({iconUrl: './images/blue05.png'}),
+                    blueIcon02 = new anyIcon({iconUrl: './images/blue03.png'}),
+                    blueIcon03 = new anyIcon({iconUrl: './images/blue.png'}),
                     yellowIcon = new anyIcon({iconUrl: './images/yellow.png'});
                     greyIcon = new anyIcon({iconUrl:"./images/grey.png"});
+                    empty= new  anyIcon({iconUrl:"./images/Empty.png"});
 
                 //info of each markers
                 const original_markers = Object.freeze([
                     {lat: 28.462896451430616, lng: 118.21728517301383, icon:blueIcon, popupContent: "Xingzai"},
                     {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yongchang"},
-                    {lat: 25.407554540244227, lng: 118.23925782926383, icon:blueIcon, popupContent: "Fuzhou(City)"},
+                    {lat: 25.20096498200756, lng: 118.43701171455908, icon:blueIcon, popupContent: "Fuzhou-City"},
                     {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Qarajang"},
                     {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiandu"},
-                    //{lat: 40, lng: 116, icon:redIcon,  popupContent: "Xiezhou"},
+                    {lat: 34.93638266555324, lng: 109.94458007393405, icon:blueIcon,  popupContent: "Xiezhou"},
                     {lat: 30.234391407813202, lng: 110.39501954801383, icon:blueIcon,  popupContent: "Xiangyangfu"},
                     {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Daidu"},
                     {lat: 30.091910087077462, lng: 102.02343751676382, icon:blueIcon,  popupContent: "Chengdufu"},
@@ -346,47 +655,48 @@
                     {lat: 23.89990050209837, lng: 117.51416017301382, icon:blueIcon,  popupContent: "Zayton"},
                     {lat: 29.3764310567375, lng: 106.15429689176382, icon:blueIcon,  popupContent: "Fuling"},
                     {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yachi"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Fuzhou(Kingdom)"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chang’anfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guanzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Xinzhou Matou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tingzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jianningfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changlu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yangzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhenjiangfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Hejianfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Huai'anzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guangyuan"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Houguan"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq Manzi"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Liucheng"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taiyuanfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Dongpingfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Baoying"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Anqing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taizhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiangling"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Ganpu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Gaoyou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suichang"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pizhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Quzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suqian"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tonglu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tongzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changxing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhuozhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuxing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chuzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wujiang"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pingyangfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Kuizhou(province)"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "huaiyin"}
+                    {lat: 25.437322005354392, lng: 118.27441406145228, icon:blueIcon,  popupContent: "Fuzhou-Kingdom"},
+                    {lat: 29.346748385638794, lng: 118.58312988071704, icon:blueIcon,  popupContent: "Changzhou"},
+                    {lat: 34.158181827044466, lng: 107.97802733955905, icon:blueIcon,  popupContent: "Chang’anfu"},
+                    {lat:  29.241353038543533, lng: 119.11596679477954, icon:blueIcon,  popupContent: "Suzhou"},
+                    {lat: 30.28895459732805, lng: 117.88714599504603, icon:greyIcon,  popupContent: "Guanzhou"},
+                    {lat: 34.42775477275056, lng: 115.49047851352954, icon:blueIcon,  popupContent: "Xinzhou Matou"},
+                    {lat: 25.169150729729605, lng: 115.42895506136121, icon:blueIcon,  popupContent: "Tingzhou"},
+                    {lat: 26.22346138961486, lng: 115.53881834261122, icon:blueIcon,  popupContent: "Jianningfu"},
+                    {lat: 39.16243739691719, lng: 116.6440429352224, icon:blueIcon,  popupContent: "Changlu"},
+                    {lat: 30.422150902195295, lng: 117.87835692521186, icon:blueIcon,  popupContent: "Yangzhou"},
+                    {lat: 29.8396909258744, lng: 117.84045408479871, icon:blueIcon,  popupContent: "Zhenjiangfu"},
+                    {lat: 38.477674560489724, lng: 115.2158202789724, icon:blueIcon,  popupContent: "Hejianfu"},
+                    {lat: 30.98891162142395, lng: 117.72180174943061, icon:blueIcon,  popupContent: "Huai'anzhou"},
+                    {lat: 31.838366019860075, lng: 104.6359862945974, icon:blueIcon,  popupContent: "Guangyuan"},
+                    {lat: 25.184561784536438, lng: 118.14477538224311, icon:blueIcon,  popupContent: "Houguan"},
+                    {lat: 39.00894014778241, lng: 113.2932128570974, icon:blueIcon,  popupContent: "Aq-baliq"},
+                    {lat: 32.14585066537849, lng: 106.1081542633474, icon:blueIcon,  popupContent: "Aq-baliq Manzi"},
+                    {lat: 33.273598383210654, lng: 116.1716308258474, icon:greyIcon,  popupContent: "Liucheng"},
+                    {lat: 38.237317198200095, lng: 111.90234373323621, icon:blueIcon,  popupContent: "Taiyuanfu"},
+                    {lat: 35.02819711207845, lng: 115.8969726227224, icon:blueIcon,  popupContent: "Dongpingfu"},
+                    {lat: 30.758830767273807, lng: 117.81408691196704, icon:greyIcon,  popupContent: "Baoying"},
+                    {lat: 29.472122570267135, lng: 114.80822752229871, icon:blueIcon,  popupContent: "Anqing"},
+                    {lat: 30.29132621567163, lng: 118.60400388948621, icon:blueIcon,  popupContent: "Taizhou"},
+                    {lat: 37.01483496665293, lng: 115.91784666292371, icon:blueIcon,  popupContent: "Jiangling"},
+                    {lat: 28.658779132996656, lng: 119.37524413224311, icon:greyIcon,  popupContent: "Ganpu"},
+                    {lat: 30.68941547544074, lng: 118.00744628068061, icon:blueIcon,  popupContent: "Gaoyou"},
+                    {lat: 36.45486871320746, lng: 110.4257812164724, icon:blueIcon,  popupContent: "Hezhongfu"},
+                    {lat: 27.027324130533298, lng: 117.69158934708686, icon:greyIcon,  popupContent: "Suichang"},
+                    {lat: 32.09002109442789, lng: 117.08898925571704, icon:greyIcon,  popupContent: "Pizhou"},
+                    {lat: 27.681582325137093, lng: 116.7429198883474, icon:blueIcon,  popupContent: "Quzhou"},
+                    {lat: 32.03508870639029, lng: 117.34057615511122, icon:blueIcon,  popupContent: "Suqian"},
+                    {lat: 28.215353591268574, lng: 117.7097167633474, icon:blueIcon,  popupContent: "Tonglu"},
+                    {lat: 29.905424693620244, lng: 119.73120113834739, icon:blueIcon,  popupContent: "Tongzhou"},
+                    {lat: 28.992766254563122, lng: 118.08215330354872, icon:blueIcon,  popupContent: "Changxing"},
+                    {lat: 40.95252213976489, lng: 115.05212401505561, icon:blueIcon,  popupContent: "Zhuozhou"},
+                    {lat: 29.557689977215542, lng: 118.9712219196372, icon:blueIcon,  popupContent: "Wuxing"},
+                    {lat: 27.018026553504075, lng: 117.9184569977224, icon:blueIcon,  popupContent: "Chuzhou"},
+                    {lat: 27.512169047288076, lng: 117.69763181917371, icon:blueIcon,  popupContent: "Wuzhou"},
+                    {lat: 28.987961377194683, lng: 119.40051267854872, icon:blueIcon,  popupContent: "Wujiang"},
+                    {lat: 35.54831760186836, lng: 110.86523434147239, icon:blueIcon,  popupContent: "Pingyangfu"},
+                    {lat: 29.476904779644936, lng: 108.12304685823621, icon:blueIcon,  popupContent: "Kuizhou(province)"},
+                    {lat: 30.90599533496887, lng: 117.69763181917371, icon:blueIcon,  popupContent: "Huaiyin"}
                 ]);
 
                 function copyMarker(marker) {
@@ -400,7 +710,307 @@
 
                 const current_markers = original_markers.map(copyMarker);
                 
-                const location_overview=["Xingzai","Yongchang","Fuzhou(City)","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+                const location_overview=["Xingzai","Yongchang","Fuzhou-City","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+                
+                const idolaters_list=[
+                    "Xingzai",
+                    "Yongchang",
+                    "Fuzhou-City",
+                    "Tibet",
+                    "Qarajang",
+                    "Jiandu",
+                    "Xiangyangfu",
+                    "Daidu",
+                    "Chengdufu",
+                    "Zhenzhou",
+                    "Zayton",
+                    "Fuling",
+                    "Yachi",
+                    "Fuzhou-Kingdom",
+                    "Changzhou",
+                    "Chang’anfu",
+                    "Suzhou",
+                    "Guanzhou",
+                    "Xinzhou Matou",
+                    "Changlu",
+                    "Yangzhou",
+                    "Zhenjiangfu",
+                    "Hejianfu",
+                    "Huai'anzhou",
+                    "Guangyuan",
+                    "Aq-Baliq Manzi",
+                    "Baoying",
+                    "Anqing",
+                    "Taizhou",
+                    "Jiangling",
+                    "Gaoyou",
+                    "Suichang",
+                    "Hezhongfu",
+                    "Quzhou",
+                    "Tonglu",
+                    "Tongzhou",
+                    "Changxing",
+                    "Zhuozhou",
+                    "Wuxing",
+                    "Chuzhou",
+                    "Wuzhou"
+                ]
+
+                const nes_christ_list=[
+                    "Baoying",
+                    "Zhenjiangfu",
+                    "Xingzai",
+                    "Yachi",
+                    "Guangyuan"
+                ]
+
+                const christ_list=[
+                    "Fuzhou-City",
+                    "Daidu",
+                    "Yachi",
+                    "Chang’anfu",
+                    "Hejianfu"
+                ]
+
+                const sar_list=[
+                    "Daidu",
+                    "Chang’anfu",
+                    "Guangyuan"
+                ]
+
+                const industry_list=[
+                    "Chengdufu",
+                    "Chang’anfu",
+                    "Taiyuanfu",
+                    "Hezhongfu",
+                    "Wujiang",
+                    "Xingzai",
+                    "Fuzhou-City",
+                    "Xiangyangfu",
+                    "Zayton",
+                    "Fuling",
+                    "Yachi",
+                    "Fuzhou-Kingdom",
+                    "Changzhou",
+                    "Suzhou",
+                    "Xinzhou Matou",
+                    "Jianningfu",
+                    "Yangzhou",
+                    "Zhenjiangfu",
+                    "Hejianfu",
+                    "Aq-baliq Manzi",
+                    "Liucheng",
+                    "Baoying",
+                    "Anqing",
+                    "Taizhou",
+                    "Gaoyou",
+                    "Suichang",
+                    "Pizhou",
+                    "Quzhou",
+                    "Changxing",
+                    "Zhuozhou",
+                    "Wuxing",
+                    "Wuzhou",
+                    "Pingyangfu",
+                    "Tonglu"
+                ]
+
+                const sugar_list=[
+                    "Houguan",
+                    "Xingzai",
+                    "Fuzhou-City"
+                ]
+
+                const agri_list=[
+                    "Guanzhou",
+                    "Zhenjiangfu",
+                    "Anqing",
+                    "Suqian",
+                    "Chengdufu",
+                    "Guangyuan"
+                ]
+
+                const prostitute_list=[
+                    "Xingzai"
+                ]
+
+                const ship_list=[
+                    "Fuzhou-City",
+                    "Zhenzhou",
+                    "Zayton",
+                    "Guanzhou",
+                    "Xinzhou Matou",
+                    "Huai'anzhou",
+                    "Liucheng",
+                    "Taizhou",
+                    "Ganpu"
+                ]
+
+                const herd_list=[
+                    "Tibet"
+                ]
+
+                const trade_list=[
+                    "Xingzai",
+                    "Fuzhou-City",
+                    "Xiangyangfu",
+                    "Zhenzhou",
+                    "Zayton",
+                    "Fuling",
+                    "Yachi",
+                    "Fuzhou-Kingdom",
+                    "Changzhou",
+                    "Chang’anfu",
+                    "Suzhou",
+                    "Xinzhou Matou",
+                    "Jianningfu",
+                    "Yangzhou",
+                    "Zhenjiangfu",
+                    "Hejianfu",
+                    "Huai'anzhou",
+                    "Aq-baliq Manzi",
+                    "Liucheng",
+                    "Taiyuanfu",
+                    "Dongpingfu",
+                    "Baoying",
+                    "Anqing",
+                    "Taizhou",
+                    "Jiangling",
+                    "Gaoyou",
+                    "Suichang",
+                    "Hezhongfu",
+                    "Pizhou",
+                    "Quzhou",
+                    "Tonglu",
+                    "Changxing",
+                    "Zhuozhou",
+                    "Wuxing",
+                    "Wuzhou",
+                    "Wujiang",
+                    "Pingyangfu"
+                ]
+
+                const military_list=[
+                    "Xingzai",
+                    "Fuzhou-City",
+                    "Chang’anfu",
+                    "Yangzhou",
+                    "Liucheng",
+                    "Taiyuanfu"
+                ]
+
+                const hunt_list=[
+                    "Tibet",
+                    "Guangyuan",
+                    "Aq-baliq"
+                ]
+
+                const salt_list=[
+                    "Xingzai",
+                    "Zhenzhou",
+                    "Yachi",
+                    "Changlu",
+                    "Huai'anzhou",
+                    "Tongzhou"
+                ]
+
+                const literati_list=[
+                    "Xingzai",
+                    "Suzhou"
+                ]
+
+                const occult_list=[
+                    "Suzhou",
+                    "Xingzai",
+                    "Tibet"
+                ]
+
+                const lux_list=[
+                    "Xingzai",
+                    "Fuzhou-City",
+                    "Tibet",
+                    "Qarajang",
+                    "Jiandu",
+                    "Fuzhou-Kingdom",
+                    "Suzhou",
+                    "Jianningfu",
+                    "Houguan",
+                    "Aq-baliq Manzi",
+                    "Hezhongfu"
+                ]
+
+                const ani_list=[
+                    "Fuzhou-City",
+                    "Tibet",
+                    "Qarajang",
+                    "Jiandu",
+                    "Xiangyangfu",
+                    "Chengdufu",
+                    "Fuling",
+                    "Yachi",
+                    "Fuzhou-Kingdom",
+                    "Changzhou",
+                    "Jianningfu",
+                    "Zhenjiangfu",
+                    "Guangyuan",
+                    "Aq-baliq",
+                    "Liucheng",
+                    "Anqing",
+                    "Taizhou",
+                    "Gaoyou",
+                    "Changxing"
+                ]
+
+                const mili_list=[
+                    "Chang’anfu",
+                    "Yangzhou",
+                    "Taiyuanfu"
+                ]
+
+                const agri_pro_list=[
+                    "Tibet",
+                    "Guanzhou",
+                    "Changlu",
+                    "Zhenjiangfu",
+                    "Aq-baliq Manzi",
+                    "Liucheng",
+                    "Dongpingfu",
+                    "Anqing",
+                    "Suqian"
+                ]
+
+                const craft_list=[
+                    "Xingzai",
+                    "Yongchang",
+                    "Jiandu",
+                    "Xiangyangfu",
+                    "Chengdufu",
+                    "Fuling",
+                    "Changzhou",
+                    "Chang’anfu",
+                    "Suzhou",
+                    "Xinzhou Matou",
+                    "Tingzhou",
+                    "Jianningfu",
+                    "Zhenjiangfu",
+                    "Hejianfu",
+                    "Huai'anzhou",
+                    "Taiyuanfu",
+                    "Dongpingfu",
+                    "Baoying",
+                    "Anqing",
+                    "Taizhou",
+                    "Ganpu",
+                    "Hezhongfu",
+                    "Pizhou",
+                    "Quzhou",
+                    "Changxing",
+                    "Zhuozhou",
+                    "Wuxing",
+                    "Pingyangfu"
+                ]
+
+
 
                 function overview_map(){
                     updateMarkerIcons(greenIcon,"overview");
@@ -410,22 +1020,238 @@
                     updateMarkerIcons(greyIcon,"return");
                 }
 
+                function button_start(){
+                    plt_width=window.innerwidth*0.4
+                    updateMarkerIcons(greyIcon,"none");
+                }
+
+                function religion_map(religion_value,back_value){
+                    console.log(back_value)
+                    if (back_value===0){
+                        if(religion_value==="Idolaters"){
+                            updateMarkerIcons(blueIcon,"religion");
+                        } else if(religion_value==="Nestorian Christians"){
+                            updateMarkerIcons(blueIcon01,"religion");
+                        }else if(religion_value==="Christians"){
+                            updateMarkerIcons(blueIcon02,"religion");
+                        }else if(religion_value==="Saracens"){
+                            updateMarkerIcons(blueIcon03,"religion");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                    
+                }
+
+                function economics_map(economics_value,back_value){
+                    if (back_value===0){
+                        if(economics_value==="Industry"){
+                            updateMarkerIcons(redIcon,"economics");
+                        } else if(economics_value==="Sugar"){
+                            updateMarkerIcons(redIcon01,"economics");
+                        }else if(economics_value==="Agriculture"){
+                            updateMarkerIcons(redIcon02,"economics");
+                        }else if(economics_value==="Prostitute"){
+                            updateMarkerIcons(redIcon03,"economics");
+                        }else if(economics_value==="Shipping"){
+                            updateMarkerIcons(redIcon04,"economics");
+                        }else if(economics_value==="Herding"){
+                            updateMarkerIcons(redIcon05,"economics");
+                        }else if(economics_value==="Trade"){
+                            updateMarkerIcons(redIcon06,"economics");
+                        }else if(economics_value==="Military"){
+                            updateMarkerIcons(redIcon07,"economics");
+                        }else if(economics_value==="Hunting"){
+                            updateMarkerIcons(redIcon08,"economics");
+                        }else if(economics_value==="Salt"){
+                            updateMarkerIcons(redIcon09,"economics");
+                        }else if(economics_value==="literati"){
+                            updateMarkerIcons(redIcon10,"economics");
+                        }else if(economics_value==="occult"){
+                            updateMarkerIcons(redIcon11,"economics");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                }
+
+                function specialty_map(specialty_value,back_value){
+                    if (back_value===0){
+                        if(specialty_value==="Luxury goods"){
+                            updateMarkerIcons(greenIcon,"specialty");
+                        } else if(specialty_value==="Animal Products"){
+                            updateMarkerIcons(greenIcon01,"specialty");
+                        }else if(specialty_value==="Military Equipments"){
+                            updateMarkerIcons(greenIcon02,"specialty");
+                        }else if(specialty_value==="Agricultural Products"){
+                            updateMarkerIcons(greenIcon03,"specialty");
+                        }else if(specialty_value==="Crafted Items"){
+                            updateMarkerIcons(greenIcon04,"specialty");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                }
+
+
                 function updateMarkerIcons(color,check) {
                     // Loop through the markers array and update the icon property
                     current_markers.forEach(function(marker) {
-                        if (check=="overview"){
+                        if (check==="overview"){
                             if (location_overview.includes(marker.popupContent)) {
                                 marker.icon = color;
                             } else {
                                 marker.icon = greyIcon;
                             }
-                        }else if (check=="return"){
+                        }else if (check==="return"){
                             for (var i=0;i<original_markers.length;i++){
                                 if (marker.popupContent==original_markers[i].popupContent){
                                     marker.icon=original_markers[i].icon
                                 }
                             }
+                        }else if (check==="religion"){
+                            if (color===blueIcon){
+                                if (idolaters_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon01){
+                                if (nes_christ_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon02){
+                                if (christ_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon03){
+                                if (sar_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+
+                        }else if (check==="none"){
+                            marker.icon=greyIcon;
+
+                        }else if (check==="economics"){
+                            if (color===redIcon){
+                                if (industry_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon01){
+                                if (sugar_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon02){
+                                if (agri_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon03){
+                                if (prostitute_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon04){
+                                if (ship_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon05){
+                                if (herd_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon06){
+                                if (trade_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon07){
+                                if (military_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon08){
+                                if (hunt_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon09){
+                                if (salt_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon10){
+                                if (literati_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon11){
+                                if (occult_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+
+
                         }
+
+                        else if (check==="specialty"){
+                            if (color===greenIcon){
+                                if (lux_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon01){
+                                if (ani_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon02){
+                                if (mili_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon03){
+                                if (agri_pro_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon04){
+                                if (craft_list.includes(marker.popupContent)) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+                        }
+
+
                     });
                     // Loop through the marker layers on the map and update the icon
                     map.eachLayer(function(layer) {
@@ -455,14 +1281,16 @@
                         this.setOpacity(0.7)
                     });
                     marker.on('click',function(e) {
-                        console.log(this._popup._content);
+                        if (location_overview.includes(this._popup._content)){
+                            console.log(this._popup._content);
                         $("#"+this._popup._content).click();
                         $('html, body').stop().animate({
                         scrollTop: 2600
-                    }, {
-                        duration:100,
-                        easing: 'linear'
-                    });
+                        }, {
+                            duration:100,
+                            easing: 'linear'
+                        });
+                        }
                     })
                 };
             </script>
@@ -475,7 +1303,7 @@
         <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 40%; width: 20%; height: 250px;z-index: 0">
         <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 60%; width: 20%; height: 250px;z-index: 0">
         <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 80%; width: 20%; height: 250px;z-index: 0">
-        <span style="position: absolute; top: 0; left: 0; height: 50px; width: 100%; background-color: #2a5287;z-index: 1;"></span>
+        <span style="position: absolute; top: 0; left: 0; height: 50px; width: 100%; background-color: #324285;z-index: 1;"></span>
     </section>
 
     <section class="section-padding section-bg3" style="height: 715px" id="page_4">
@@ -742,18 +1570,18 @@
     <section class="align-items-center" style="height: 50px" id="navbar">
         <div style="margin-top:0px">
             <div style="text-align:center; bottom:0px;">
-                <span class="productbtn btn1 btn-click" data-action="section-1" id="Quanzhou"></span>
-                <span class="productbtn btn2 btn-click" data-action="section-2" id="Dadu"></span>
-                <span class="productbtn btn3 btn-click" data-action="section-3" id="Yangzhou"></span>
-                <span class="productbtn btn4 btn-click" data-action="section-4" id="XiangYangFu"></span>
-                <span class="productbtn btn5 btn-click" data-action="section-5" id="m5"></span>
-                <span class="productbtn btn6 btn-click" data-action="section-6" id="m6"></span>
-                <span class="productbtn btn7 btn-click" data-action="section-7" id="m7"></span>
-                <span class="productbtn btn8 btn-click" data-action="section-8" id="m8"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9" id="m9"></span>
-                <span class="productbtn btn10 btn-click" data-action="section-10" id="m10"></span>
-                <span class="productbtn btn11 btn-click" data-action="section-11" id="m11"></span>
-                <span class="productbtn btn12 btn-click" data-action="section-12" id="m12"></span>
+                <span class="productbtn btn1 btn-click" data-action="section-1" id="Xingzai"></span>
+                <span class="productbtn btn2 btn-click" data-action="section-2" id="Yongchang"></span>
+                <span class="productbtn btn3 btn-click" data-action="section-3" id="Fuzhou-City"></span>
+                <span class="productbtn btn4 btn-click" data-action="section-4" id="Qarajang"></span>
+                <span class="productbtn btn5 btn-click" data-action="section-5" id="Jiandu"></span>
+                <span class="productbtn btn6 btn-click" data-action="section-6" id="Xiezhou"></span>
+                <span class="productbtn btn7 btn-click" data-action="section-7" id="Xiangyangfu"></span>
+                <span class="productbtn btn8 btn-click" data-action="section-8" id="Daidu"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="Chengdufu"></span>
+                <span class="productbtn btn10 btn-click" data-action="section-10" id="Zhenzhou"></span>
+                <span class="productbtn btn11 btn-click" data-action="section-11" id="Zayton"></span>
+                <span class="productbtn btn12 btn-click" data-action="section-12" id="Fuling"></span>
             </div>
             <script>
                 $(function(){
@@ -814,16 +1642,18 @@
         </div>
     </section>
 
-    <section class="section-bg4" style="height: 800px" id="page_5">
-        <div class="container">
-            <h1 style="display:absolute; top:50px"><b>How Marco Polo view China?</b></h1>
+    <section class="section-bg4 section-padding " style="height: 800px" id="page_5">
+        <div class="container" style="margin-top:100px">
+            <h1 class="text-white"><b>How Marco Polo view China?</b></h1>
         </div>
     </section>
 
     <section class="barista-section section-padding section-bg5" style="height: 800px" id="page_6">
-        <div class="max-width:100%">
-            <h1 style="text-align:center"><b>References</b></h1>
-            <p style=" word-break: break-all;max-width:100%">cover Copyright © National Palace Museum. https://theme.npm.edu.tw/exh108/npm_anime/AlongtheRiver/ch/index.html</p>
+        <div class="container max-width:100%">
+            <h1 class="text-white"><b>References</b></h1>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi[https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg] by Salviati, 1867. Public Domain </p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Along the River During the Qingming Festival Season (Qing Court Version)[https://commons.wikimedia.org/wiki/File:Along_the_River_7-119-3.jpg] by Chen Mei (陳枚), Sun Hu (孫祜), Jin Kun (金昆), Dai Hong (戴洪) and Cheng Zhidao (程志道), 1736, Public Domain</p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Sculptural bust of traveler Marco Polo[https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk] by Egor Myznik[https://unsplash.com/@vonshnauzer] under License[https://unsplash.com/license]</p>            
         </div>
     </section>
 
