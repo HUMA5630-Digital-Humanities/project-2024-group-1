@@ -67,12 +67,12 @@
     </section>
 
 
-    <section class="barista-section section-padding section-bg2" style="height:700px" id="page_3">
-        <div style="background-color:#d9ecff;height: 680px;width:100%">
+    <section class="barista-section section-padding section-bg2" style="height:750px" id="page_3">
+        <div style="background-color:#d9ecff;height: 730px;width:100%">
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
             <div style=" float:left; width:50%">
-                <div id="map" style="height: 650px; max-width: 500px;"></div>
+                <div id="map" style="height: 700px; max-width: 500px;"></div>
                 <p style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
             </div>
             <div class="align-items-center" style=" float:right; height:650px;width:50%; margin-top:10px;">
@@ -115,10 +115,25 @@
                             <span class="my-span" style="--i:6.25">?</span>
                         </div>
                         <p><br></p>
+                        <div id="cover" style="position:relative; margin-top:10px">
+                            <form id="search-form" method="get" action="">
+                                <div class="tb">
+                                    <div class="td" ><input id="search-input" type="text" placeholder="Search by Location..." required></div>
+                                    <div class="td" id="s-cover">
+                                    <button class="search_button"type="submit">
+                                        <div id="s-circle"></div>
+                                        <span></span>
+                                    </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <p style="color:#143176;margin-top:15px">-------------OR-------------</p>
                         <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2" onclick="overview_map()">Overview</button>
                         <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3"  onclick="button_start()">Religion</button>
                         <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4" onclick="button_start()">Specialty</button>
                         <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5" onclick="button_start()">Economic Activities</button>
+                        
                     </div>
                 </div>
                 <div class="rec-2" style="height:100%;width:100%;display:none">
@@ -233,6 +248,33 @@
 
                 </script>
                 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+                <script>
+                    // Get the search form and input field
+                    var searchForm = document.getElementById('search-form');
+                    var searchInput = document.getElementById('search-input');
+                  
+                    // Listen for the form submission event
+                    searchForm.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the form from submitting
+                  
+                      // Get the word that the user wants to search
+                        var searchWord = searchInput.value;
+                        var go_searchWord=searchWord.charAt(0).toUpperCase() + searchWord.slice(1).toLowerCase()
+
+                        console.log('Search word: ' + go_searchWord);
+
+                        current_markers.forEach(function(marker) {
+                            if (go_searchWord===marker.popupContent){
+                                map.setView([marker.lat,marker.lng],9)
+                            }
+                        })
+                    
+                  
+                      // Do something with the search word, such as search a database or display search results
+                      
+                    });
+                  </script>
 
                 <script>/*
                     // set the dimensions and margins of the graph
@@ -465,6 +507,7 @@
                         }
                         Plotly.newPlot('my_dataviz_2', data, layout, config);
 
+                        
                         var getback = 0;
                         document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
                             var point = data.points[0];
@@ -601,7 +644,7 @@
                 //add historical map
                 var imageUrl = "./images/map07.png",
                 //imageBounds = [[10, 80], [60, 130]];
-                imageBounds = [[17, 100], [42, 123]];
+                imageBounds = [[15, 100], [43, 123]];
                 L.imageOverlay(imageUrl, imageBounds,{opacity:1}).addTo(map);
 
                 //logo template
@@ -710,7 +753,7 @@
 
                 const current_markers = original_markers.map(copyMarker);
                 
-                const location_overview=["Xingzai","Yongchang","Fuzhou-City","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+                const location_overview=["Xingzai","Yongchang","Fuzhou-City","Tibet","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Daidu","Chengdufu","Zhenzhou","Zayton"]
                 
                 const idolaters_list=[
                     "Xingzai",
@@ -1285,7 +1328,7 @@
                             console.log(this._popup._content);
                         $("#"+this._popup._content).click();
                         $('html, body').stop().animate({
-                        scrollTop: 2600
+                            scrollTop: $("#page_4").offset().top
                         }, {
                             duration:100,
                             easing: 'linear'
@@ -1312,10 +1355,11 @@
                 <img id="scrollToMap" class="arrow" src="./images/arrow.png"style="width:20px; height:20px;margin-top:2px;text-align:center;z-index: 1;" >
             </div>
             <div style="margin-top:10px;margin-bottom:10px;text-align:center; ">
+
                 <div class="section-1" style="display:inline-block;">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Xingzai</b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/quanzhou.jpg">
+                        <img class="shape" src="./images/xingzai.jpg">
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
@@ -1324,7 +1368,7 @@
                                 <rect id='stroke'class="my-rec-1" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-1" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-1" class="narrative_bar"><br>&ensp; &ensp; In his narrative, Marco calls Xingzai "the city of Heaven". He gives a direct justification for the notation of Xingzai,"it is well worth recording, because this is without doubt the finest and noblest city in the world." <br>&ensp; &ensp; Marco Polo offers a comprehensive description of the city of xingzai, including its architecture, the arrangement of its streets, the state of its commerce and handicrafts, the wedding and funeral customs of its inhabitants, the city's fire protection system, and even the income of the Great Khan.</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1334,9 +1378,9 @@
                 
         
                 <div class="section-2" style="display:none;">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Yongchang</b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg">
+                        <img class="shape" src="./images/baoshan.jpg">
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
@@ -1345,7 +1389,7 @@
                                 <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-2" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-2" class="narrative_bar"><br>&ensp; &ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The description of Couvade can be found in the Ming Dynasty's canonical book, Yunnan Zhi.</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1354,9 +1398,9 @@
                 </div>
         
                 <div class="section-3"  style="display:none" >
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Fuzhou-City</b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="./images/fuzhou.jpg" >
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
@@ -1365,7 +1409,7 @@
                                 <rect id='stroke'class="my-rec-3" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-3" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-3" class="narrative_bar"><br>&ensp; &ensp; When Marco Polo told about Fuzhou, besides describing the local industries and special products, he also mentioned that "There is a sect of people whose religion is a mystery to everyone". After careful examination by Marco Polo and his uncle, they believed that these people were likely Christians.</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1375,7 +1419,7 @@
                 </div>
         
                 <div class="section-4"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Tibet</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1386,7 +1430,7 @@
                                 <rect id='stroke'class="my-rec-4" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-4" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-4" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1395,7 +1439,7 @@
                 </div>
 
                 <div class="section-5"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Qarajang</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1406,7 +1450,7 @@
                                 <rect id='stroke'class="my-rec-5" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-5" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-5" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1415,7 +1459,7 @@
                 </div>
 
                 <div class="section-6"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Jiandu</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1426,7 +1470,7 @@
                                 <rect id='stroke'class="my-rec-6" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-6" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-6" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1435,7 +1479,7 @@
                 </div>
 
                 <div class="section-7"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Xiezhou</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1446,7 +1490,7 @@
                                 <rect id='stroke'class="my-rec-7" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-7" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-7" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1455,7 +1499,7 @@
                 </div>
 
                 <div class="section-8"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Xiangyangfu</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1466,7 +1510,7 @@
                                 <rect id='stroke'class="my-rec-8" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-8" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-8"class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1475,7 +1519,7 @@
                 </div>
 
                 <div class="section-9"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Daidu</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1486,7 +1530,7 @@
                                 <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-9" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-9"class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1495,7 +1539,7 @@
                 </div>
 
                 <div class="section-10"  style="display:none" >
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Chengdufu</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1506,7 +1550,7 @@
                                 <rect id='stroke'class="my-rec-10" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-10" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-10" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1515,7 +1559,7 @@
                 </div>
 
                 <div class="section-11"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Zhenzhou</b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="./images/dadu.jpg" >
                     </div>
@@ -1526,7 +1570,7 @@
                                 <rect id='stroke'class="my-rec-11" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-11" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-11" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1535,9 +1579,9 @@
                 </div>
 
                 <div class="section-12"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b>Zayton</b></h1>
                     <div style=" float:left; width:49%; height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="./images/quanzhou.jpg" >
                     </div>
                     <div style="float:left; width:2%;height:600px"></div>
                     <div style=" float:right; width:49%;height:570px">
@@ -1546,7 +1590,7 @@
                                 <rect id='stroke'class="my-rec-12" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-12" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-12" class="narrative_bar">any text</p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1567,21 +1611,21 @@
         
     </section>
 
-    <section class="align-items-center" style="height: 50px" id="navbar">
+    <section class="align-items-center" style="height: 50px;width:100%" id="navbar">
         <div style="margin-top:0px">
             <div style="text-align:center; bottom:0px;">
                 <span class="productbtn btn1 btn-click" data-action="section-1" id="Xingzai"></span>
                 <span class="productbtn btn2 btn-click" data-action="section-2" id="Yongchang"></span>
                 <span class="productbtn btn3 btn-click" data-action="section-3" id="Fuzhou-City"></span>
-                <span class="productbtn btn4 btn-click" data-action="section-4" id="Qarajang"></span>
-                <span class="productbtn btn5 btn-click" data-action="section-5" id="Jiandu"></span>
-                <span class="productbtn btn6 btn-click" data-action="section-6" id="Xiezhou"></span>
-                <span class="productbtn btn7 btn-click" data-action="section-7" id="Xiangyangfu"></span>
-                <span class="productbtn btn8 btn-click" data-action="section-8" id="Daidu"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9" id="Chengdufu"></span>
-                <span class="productbtn btn10 btn-click" data-action="section-10" id="Zhenzhou"></span>
-                <span class="productbtn btn11 btn-click" data-action="section-11" id="Zayton"></span>
-                <span class="productbtn btn12 btn-click" data-action="section-12" id="Fuling"></span>
+                <span class="productbtn btn4 btn-click" data-action="section-4" id="Tibet"></span>
+                <span class="productbtn btn5 btn-click" data-action="section-5" id="Qarajang"></span>
+                <span class="productbtn btn6 btn-click" data-action="section-6" id="Jiandu"></span>
+                <span class="productbtn btn7 btn-click" data-action="section-7" id="Xiezhou"></span>
+                <span class="productbtn btn8 btn-click" data-action="section-8" id="Xiangyangfu"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu"></span>
+                <span class="productbtn btn10 btn-click" data-action="section-10" id="Chengdufu"></span>
+                <span class="productbtn btn11 btn-click" data-action="section-11" id="Zhenzhou"></span>
+                <span class="productbtn btn12 btn-click" data-action="section-12" id="Zayton"></span>
             </div>
             <script>
                 $(function(){
@@ -1653,7 +1697,13 @@
             <h1 class="text-white"><b>References</b></h1>
             <p style=" word-break: break-all;max-width:100%;color:#ffffff">Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi[https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg] by Salviati, 1867. Public Domain </p>
             <p style=" word-break: break-all;max-width:100%;color:#ffffff">Along the River During the Qingming Festival Season (Qing Court Version)[https://commons.wikimedia.org/wiki/File:Along_the_River_7-119-3.jpg] by Chen Mei (陳枚), Sun Hu (孫祜), Jin Kun (金昆), Dai Hong (戴洪) and Cheng Zhidao (程志道), 1736, Public Domain</p>
-            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Sculptural bust of traveler Marco Polo[https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk] by Egor Myznik[https://unsplash.com/@vonshnauzer] under License[https://unsplash.com/license]</p>            
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Sculptural bust of traveler Marco Polo[https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk] by Egor Myznik[https://unsplash.com/@vonshnauzer] under License[https://unsplash.com/license]</p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">[https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ] by Bangyu Wang[https://unsplash.com/@bangyuwang] under License[https://unsplash.com/license]</p>       
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Tea house in Hangzhou[https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE] by David Veksler[https://unsplash.com/@davidveksler] under License[https://unsplash.com/license]</p>       
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Baoshan Evening[https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg] by Rod Waddington, 2018. Public Domain </p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">Fuzhou Cityscape (Taixi CBD)[https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg] by Listwiseafford, 2017. Public Domain </p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">杨志玖. 马可波罗在中国 = Marco Polo in China. 第1版 (天津市: 南开大学出版社, 1999),25.</p>
+            <p style=" word-break: break-all;max-width:100%;color:#ffffff">曹婉如. 九域守令圖-中國古代地图集. 第1集., 文物出版社, 1990.</p>
         </div>
     </section>
 
