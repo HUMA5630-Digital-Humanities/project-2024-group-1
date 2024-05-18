@@ -226,6 +226,11 @@
                     <div style="margin-left:20px;height:100%;width:100%">
                         <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Specialty</b></p>
                         <div id="my_dataviz_3" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p class="extra_map_4" style="text-align:left;height:16%;line-height:1.75">
+                            <mark>Crafted Items:</mark>Porcelain, Silk, Cotton cloth, Fabrics, Cloths made from bark, Sendal, Wine, Vessel...
+                            <br><mark>Animal or Animal Products:</mark>Wild animals, Lion, Musk, Mastiffs, Black silky fowl, Fish...
+                            <br><mark>Luxury goods:</mark> Gold, Pearls, Turquoise, Spices (ginger, galangal, cloves, saffron), Sugar, Musk...
+                            <br><mark>Agricultural products:</mark> Wheat, Corn, Rice, Fruit, Peach, Jujube, Grain, Canes...</p>
                         <button id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
@@ -234,6 +239,7 @@
                     <div style="margin-left:20px;height:100%;width:100%">
                         <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Economic Activities</b></p>
                         <div id="my_dataviz_4" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75"><mark>Trade</mark> and <mark>Industry</mark> are the two main economic activities described by Marco Polo.</p>
                         <button id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
@@ -476,6 +482,7 @@
                             },
                             autosize: true,
                             width: window.innerWidth*0.4,
+                            //height: window.innerHeight*0.6
                         }
                         var config = {
                             responsive: true
@@ -604,67 +611,140 @@
                     greyIcon = new anyIcon({iconUrl:"./images/grey.png"});
                     empty= new  anyIcon({iconUrl:"./images/Empty.png"});
 
-                
-                var [
-                    Xingzai,
-                    Yongchang,
-                    Fuzhou_City,
-                    Tibet,
-                    Qarajang_City,
-                    Jiandu,
-                    Xiezhou,
-                    Xiangyangfu,
-                    Daidu,
-                    Chengdufu,
-                    Zhenzhou,
-                    Zayton,
-                    Fuling,
-                    Yachi,
-                    Dongpingfu,
-                    Fuzhou_Kingdom,
-                    Changzhou,
-                    ChangAnfu,
-                    Suzhou,
-                    Guazhou,
-                    Xinzhou_Matou,
-                    Tingzhou,
-                    Jianningfu,
-                    Changlu,
-                    Yangzhou,
-                    Zhenjiangfu,
-                    Hejianfu,
-                    HuaiAnzhou,
-                    Guangyuan,
-                    Houguan,
-                    Aq_Baliq,
-                    Aq_Baliq_Manzi,
-                    Liucheng,
-                    Taiyuanfu,
-                    Baoying,
-                    Anqing,
-                    Taizhou,
-                    Jiangling,
-                    Ganpu,
-                    Gaoyou,
-                    Suichang,
-                    Hezhongfu,
-                    Pizhou,
-                    Quzhou,
-                    Suqian,
-                    Tonglu,
-                    Tongzhou,
-                    Changxing,
-                    Zhuozhou,
-                    Wuxing,
-                    Chuzhou,
-                    Wuzhou,
-                    Wujiang,
-                    Pingyangfu,
-                    Zardandan,
-                    Kuizhou,
-                    Huaiyin,
-                    Qarajang_Kingdom
-                ] = columnValues;
+                    var [
+                            Xingzai,
+                            Yongchang,
+                            Fuzhou_City,
+                            Tibet,
+                            Qarajang_City,
+                            Jiandu,
+                            Xiezhou,
+                            Xiangyangfu,
+                            Daidu,
+                            Chengdufu,
+                            Zhenzhou,
+                            Zayton,
+                            Fuling,
+                            Yachi,
+                            Dongpingfu,
+                            Fuzhou_Kingdom,
+                            Changzhou,
+                            ChangAnfu,
+                            Suzhou,
+                            Guazhou,
+                            Xinzhou_Matou,
+                            Tingzhou,
+                            Jianningfu,
+                            Changlu,
+                            Yangzhou,
+                            Zhenjiangfu,
+                            Hejianfu,
+                            HuaiAnzhou,
+                            Guangyuan,
+                            Houguan,
+                            Aq_Baliq,
+                            Aq_Baliq_Manzi,
+                            Liucheng,
+                            Taiyuanfu,
+                            Baoying,
+                            Anqing,
+                            Taizhou,
+                            Jiangling,
+                            Ganpu,
+                            Gaoyou,
+                            Suichang,
+                            Hezhongfu,
+                            Pizhou,
+                            Quzhou,
+                            Suqian,
+                            Tonglu,
+                            Tongzhou,
+                            Changxing,
+                            Zhuozhou,
+                            Wuxing,
+                            Chuzhou,
+                            Wuzhou,
+                            Wujiang,
+                            Pingyangfu,
+                            Zardandan,
+                            Kuizhou,
+                            Huaiyin,
+                            Qarajang_Kingdom
+                        ] = columnValues;
+
+
+
+                /*var Xingzai, Yongchang, Fuzhou_City, Tibet, Qarajang_City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou_Kingdom, Changzhou, ChangAnfu, Suzhou, Guazhou, Xinzhou_Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, HuaiAnzhou, Guangyuan, Houguan, Aq_Baliq, Aq_Baliq_Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang_Kingdom;
+                let success = false;
+
+                while (!success) {
+                    try {
+                        [
+                            Xingzai,
+                            Yongchang,
+                            Fuzhou_City,
+                            Tibet,
+                            Qarajang_City,
+                            Jiandu,
+                            Xiezhou,
+                            Xiangyangfu,
+                            Daidu,
+                            Chengdufu,
+                            Zhenzhou,
+                            Zayton,
+                            Fuling,
+                            Yachi,
+                            Dongpingfu,
+                            Fuzhou_Kingdom,
+                            Changzhou,
+                            ChangAnfu,
+                            Suzhou,
+                            Guazhou,
+                            Xinzhou_Matou,
+                            Tingzhou,
+                            Jianningfu,
+                            Changlu,
+                            Yangzhou,
+                            Zhenjiangfu,
+                            Hejianfu,
+                            HuaiAnzhou,
+                            Guangyuan,
+                            Houguan,
+                            Aq_Baliq,
+                            Aq_Baliq_Manzi,
+                            Liucheng,
+                            Taiyuanfu,
+                            Baoying,
+                            Anqing,
+                            Taizhou,
+                            Jiangling,
+                            Ganpu,
+                            Gaoyou,
+                            Suichang,
+                            Hezhongfu,
+                            Pizhou,
+                            Quzhou,
+                            Suqian,
+                            Tonglu,
+                            Tongzhou,
+                            Changxing,
+                            Zhuozhou,
+                            Wuxing,
+                            Chuzhou,
+                            Wuzhou,
+                            Wujiang,
+                            Pingyangfu,
+                            Zardandan,
+                            Kuizhou,
+                            Huaiyin,
+                            Qarajang_Kingdom
+                        ] = columnValues;
+                        success = true;
+                    } catch (error) {
+                        
+                    }
+                }*/
+                                
 
                 const original_markers = Object.freeze([
                     {lat: 28.462896451430616, lng: 118.21728517301383, icon:blueIcon, popupContent: 0},//Xingzai
@@ -1153,7 +1233,7 @@
                     if (back_value===0){
                         if(specialty_value==="Luxury goods"){
                             updateMarkerIcons(greenIcon,"specialty");
-                        } else if(specialty_value==="Animal Products"){
+                        } else if(specialty_value==="Animal or Animal Products"){
                             updateMarkerIcons(greenIcon01,"specialty");
                         }else if(specialty_value==="Military Equipments"){
                             updateMarkerIcons(greenIcon02,"specialty");
@@ -1365,12 +1445,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_1" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-1" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-1" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
                                     <p id="text-1" class="narrative_bar"><br>&ensp; &ensp; In his narrative, Marco calls Xingzai "the city of Heaven". He gives a direct justification for the notation of Xingzai,"it is well worth recording, because this is without doubt the finest and noblest city in the world." <br>&ensp; &ensp; Marco Polo offers a comprehensive description of the city of xingzai, including its architecture, the arrangement of its streets, the state of its commerce and handicrafts, the wedding and funeral customs of its inhabitants, the city's fire protection system, and even the income of the Great Khan.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1386,12 +1467,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_2" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-2" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-2" class="narrative_bar"><br>&ensp; &ensp; The teeth of the people of Yongchang are covered with gold. “These people do not have idols or churches but worship the head of the house” and “there are no physicians. When someone falls ill he sends for the magicians.”<br>&ensp;&ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The custom of Yongchang described by Marco Polo is consistent with historical data, which supports the authenticity of his account.</p>
+                                    <p id="text-2" class="narrative_bar"><br>&ensp; &ensp; The teeth of the people of Yongchang are covered with gold. "These people do not have idols or churches but worship the head of the house" and "there are no physicians. When someone falls ill he sends for the magicians."<br>&ensp;&ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The custom of Yongchang described by Marco Polo is consistent with historical data, which supports the authenticity of his account.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1406,12 +1488,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_3" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-3" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-3" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
                                     <p id="text-3" class="narrative_bar"><br>&ensp; &ensp; When Marco Polo wrote about Fuzhou, he described the local people's methods of capturing lions and papiones. In Marco's eyes, "it is such a fine city and so well ordered in every respect that it is marvelous beyond words." In addition to describing the local industries and special products, he also mentioned that "there is a sect of people whose religion is a mystery to everyone".<br>&ensp;&ensp;Through persistent visits, Marco and his uncle were eventually able to communicate with the members of this sect. After examining their beliefs, Marco Polo and his uncle concluded that these people were likely Christians.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1427,12 +1510,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_4" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-4" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-4" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
                                     <p id="text-4" class="narrative_bar">any text</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1447,12 +1531,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_5" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-5" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-5" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
                                     <p id="text-5" class="narrative_bar"><br>&ensp; &ensp;Marco Polo devotes a significant portion of his narrative to describing the huge snakes of the Qarajang, including their capture methods and the medicinal properties of their bile.<br>&ensp; &ensp; He also tells of the evil customs of the region before the Khan's rule: "If it happened that a handsome gentleman or anyone with a superior air-a 'good shadow'-came to lodge in the house of an inhabitant of this province, they would murder him during the night by poison or other lethal means." This was because they believed that taking over the souls of the deceased would bless them.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1467,12 +1552,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_6" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-6" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-6" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-6" class="narrative_bar">any text</p>
+                                    <p id="text-6" class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1487,12 +1573,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_7" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-7" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-7" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-7" class="narrative_bar">any text</p>
+                                    <p id="text-7" class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1507,12 +1594,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_8" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-8" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-8" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-8"class="narrative_bar">any text</p>
+                                    <p id="text-8"class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1527,12 +1615,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_9" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-9"class="narrative_bar">any text</p>
+                                    <p id="text-9"class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1547,12 +1636,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_10" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-10" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-10" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-10" class="narrative_bar">any text</p>
+                                    <p id="text-10" class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1567,12 +1657,13 @@
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_11" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-11" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-11" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-11" class="narrative_bar">any text</p>
+                                    <p id="text-11" class="narrative_bar"></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1587,12 +1678,13 @@
                     </div>
                     <div style="float:left; width:2%;height:600px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_12" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-12" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-12" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
                                     <p id="text-12" class="narrative_bar">any text</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:20px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -1687,10 +1779,173 @@
                     document.getElementById(elementId).textContent = columnValues[i-1];
                 }
 
-                function change_text(textNumber){
+                var check_1=0;
+                const textBox_1 = document.getElementById('draw_box_1');
+                const textCont_1 = document.getElementById('text-1');
 
-                }
+                var check_2=0;
+                const textBox_2 = document.getElementById('draw_box_2');
+                const textCont_2 = document.getElementById('text-2');
+
+                var check_3=0;
+                const textBox_3 = document.getElementById('draw_box_3');
+                const textCont_3 = document.getElementById('text-3');
+
+                var check_4=0;
+                const textBox_4 = document.getElementById('draw_box_4');
+                const textCont_4 = document.getElementById('text-4');
+
+                var check_5=0;
+                const textBox_5 = document.getElementById('draw_box_5');
+                const textCont_5 = document.getElementById('text-5');
+
+                var check_6=0;
+                const textBox_6 = document.getElementById('draw_box_6');
+                const textCont_6 = document.getElementById('text-6');
+
+                var check_7=0;
+                const textBox_7 = document.getElementById('draw_box_7');
+                const textCont_7 = document.getElementById('text-7');
+
+                var check_8=0;
+                const textBox_8 = document.getElementById('draw_box_8');
+                const textCont_8 = document.getElementById('text-8');
+
+                var check_9=0;
+                const textBox_9 = document.getElementById('draw_box_9');
+                const textCont_9 = document.getElementById('text-9');
+
+                var check_10=0;
+                const textBox_10 = document.getElementById('draw_box_10');
+                const textCont_10 = document.getElementById('text-10');
+
+                var check_11=0;
+                const textBox_11 = document.getElementById('draw_box_11');
+                const textCont_11 = document.getElementById('text-11');
+
+                var check_12=0;
+                const textBox_12 = document.getElementById('draw_box_12');
+                const textCont_12 = document.getElementById('text-12');
+
+                textBox_1.addEventListener('click', function() {
+                    if (check_1==1){
+                        textCont_1.innerHTML = "<br>&ensp; &ensp; In his narrative, Marco calls Xingzai \"the city of Heaven\". He gives a direct justification for the notation of Xingzai,\"it is well worth recording, because this is without doubt the finest and noblest city in the world.\" <br>&ensp; &ensp; Marco Polo offers a comprehensive description of the city of xingzai, including its architecture, the arrangement of its streets, the state of its commerce and handicrafts, the wedding and funeral customs of its inhabitants, the city's fire protection system, and even the income of the Great Khan.";
+                        check_1=0
+                    }else if(check_1==0){
+                        textCont_1.innerHTML = "&ensp; &ensp; Marco's account is basically similar to some Song and Yuan historical accounts. \"For instance, Marco Polo's account of Xingzai's population was consistent with the record of Wu Zimu in the MengLiangLu: after Emperor Gaozong of the Southern Song Dynasty moved to Hangzhou from Jiankang, there were nearly one million of households in the past two centuries. Furthermore, people lived together in the outer city of Hangzhou, the markets, streets, stores, and wares were so numerous that they could be traversed in a matter of days. This passage not only corroborates Marco Polo's estimate of Xingzai's population but also aligns with his depiction of the thriving markets and stores in the city.”(杨志玖,1999)";
+                        check_1=1
+                    }
+                });
+
+                textBox_2.addEventListener('click', function() {
+                    if (check_2==1){
+                        textCont_2.innerHTML = "<br>&ensp; &ensp; The teeth of the people of Yongchang are covered with gold. \"These people do not have idols or churches but worship the head of the house\" and \"there are no physicians. When someone falls ill he sends for the magicians.\"<br>&ensp;&ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The custom of Yongchang described by Marco Polo is consistent with historical data, which supports the authenticity of his account.";
+                        check_2=0
+                    }else if(check_2==0){
+                        textCont_2.innerHTML = "<br>&ensp; &ensp;The description of Couvade can be found in the Ming Dynasty's canonical book, Yunnan Zhi, which states that \"Even the common people regarded their wives as slaves, and the wives were responsible for farming, weaving, trade, and compulsory labour. After giving birth to a child for three days, they handed it over to their husbands to raise and went off to farm and weave on their own.\" (天一阁藏明代方志选刊续编,1990)";
+                        check_2=1
+                    }
+                });
+
+                textBox_3.addEventListener('click', function() {
+                    if (check_3==1){
+                        textCont_3.innerHTML = "<br>&ensp; &ensp; When Marco Polo wrote about Fuzhou, he described the local people's methods of capturing lions and papiones. In Marco's eyes, \"it is such a fine city and so well ordered in every respect that it is marvelous beyond words.\" In addition to describing the local industries and special products, he also mentioned that \"there is a sect of people whose religion is a mystery to everyone\".<br>&ensp;&ensp;Through persistent visits, Marco and his uncle were eventually able to communicate with the members of this sect. After examining their beliefs, Marco Polo and his uncle concluded that these people were likely Christians.";
+                        check_3=0
+                    }else if(check_3==0){
+                        textCont_3.innerHTML = "<br>&ensp; &ensp; While Paul Pelliot testified that they were not Christians but Manichaeans. The reason was that if they had been Christians, they would have been recognized, and the Manichaeans had some texts which might have been mistaken for the Psalms of the Old Testament. The Manichaeans were prevalent in Zhejiang and Fujian during the Song Dynasty, and there were many Manichaeans in Fuzhou, which was a secret religion forbidden by the government, which is why they did not want to be exposed. (杨志玖,1999)";
+                        check_3=1
+                    }
+                });
+
+                textBox_4.addEventListener('click', function() {
+                    if (check_4==1){
+                        textCont_4.innerHTML = "";
+                        check_4=0
+                    }else if(check_4==0){
+                        textCont_4.innerHTML = "";
+                        check_4=1
+                    }
+                });
+
+                textBox_5.addEventListener('click', function() {
+                    if (check_5==1){
+                        textCont_5.innerHTML = "";
+                        check_5=0
+                    }else if(check_5==0){
+                        textCont_5.innerHTML = "";
+                        check_5=1
+                    }
+                });
+
+                textBox_6.addEventListener('click', function() {
+                    if (check_6==1){
+                        textCont_6.innerHTML = "";
+                        check_6=0
+                    }else if(check_6==0){
+                        textCont_6.innerHTML = "";
+                        check_6=1
+                    }
+                });
+
+                textBox_7.addEventListener('click', function() {
+                    if (check_7==1){
+                        textCont_7.innerHTML = "";
+                        check_7=0
+                    }else if(check_7==0){
+                        textCont_7.innerHTML = "";
+                        check_7=1
+                    }
+                });
+
+                textBox_8.addEventListener('click', function() {
+                    if (check_8==1){
+                        textCont_8.innerHTML = "";
+                        check_8=0
+                    }else if(check_8==0){
+                        textCont_8.innerHTML = "";
+                        check_8=1
+                    }
+                });
+
+                textBox_9.addEventListener('click', function() {
+                    if (check_9==1){
+                        textCont_9.innerHTML = "";
+                        check_9=0
+                    }else if(check_9==0){
+                        textCont_9.innerHTML = "";
+                        check_9=1
+                    }
+                });
+
+                textBox_10.addEventListener('click', function() {
+                    if (check_10==1){
+                        textCont_10.innerHTML = "";
+                        check_10=0
+                    }else if(check_10==0){
+                        textCont_10.innerHTML = "";
+                        check_10=1
+                    }
+                });
+
+                textBox_11.addEventListener('click', function() {
+                    if (check_11==1){
+                        textCont_11.innerHTML = "";
+                        check_11=0
+                    }else if(check_11==0){
+                        textCont_11.innerHTML = "";
+                        check_11=1
+                    }
+                });
                 
+                textBox_12.addEventListener('click', function() {
+                    if (check_12==1){
+                        textCont_12.innerHTML = "";
+                        check_12=0
+                    }else if(check_12==0){
+                        textCont_12.innerHTML = "";
+                        check_12=1
+                    }
+                });
 
     
             </script>
