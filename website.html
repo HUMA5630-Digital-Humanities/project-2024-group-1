@@ -35,9 +35,10 @@
         <label for="active" class="menu-btn"><i >L</i></label>
         <div class="lang_wrapper">
             <h2 class="lang_exp" style="margin-top:50px;"><b>As The Travels by Marco Polo has been transcribed and translated into various manuscripts and early printed editions, there are several variations in the location names mentioned in the text. To ensure clarity, our website has referred to three sources for displaying the location names: </b></h2>
-            <h2 class="lang_exp lang_exp_select" ><mark style="color:#01204d; background-color:#fff"><b>Haw:</b></mark> From the book "Marco Polo's China: A Venetian in the Realm of Khubilai Khan" by Stephen G. Haw, first published in 2006 by Routledge.
-                <br><mark style="color:#01204d; background-color:#fff"><b>Cliff:</b></mark> From the translation of "The Travels" by Nigel Cliff, published by Penguin Classics in 2015.
-                <br><mark style="color:#01204d; background-color:#fff"><b>中文:</b></mark> From modern China maps.</h2>
+            <h2 class="lang_exp lang_exp_select" >
+                <mark style="color:#01204d; background-color:#fff"><b>Cliff:</b></mark> From the translation of "The Travels" by Nigel Cliff, published by Penguin Classics in 2015.
+                <br><mark style="color:#01204d; background-color:#fff"><b>Haw:</b></mark> From the book "Marco Polo's China: A Venetian in the Realm of Khubilai Khan" by Stephen G. Haw, first published in 2006 by Routledge.
+                <br><mark style="color:#01204d; background-color:#fff"><b>中文:</b></mark> From modern China map.</h2>
             <h2 class="lang_exp" ><b>Please select the version you prefer.</b></h2>
             <ul>
                 <li><a class="text-white" onclick="cliff_list()">CLIFF</a></li>
@@ -75,8 +76,12 @@
 
         
         var myValue = "Haw"
-        const urlParams = new URLSearchParams(window.location.search);
-        myValue = urlParams.get('lang').toString();
+
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            myValue = urlParams.get('lang').toString();
+        } catch (error) {
+        }
         find_list(myValue);
         
 
@@ -756,7 +761,6 @@
                     Qarajang_City,
                     Jiandu,
                     Xiangyangfu,
-                    Daidu,
                     Chengdufu,
                     Zhenzhou,
                     Zayton,
@@ -810,6 +814,7 @@
                 ]
 
                 var sar_list=[
+                    Yachi,
                     Daidu,
                     ChangAnfu,
                     Guangyuan
@@ -888,6 +893,7 @@
                     Xingzai,
                     Fuzhou_City,
                     Xiangyangfu,
+                    Daidu,
                     Zhenzhou,
                     Zayton,
                     Fuling,
@@ -952,7 +958,8 @@
 
                 var occult_list=[
                     Xingzai,
-                    Tibet
+                    Tibet,
+                    Daidu
                 ]
 
                 var lux_list=[
@@ -1016,6 +1023,7 @@
                     Xingzai,
                     Yongchang,
                     Jiandu,
+                    Daidu,
                     Xiangyangfu,
                     Chengdufu,
                     Fuling,
@@ -1677,6 +1685,10 @@
                 for (i=1;i<=12;i++){
                     var elementId = 'title_' + i;
                     document.getElementById(elementId).textContent = columnValues[i-1];
+                }
+
+                function change_text(textNumber){
+
                 }
                 
 
