@@ -1430,15 +1430,21 @@ input[type="checkbox"]{
   }
 }
 
-@media (max-width:770px) {
+@media (max-width:1000px) {
   .narrative_bar {
     font-size: 70%;
   }
 }
 
-@media (max-width:600px) {
+@media (max-width:770px) {
   .narrative_bar {
     font-size: 65%;
+  }
+}
+
+@media (max-width:550px) {
+  .narrative_bar {
+    font-size: 60%;
   }
 }
 
