@@ -1417,14 +1417,14 @@ input[type="checkbox"]{
   font-size:120%;
 }
 
-@media (max-width:1200px) {
+@media (max-width:1400px) {
   .narrative_bar {
-    font-size: 110%;
+    font-size: 100%;
   }
 }
 
 
-@media (max-width:1000px) {
+@media (max-width:1200px) {
   .narrative_bar {
     font-size: 90%;
   }
@@ -1432,7 +1432,13 @@ input[type="checkbox"]{
 
 @media (max-width:770px) {
   .narrative_bar {
-    font-size: 80%;
+    font-size: 70%;
+  }
+}
+
+@media (max-width:600px) {
+  .narrative_bar {
+    font-size: 65%;
   }
 }
 
