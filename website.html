@@ -74,6 +74,11 @@
                 window.columnValues = data.map(function(row) { return row[editionName]; });
                 //callback(columnValues); // Call the callback function with the column values
             });
+            if (editionName!="Cliff"){
+                d3.csv("csv/name.csv", function(data) {
+                    window.columnRef = data.map(function(row) { return row["Cliff"]; });
+                });
+            }
             
             
         }
@@ -238,7 +243,7 @@
                         <script src="https://d3js.org/d3.v4.js"></script>
                         <!-- Create a div where the graph will take place -->
                         <div id="my_dataviz_1" class="dataviz-2"style="display:inline-block;text-align:center;height:72%;width:100%"></div>
-                        <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations Marco-Polo have described: <mark>58</mark><br>Average Number of Words used to describe one location: <mark>419.6</mark></p>
+                        <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations Marco-Polo have described: <mark>58</mark><br>Average Number of Words used to describe one location: <mark>494.9</mark></p>
                         <button  id="button-return-2" class="button-return" style="height:5%;margin-top:20px" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
@@ -1182,13 +1187,21 @@
                         marker.on('click',function(e) {
                             if (location_overview.includes(this._popup._content)){
                                 console.log(this._popup._content);
-                            $("#"+this._popup._content).click();
-                            $('html, body').stop().animate({
-                                scrollTop: $("#page_4").offset().top
-                            }, {
-                                duration:100,
-                                easing: 'linear'
-                            });
+                                if(myValue!="Cliff"){
+                                    let indexes = columnValues.map((_, i) => i);
+                                    let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
+                                    let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(this._popup._content));
+                                    $("#"+columnRef[indexOfValue]).click();
+                                }else{
+                                    $("#"+this._popup._content).click();
+                                }
+                                
+                                $('html, body').stop().animate({
+                                    scrollTop: $("#page_4").offset().top
+                                }, {
+                                    duration:100,
+                                    easing: 'linear'
+                                });
                             }
                         })
                     };
@@ -1488,6 +1501,27 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="section-9"  style="display:none">
+                    <h1 style="text-align:center"><b id="title_9"></b></h1>
+                    <div style=" float:left; width:49%;height:600px">
+                        <img class="shape" src="images/daidu.jpg" >
+                    </div>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box_9" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-9"class="narrative_bar"> <br></p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
                 
         
                 <div class="section-2" style="display:none;">
@@ -1638,26 +1672,7 @@
                     </div>
                 </div>
 
-                <div class="section-9"  style="display:none">
-                    <h1 style="text-align:center"><b id="title_9"></b></h1>
-                    <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/daidu.jpg" >
-                    </div>
-                    <div style="float:left; width:2%;height:570px"></div>
-                    <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box_9" style="margin-left:20px;height:100%;width:100%">
-                            <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
-                                <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
-                            <switch>
-                                <foreignObject width="100%" height="100%" >
-                                    <p id="text-9"class="narrative_bar"> <br></p>
-                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
-                                </foreignObject>
-                            </switch>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <div class="section-10"  style="display:none" >
                     <h1 style="text-align:center"><b id="title_10"></b></h1>
@@ -1671,7 +1686,7 @@
                                 <rect id='stroke'class="my-rec-10" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-10" class="narrative_bar">&ensp;&ensp; Marco Polo began his description of Chengdufu by discussing its geography. The city's circumference was approximately twenty miles and was once divided into three parts, each surrounded by walls. Additionally, large rivers, which, at maximum, reach half a mile wide and very deep, flowed through the city. These rivers not only facilitated fishing but also allowed for extensive river traffic, including the passage of large merchant ships. At each end of the bridges spanning the rivers, there were numerous stalls engaged in various trades and handicrafts. These businesses generated no less than 1,000 gold bezants in duties.</p>
+                                    <p id="text-10" class="narrative_bar"><br>&ensp;&ensp; Marco Polo began his description of Chengdufu by discussing its geography. The city's circumference was approximately twenty miles and was once divided into three parts, each surrounded by walls. Additionally, large rivers, which, at maximum, reach half a mile wide and very deep, flowed through the city. These rivers not only facilitated fishing but also allowed for extensive river traffic, including the passage of large merchant ships. At each end of the bridges spanning the rivers, there were numerous stalls engaged in various trades and handicrafts. These businesses generated no less than 1,000 gold bezants in duties.</p>
                                     <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
@@ -1692,7 +1707,7 @@
                                 <rect id='stroke'class="my-rec-11" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-11" class="narrative_bar"></p>
+                                    <p id="text-11" class="narrative_bar"><br>&ensp;&ensp;According to Marco Polo, all the information he provided about Zhenzhou was related to the great river Yangtze, on which the city was located. The river was so wide that it could reach up to 10 miles in width. It converged countless rivers from every direction, making it a crucial transportation hub that connected the city to many regions. Although the city itself was not particularly large, it was flooded with at least 15,000 boats. Salt and iron were shipped from Zhenzhou, while wood, charcoal, hemp, and many other articles were brought back through the river.</p>
                                     <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
@@ -1713,7 +1728,7 @@
                                 <rect id='stroke'class="my-rec-12" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-12" class="narrative_bar">any text</p>
+                                    <p id="text-12" class="narrative_bar"><br>&ensp;&ensp; Marco Polo described Zayton as a “very large and splendid” city, with a particular emphasis on its port. The city was situated on a large, wide, and fast-flowing river, which served as an ideal location for a port. Marco also provided details about the shape and construction of the five bridges spanning the river. He described the port as one of the busiest in the world, serving as the arrival point for ships from India and the starting point for ships in Manzi. The duty policy imposed on the costly wares traded here generated a significant amount of revenue, contributing greatly to the wealth of the kingdom of Fuzhou. In addition, Marco Polo also provided insights into the local way of life and tattoo culture in Zayton.</p>
                                     <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
@@ -1739,6 +1754,7 @@
         <div style="margin-top:0px">
             <div style="text-align:center; bottom:0px;">
                 <span class="productbtn btn1 btn-click" data-action="section-1" id="Xingzai"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu"></span>
                 <span class="productbtn btn2 btn-click" data-action="section-2" id="Yongchang"></span>
                 <span class="productbtn btn3 btn-click" data-action="section-3" id="Fuzhou-City"></span>
                 <span class="productbtn btn4 btn-click" data-action="section-4" id="Tibet"></span>
@@ -1746,7 +1762,6 @@
                 <span class="productbtn btn6 btn-click" data-action="section-6" id="Jiandu"></span>
                 <span class="productbtn btn7 btn-click" data-action="section-7" id="Xiezhou"></span>
                 <span class="productbtn btn8 btn-click" data-action="section-8" id="Xiangyangfu"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu"></span>
                 <span class="productbtn btn10 btn-click" data-action="section-10" id="Chengdufu"></span>
                 <span class="productbtn btn11 btn-click" data-action="section-11" id="Zhenzhou"></span>
                 <span class="productbtn btn12 btn-click" data-action="section-12" id="Zayton"></span>
@@ -1767,7 +1782,7 @@
                 buttons.each(function(index) {
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".section-" + (index+1));
-    
+                    console.log(this)
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
@@ -1808,6 +1823,7 @@
                     var elementId = 'title_' + i;
                     document.getElementById(elementId).textContent = columnValues[i-1];
                 }
+
 
                 var check_1=0;
                 const textBox_1 = document.getElementById('draw_box_1');
@@ -1959,7 +1975,7 @@
 
                 textBox_11.addEventListener('click', function() {
                     if (check_11==1){
-                        textCont_11.innerHTML = "";
+                        textCont_11.innerHTML = "<br>&ensp;&ensp;According to Marco Polo, all the information he provided about Zhenzhou was related to the great river Yangtze, on which the city was located. The river was so wide that it could reach up to 10 miles in width. It converged countless rivers from every direction, making it a crucial transportation hub that connected the city to many regions. Although the city itself was not particularly large, it was flooded with at least 15,000 boats. Salt and iron were shipped from Zhenzhou, while wood, charcoal, hemp, and many other articles were brought back through the river.";
                         check_11=0
                     }else if(check_11==0){
                         textCont_11.innerHTML = "";
@@ -1969,7 +1985,7 @@
                 
                 textBox_12.addEventListener('click', function() {
                     if (check_12==1){
-                        textCont_12.innerHTML = "";
+                        textCont_12.innerHTML = "<br>&ensp;&ensp;Marco Polo described Zayton as a “very large and splendid” city, with a particular emphasis on its port. The city was situated on a large, wide, and fast-flowing river, which served as an ideal location for a port. Marco also provided details about the shape and construction of the five bridges spanning the river. He described the port as one of the busiest in the world, serving as the arrival point for ships from India and the starting point for ships in Manzi. The duty policy imposed on the costly wares traded here generated a significant amount of revenue, contributing greatly to the wealth of the kingdom of Fuzhou. In addition, Marco Polo also provided insights into the local way of life and tattoo culture in Zayton.";
                         check_12=0
                     }else if(check_12==0){
                         textCont_12.innerHTML = "";
@@ -2000,19 +2016,19 @@
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk">Sculptural bust of traveler Marco Polo</a> by <a target="_blank" href="https://unsplash.com/@vonshnauzer">Egor Myznik</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ">Image</a> by <a target="_blank" href="https://unsplash.com/@bangyuwang">Bangyu Wang</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE">Tea house in Hangzhou</a> by <a target="_blank" href="https://unsplash.com/@davidveksler">David Veksler</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Images</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Image</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/multicolored-streamers-near-snow-mountain-under-blue-and-white-cloudy-sky-NAdinUQTy2c">Gate of prayers</a> by <a target="_blank" href="https://unsplash.com/@danielesalutari">Daniele Salutari</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Images</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Image</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/an-arch-with-a-view-of-a-mountain-and-trees-oxkTY2sZ5FI">窗外的景色</a> by <a target="_blank" href="https://unsplash.com/@samirshadab10">Sam LEGEND</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-bridge-over-a-body-of-water-with-tall-buildings-in-the-background-yGB4X6tWX8k">凤雏大桥</a> by <a target="_blank" href="https://unsplash.com/@seanhuchina">Sean Hu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Images</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Images</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Images</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Image</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Image</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Image</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
             <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg">Baoshan Evening</a> by Rod Waddington, 2018. Public Domain </p>
             <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg">Fuzhou Cityscape (Taixi CBD)</a> by Listwiseafford, 2017. Public Domain </p>
             <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Text:</b></p>
             <p class="reference_text">Haw, Stephen G. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056703412">Marco Polo’s China a Venetian in the Realm of Khubilai Khan</a>. London ; Routledge, 2006.</p>
-            <p class="reference_text">Polo, Marco.<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412"></a> The Travels. Translated by Nigel Cliff. London: Penguin Classics, 2015.</p>
+            <p class="reference_text">Polo, Marco.<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412">The Travels</a>. Translated by Nigel Cliff. London: Penguin Classics, 2015.</p>
             <p class="reference_text">Vogel, Hans Ulrich. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991001092219703412">Marco Polo Was in China : New Evidence from Currencies, Salts and Revenues</a>. Leiden: Brill, 2013.</p>
             <p class="reference_text">杨志玖. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991007732299703412">马可波罗在中国 = Marco Polo in China</a>. 第1版 (天津市: 南开大学出版社, 1999),25.</p>
             <p class="reference_text">方国瑜, and 林超民.  <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012452069703412">《马可波罗行纪》云南史地丛考</a>. 第1版. 北京: 民族出版社, 1994.</p>
