@@ -48,10 +48,11 @@
     <script src="js/vegas.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!-- <script src="https://d3js.org/d3.v4.js"></script> -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.js"></script> 
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> -->
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    
 
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
@@ -661,6 +662,67 @@
                     greyIcon = new anyIcon({iconUrl:"images/grey.png"});
                     empty= new  anyIcon({iconUrl:"images/Empty.png"});
 
+                    const columnValues = [
+                    'Xingzai',
+                    'Yongchang',
+                    'Fuzhou_City',
+                    'Tibet',
+                    'Qarajang_City',
+                    'Jiandu',
+                    'Xiezhou',
+                    'Xiangyangfu',
+                    'Daidu',
+                    'Chengdufu',
+                    'Zhenzhou',
+                    'Zayton',
+                    'Fuling',
+                    'Yachi',
+                    'Dongpingfu',
+                    'Fuzhou_Kingdom',
+                    'Changzhou',
+                    'ChangAnfu',
+                    'Suzhou',
+                    'Guazhou',
+                    'Xinzhou_Matou',
+                    'Tingzhou',
+                    'Jianningfu',
+                    'Changlu',
+                    'Yangzhou',
+                    'Zhenjiangfu',
+                    'Hejianfu',
+                    'HuaiAnzhou',
+                    'Guangyuan',
+                    'Houguan',
+                    'Aq_Baliq',
+                    'Aq_Baliq_Manzi',
+                    'Liucheng',
+                    'Taiyuanfu',
+                    'Baoying',
+                    'Anqing',
+                    'Taizhou',
+                    'Jiangling',
+                    'Ganpu',
+                    'Gaoyou',
+                    'Suichang',
+                    'Hezhongfu',
+                    'Pizhou',
+                    'Quzhou',
+                    'Suqian',
+                    'Tonglu',
+                    'Tongzhou',
+                    'Changxing',
+                    'Zhuozhou',
+                    'Wuxing',
+                    'Chuzhou',
+                    'Wuzhou',
+                    'Wujiang',
+                    'Pingyangfu',
+                    'Zardandan',
+                    'Kuizhou',
+                    'Huaiyin',
+                    'Qarajang_Kingdom'
+                    ]
+
                     var [
                             Xingzai,
                             Yongchang,
@@ -721,6 +783,8 @@
                             Huaiyin,
                             Qarajang_Kingdom
                         ] = columnValues;
+
+                    
 
 
 
@@ -1184,6 +1248,7 @@
 
                 
                 function marker_setup(){
+                    try {
                     // Loop through the markers array and create a marker for each object
                     for (var i = 0; i < current_markers.length; i++) {
                         var marker = L.marker([current_markers[i].lat, current_markers[i].lng],{icon:current_markers[i].icon, opacity:0.7}).addTo(map);
@@ -1220,6 +1285,10 @@
                             }
                         })
                     };
+
+                } catch (error) {
+    console.error('Error setting up markers:', error);
+  }
                 }
                 marker_setup()
                 
@@ -2039,25 +2108,24 @@
                       <p class="name3"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project:</b></p>
                       <script>
                           d3.text("csv/name.csv", function(data) {
-                              var parsedCSV = d3.csv.parseRows(data);
-                          
-                              var container = d3.select(".name3")
-                                  .append("table")
-                          
-                              .selectAll("tr")
-                                  .data(parsedCSV).enter()
-                                  .append("tr")
-                          
-                              .selectAll("td")
-                                  .data(function(d) {
-                                      return d;
-                                  }).enter()
-                                  .append("td")
-                                  .text(function(d) {
-                                      return d;
-                                  });
-                          });
-                          
+                            var parsedCSV = d3.csvParse(data);
+
+                            var container = d3.select(".name3")
+                                .append("table")
+                                .selectAll("tr")
+                                .data(parsedCSV)
+                                .enter()
+                                .append("tr")
+                                .selectAll("td")
+                                .data(function(d) {
+                                return d3.values(d);
+                                })
+                                .enter()
+                                .append("td")
+                                .text(function(d) {
+                                return d;
+                                });
+                            });
                       </script>
           
                       <!-- CHANGES: show in table looks clearer above, hide the original below
