@@ -200,7 +200,7 @@
         <section id="connect-bar" style="height:50px; background-color:#ffffff;"></section> 
     -->
 
-    <section class="barista-section section-padding section-bg2" style="height:750px" id="page_3">
+    <section class="barista-section section-padding section-bg2" style="height:780px" id="page_3">
         <!--<div style="background-color:#d9e6f3;height: 730px;width:100%">-->
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
@@ -274,7 +274,8 @@
                         <!-- Create a div where the graph will take place -->
                         <div id="my_dataviz_1" class="dataviz-2"style="display:inline-block;text-align:center;height:72%;width:100%"></div>
                         <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations Marco-Polo have described: <mark>58</mark><br>Average Number of Words used to describe one location: <mark>494.9</mark></p>
-                        <button  id="button-return-2" class="button-return" style="height:5%;margin-top:20px" onclick="return_rec_1()"><u>Return</u></button>
+                        <p style="text-align:center;height:7%;line-height:1.5;"><br><mark style="background-color:#003179"><b style="color:#ffffff">CLick on Markers to read more about them!</b></mark></p>
+                        <button  id="button-return-2" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
@@ -390,9 +391,9 @@
                         event.preventDefault(); // Prevent the form from submitting
                   
                       // Get the word that the user wants to search
-                        var go_searchWord = searchInput.value;
+                        var go_searchWord = searchInput.value.toString();
                         
-                        if (myValue=="Cliff" ){
+                        /*if (myValue=="Cliff" ){
                             go_searchWord=go_searchWord.charAt(0).toUpperCase() + go_searchWord.slice(1).toLowerCase()
                             if(go_searchWord==="Fuzhou"){
                                 go_searchWord="Fuzhou-City";
@@ -401,14 +402,34 @@
                             }else if (go_searchWord==="Chang'anfu"){
                                 go_searchWord="Chang’anfu";
                             }
-                        }
-                        
-                        
+                        }*/
+                        function findBestMatch(arr, inputStr) {
+                            let bestMatch = "";
+                            let highestPercent = 0;
 
-                        console.log('Search word: ' + go_searchWord);
+                            for (let i = 0; i < arr.length; i++) {
+                                let string = arr[i];
+                                let commonChars = new Set([...inputStr.toLowerCase()].filter(char => string.toLowerCase().includes(char)));
+                                let percent = (commonChars.size / inputStr.length) * 100;
+
+                                if (percent > highestPercent) {
+                                highestPercent = percent;
+                                bestMatch = string;
+                                }
+                            }
+
+                            return bestMatch;
+                        }
+
+                        let bestMatch = findBestMatch(columnValues, go_searchWord);
+
+                        
+                        
+                        console.log(go_searchWord)
+                        console.log('Search word: ' + bestMatch);
 
                         current_markers.forEach(function(marker) {
-                            if (go_searchWord===columnValues[marker.popupContent]){
+                            if (bestMatch===columnValues[marker.popupContent]){
                                 map.setView([marker.lat,marker.lng],9)
                             }
                         })
