@@ -87,7 +87,7 @@
 
         <script>
 
-        function find_list(editionName){
+        /*function find_list(editionName){
             d3.csv("csv/name.csv", function(data) {
                 // Access the data in the specified column
                 
@@ -101,11 +101,17 @@
             }
             
             
-        }
+        }*/
+
+        const Haw_col=["Quinsai", "Uncian", "Fugiu", "Tebet", "Caragian-City", "Gaindu", "Caiciu", "Saianfu", "Taidu", "Sindufu", "Singiu", "Çaiton", "Cuigiu-City", "Iaci", "Tundinfu", "Choncha", "Ciangiu", "Quengianfu", "Sugiu", "Caigiu", "Singiu Matu", "Tingiu", "Quenlinfu", "Cianglu", "Yangiu", "Cinghianfu", "Cacanfu", "Coigangiu", "cuncun", "Vuguen", "Achbaluch", "Acbalec Mangi", "Lingiu", "Taianfu", "Paughin", "Namghin", "Tigiu", "Ciangli", "Gampu", "Cauyu", "Cianscian", "Cacionfu", "Pingiu", "Ghiugiu", "Ciugiu", "Tanpigiu", "Cingiu", "Ciangan", "Giogiu", "Vughin", "Cugiu", "Viugiu[1]", "Vugiu[1]", "Pianfu", "Çardandan", "Cuigiu", "Caguy", "Caragian-Kingdom"]
+        const Cliff_col=["Xingzai", "Yongchang", "Fuzhou-City", "Tibet", "Qarajang-City", "Jiandu", "Xiezhou", "Xiangyangfu", "Daidu/Khanbaliq", "Chengdufu", "Zhenzhou", "Zayton", "Fuling", "Yachi", "Dongpingfu", "Fuzhou-Kingdom", "Changzhou", "Chang'anfu", "Suzhou", "Guazhou", "Xinzhou Matou", "Tingzhou", "Jianningfu", "Changlu", "Yangzhou", "Zhenjiangfu", "Hejianfu", "Huai'anzhou", "Guangyuan", "Houguan", "Aq-Baliq", "Aq-Baliq Manzi", "Liucheng", "Taiyuanfu", "Baoying", "Anqing", "Taizhou", "Jiangling", "Ganpu", "Gaoyou", "Suichang", "Hezhongfu", "Pizhou", "Quzhou", "Suqian", "Tonglu", "Tongzhou", "Changxing", "Zhuozhou", "Wuxing", "Chuzhou", "Wuzhou", "Wujiang", "Pingyangfu", "Zardandan", "Kuizhou", "Huaiyin", "Qarajang-Kingdom"]
+        const cn_col=["杭州", "保山", "福州", "西藏", "大理", "西昌", "解州", "襄阳", "北京", "成都", "仪征", "泉州", "涪陵", "昆明", "东平", "江浙行省", "常州", "西安", "苏州", "邗江", "济宁", "长汀", "建瓯", "沧州", "扬州", "镇江", "河间", "淮安", "广元", "闽侯", "正定", "汉中", "Lingiu[2]", "太原", "宝应", "安庆", "泰州", "德州", "澉浦", "高邮", "遂昌", "蒲州", "古邳", "衢州", "宿迁", "桐庐", "南通", "长兴", "涿州", "湖州", "丽水", "金华", "吴江", "临汾", "保山", "奉节", "淮阴", "Caragian-Kingdom[2]"]
+        var columnValues = Haw_col
+        var columnRef = Cliff_col
+        var myValue = "Haw"
 
         function cliff_list(){
             location.href = window.location.pathname + '?lang=Cliff';
-            //location.reload();
         }
 
         function h_list(){
@@ -116,14 +122,21 @@
             location.href = window.location.pathname + '?lang=cn';
         }
 
+        function find_list(editionName){
+            if (editionName=="Cliff"){
+                columnValues = Cliff_col
+            }else if (editionName=="cn"){
+                columnValues = cn_col
+            }
+        }
         
-        var myValue = "Haw"
 
         try {
             const urlParams = new URLSearchParams(window.location.search);
             myValue = urlParams.get('lang').toString();
         } catch (error) {
         }
+
         find_list(myValue);
         
 
@@ -1248,7 +1261,6 @@
 
                 
                 function marker_setup(){
-                    try {
                     // Loop through the markers array and create a marker for each object
                     for (var i = 0; i < current_markers.length; i++) {
                         var marker = L.marker([current_markers[i].lat, current_markers[i].lng],{icon:current_markers[i].icon, opacity:0.7}).addTo(map);
@@ -1286,9 +1298,6 @@
                         })
                     };
 
-                } catch (error) {
-    console.error('Error setting up markers:', error);
-  }
                 }
                 marker_setup()
                 
