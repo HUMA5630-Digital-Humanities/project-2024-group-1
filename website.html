@@ -10,18 +10,35 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="css/vegas.min.css" rel="stylesheet">
-    <!-- CHANGES: added fontawsome css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.4.4/vegas.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
 
-    <!-- CHANGES: remove underline of the hyperlink text -->
+    <!-- CHANGES: add custom css -->
     <style>
         a {
             color: #c5e1ff;
             text-decoration: none;
+        }
+        .imgsrc {
+            color: #0b356a;
+            font-size: 14px;
+            padding-top: 5px;
+        }
+        .imgsrc a {
+            color:#3fa2e3;
+        }
+        .arrow:hover {
+            cursor: pointer;
+        }
+        table, td, th {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
         }
     </style>
 
@@ -32,7 +49,9 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v4.js"></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
@@ -147,7 +166,7 @@
                     <div class="col-lg-5 col-sm-12">
                         <img src="images/Marco_Polo.jpg" style="width: 90%">
                         <!-- CHANGES: add image source url directly under the image -->
-                        <p style="color: #3c73b7; font-size: 10px; padding-top: 10px;">Image from <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg">Wikimedia</a>: Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi by Salviati, 1867. Public Domain.</p>
+                        <p style="color: #61a0ff; font-size: 14px; padding-top: 10px;">Image from <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg">Wikimedia</a>: Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi by Salviati, 1867. Public Domain.</p>
                     </div>
                     
                     <div class="col-lg-7 col-sm-12">
@@ -172,8 +191,8 @@
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
             <div style=" float:left; width:50%">
-                <div id="map" style="height: 700px; max-width: 500px;z-index: 20;"></div>
-                <p style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
+                <div id="map" style="height: 665px; max-width: 525px;z-index: 20; margin-top: 50px;"></div>
+                <p style="line-height:2;font-size:14px;"><em>《九域守令圖》<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991004094479703412" style="color:#1f93ff;"> 曹婉如. 中國古代地图集. 第1集. 北京: 文物出版社, 1990.</a></em></p>
             </div>
             <div class="align-items-center" style=" float:right; height:650px;width:50%; margin-top:10px;">
                 <div class="rec-1" style="display:inline-block;margin-top:20px;">
@@ -216,7 +235,6 @@
                         </div>
                         <p><br></p>
                         <div id="cover" style="position:relative; margin-top:20px">
-                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                             <form id="search-form" method="get" action="">
                             <div class="wrap">
                                 <div class="search">
@@ -239,8 +257,6 @@
                 <div class="rec-2" style="height:100%;width:100%;display:none">
                     <div id="overview_viz"style="margin-left:20px;height:100%;width:100%">
                         <p id="map-text-2" class="select_text" style="color:#3e5e88; height:8%"><b>The Top 12 Mostly described Chinese Locations(words)</b></p>
-                        <!-- Load d3.js -->
-                        <script src="https://d3js.org/d3.v4.js"></script>
                         <!-- Create a div where the graph will take place -->
                         <div id="my_dataviz_1" class="dataviz-2"style="display:inline-block;text-align:center;height:72%;width:100%"></div>
                         <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations Marco-Polo have described: <mark>58</mark><br>Average Number of Words used to describe one location: <mark>494.9</mark></p>
@@ -349,7 +365,6 @@
                 }
 
                 </script>
-                <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
                 <script>
                     // Get the search form and input field
@@ -1485,6 +1500,7 @@
                     <h1 style="text-align:center"><b  id="title_1"></b></h1>
                     <div style="float:left; width:49%;height:600px">
                         <img class="shape" src="images/xingzai.jpg">
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE">Tea house in Hangzhou</a> by <a target="_blank" href="https://unsplash.com/@davidveksler">David Veksler</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
@@ -1506,6 +1522,7 @@
                     <h1 style="text-align:center"><b id="title_9"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="images/daidu.jpg" >
+                        <p class="imgsrc"><a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Images</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
@@ -1528,6 +1545,7 @@
                     <h1 style="text-align:center"><b  id="title_2"></b></h1>
                     <div style="float:left; width:49%;height:600px">
                         <img class="shape" src="images/baoshan.jpg">
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg">Baoshan Evening</a> by Rod Waddington, 2018. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
@@ -1549,6 +1567,7 @@
                     <h1 style="text-align:center"><b  id="title_3"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
                         <img class="shape" src="images/fuzhou.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg">Fuzhou Cityscape (Taixi CBD)</a> by Listwiseafford, 2017. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
@@ -2004,47 +2023,94 @@
         </div>
     </section>-->
 
-    <section class="barista-section section-padding section-bg5" style="height: 2200px" id="page_6">
+    <section class="barista-section section-padding section-bg5" style="height: 200%" id="page_6">
         <div class="container max-width:100%">
-            <h1 class="text-white" style="margin-top:30px"><b>References</b></h1>
-            <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Images:</b></p>
+           
+                      <!-- CHANGES: put remarks before references -->
+                      <h1 class="text-white" style="margin-top:30px"><b>Remarks</b></h1>
 
-            <p class="reference_text">Markers on map designed by Freepik</p>
-            <p class="reference_text">曹婉如. 九域守令圖-<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991004094479703412"> 中國古代地图集</a>. 第1集., 文物出版社, 1990.</p>
-            <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg">Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi</a> by Salviati, 1867. Public Domain </p>
-            <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Along_the_River_7-119-3.jpg">Along the River During the Qingming Festival Season (Qing Court Version)</a> by Chen Mei (陳枚), Sun Hu (孫祜), Jin Kun (金昆), Dai Hong (戴洪) and Cheng Zhidao (程志道), 1736, Public Domain</p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk">Sculptural bust of traveler Marco Polo</a> by <a target="_blank" href="https://unsplash.com/@vonshnauzer">Egor Myznik</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ">Image</a> by <a target="_blank" href="https://unsplash.com/@bangyuwang">Bangyu Wang</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE">Tea house in Hangzhou</a> by <a target="_blank" href="https://unsplash.com/@davidveksler">David Veksler</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Image</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/multicolored-streamers-near-snow-mountain-under-blue-and-white-cloudy-sky-NAdinUQTy2c">Gate of prayers</a> by <a target="_blank" href="https://unsplash.com/@danielesalutari">Daniele Salutari</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Image</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/an-arch-with-a-view-of-a-mountain-and-trees-oxkTY2sZ5FI">窗外的景色</a> by <a target="_blank" href="https://unsplash.com/@samirshadab10">Sam LEGEND</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-bridge-over-a-body-of-water-with-tall-buildings-in-the-background-yGB4X6tWX8k">凤雏大桥</a> by <a target="_blank" href="https://unsplash.com/@seanhuchina">Sean Hu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Image</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Image</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Image</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
-            <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg">Baoshan Evening</a> by Rod Waddington, 2018. Public Domain </p>
-            <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg">Fuzhou Cityscape (Taixi CBD)</a> by Listwiseafford, 2017. Public Domain </p>
-            <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Text:</b></p>
-            <p class="reference_text">Haw, Stephen G. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056703412">Marco Polo’s China a Venetian in the Realm of Khubilai Khan</a>. London ; Routledge, 2006.</p>
-            <p class="reference_text">Polo, Marco.<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412">The Travels</a>. Translated by Nigel Cliff. London: Penguin Classics, 2015.</p>
-            <p class="reference_text">Vogel, Hans Ulrich. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991001092219703412">Marco Polo Was in China : New Evidence from Currencies, Salts and Revenues</a>. Leiden: Brill, 2013.</p>
-            <p class="reference_text">杨志玖. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991007732299703412">马可波罗在中国 = Marco Polo in China</a>. 第1版 (天津市: 南开大学出版社, 1999),25.</p>
-            <p class="reference_text">方国瑜, and 林超民.  <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012452069703412">《马可波罗行纪》云南史地丛考</a>. 第1版. 北京: 民族出版社, 1994.</p>
-            <p class="reference_text">姬庆红. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012822349003412">马可·波罗来华问题研究 = Marco Polo</a>. 第1版. 北京: 中国社会科学出版社, 2019.</p>
-            <p class="reference_text">刘振宁. “《马可波罗行纪》西南民俗述造解义.” 贵州师范大学学报（社会科学版）, no. 4 (2022): 118–29. </p>
-            <p class="reference_text"><a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991008775459703412">天一阁藏明代方志选刊续编</a>. 第71册. 上海：上海书店出版社,1990.</p>
-            <p class="reference_text">严沛, and 范成大. <a target="_blank" href=" https://lbdiscover.hkust.edu.hk/bib/991003588609703412">桂海虞衡志校注</a>. 第1版. 南宁市: 广西人民出版社, 1986.</p>
-            <p class="reference_text" style="color:#b8b8b8"><b style="color:#fff"><br>Remarks:</b><br>To ensure that our audience can fully immerse themselves in the historical context, we have placed significant emphasis on the historical maps. We understand that the precise locations may not always be available on the historical maps, so we have adopted a two-fold approach:<br>
-            <b style="color:#fff">Pinpointing Locations on Historical Maps:</b> Whenever possible, we have identified and marked the exact locations on the historical maps using <b style="color:#1f93ff">blue markers</b>. This allows our audience to visualize the geographical aspects of each historical site accurately.
-            <br><b style="color:#fff">Referring to Real Maps for Missing Locations:</b> In cases where specific locations are not depicted on the historical maps, we marked the points using <b style="color:#8c8c8c">grey markers</b> with reference to the modern geography.</p>
-            <p class="reference_text"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project:</b>
-                <br><b style="color:#fff">Cliff:</b> Xingzai, Yongchang, Fuzhou-City, Tibet, Qarajang-City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou-Kingdom, Changzhou, Chang'anfu, Suzhou, Guazhou, Xinzhou Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, Huai'anzhou, Guangyuan, Houguan, Aq-Baliq, Aq-Baliq Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang-Kingdom.
-                <br><b style="color:#fff">Haw:</b> Quinsai, Uncian, Fugiu, Tebet, Caragian-City, Gaindu, Caiciu, Saianfu, Taidu, Sindufu, Singiu, Çaiton, Cuigiu-City, Iaci, Tundinfu, Choncha, Ciangiu, Quengianfu, Sugiu, Caigiu, Singiu Matu, Tingiu, Quenlinfu, Cianglu, Yangiu, Cinghianfu, Cacanfu, Coigangiu, cuncun, Vuguen, Achbaluch, Acbalec Mangi, Lingiu, Taianfu, Paughin, Namghin, Tigiu, Ciangli, Gampu, Cauyu, Cianscian, Cacionfu, Pingiu, Ghiugiu, Ciugiu, Tanpigiu, Cingiu, Ciangan, Giogiu, Vughin, Cugiu, Viugiu[1], Vugiu[1], Pianfu, Çardandan, Cuigiu, Caguy, Caragian-Kingdom
-                <br><b style="color:#fff">中文:</b> 杭州, 保山, 福州, 西藏, 大理, 西昌, 解州, 襄阳, 北京, 成都, 仪征, 泉州, 涪陵, 昆明, 东平, 江浙行省, 常州, 西安, 苏州, 邗江, 济宁, 长汀, 建瓯, 沧州, 扬州, 镇江, 河间, 淮安, 广元, 闽侯, 正定, 汉中, Lingiu[2], 太原, 宝应, 安庆, 泰州, 德州, 澉浦, 高邮, 遂昌, 蒲州, 古邳, 衢州, 宿迁, 桐庐, 南通, 长兴, 涿州, 湖州, 丽水, 金华, 吴江, 临汾, 保山, 奉节, 淮阴, Caragian-Kingdom[2].</p>
-            <p class="reference_text">[1]As the two locations was identified with the same name in Haw's definition, we deifnded it with other names on edition F so as to clssify them.</p>
-            <p class="reference_text">[2]As the city does not appear on modern China Map's definition, it is named by Haw's edition.</p>
+                      <p class="reference_text" style="color:#b8b8b8">
+                          To ensure that our audience can fully immerse themselves in the historical context, we have placed significant emphasis on the historical maps. We understand that the precise locations may not always be available on the historical maps, so we have adopted a two-fold approach:<br><br>
+                      <b style="color:#fff">Pinpointing Locations on Historical Maps:</b> Whenever possible, we have identified and marked the exact locations on the historical maps using <b style="color:#1f93ff">blue markers</b>. This allows our audience to visualize the geographical aspects of each historical site accurately.
+                      <br><br>
+                      <b style="color:#fff">Referring to Real Maps for Missing Locations:</b> In cases where specific locations are not depicted on the historical maps, we marked the points using <b style="color:#8c8c8c">grey markers</b> with reference to the modern geography.</p>
+          
+                      <!-- CHANGES: display in table looks clearer -->
+                      <p class="name3"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project:</b></p>
+                      <script>
+                          d3.text("csv/name.csv", function(data) {
+                              var parsedCSV = d3.csv.parseRows(data);
+                          
+                              var container = d3.select(".name3")
+                                  .append("table")
+                          
+                              .selectAll("tr")
+                                  .data(parsedCSV).enter()
+                                  .append("tr")
+                          
+                              .selectAll("td")
+                                  .data(function(d) {
+                                      return d;
+                                  }).enter()
+                                  .append("td")
+                                  .text(function(d) {
+                                      return d;
+                                  });
+                          });
+                          
+                      </script>
+          
+                      <!-- CHANGES: show in table looks clearer above, hide the original below
+                          <p class="reference_text"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project:</b>
+                          <br><b style="color:#fff">Cliff:</b> Xingzai, Yongchang, Fuzhou-City, Tibet, Qarajang-City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou-Kingdom, Changzhou, Chang'anfu, Suzhou, Guazhou, Xinzhou Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, Huai'anzhou, Guangyuan, Houguan, Aq-Baliq, Aq-Baliq Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang-Kingdom.
+                          <br><b style="color:#fff">Haw:</b> Quinsai, Uncian, Fugiu, Tebet, Caragian-City, Gaindu, Caiciu, Saianfu, Taidu, Sindufu, Singiu, Çaiton, Cuigiu-City, Iaci, Tundinfu, Choncha, Ciangiu, Quengianfu, Sugiu, Caigiu, Singiu Matu, Tingiu, Quenlinfu, Cianglu, Yangiu, Cinghianfu, Cacanfu, Coigangiu, cuncun, Vuguen, Achbaluch, Acbalec Mangi, Lingiu, Taianfu, Paughin, Namghin, Tigiu, Ciangli, Gampu, Cauyu, Cianscian, Cacionfu, Pingiu, Ghiugiu, Ciugiu, Tanpigiu, Cingiu, Ciangan, Giogiu, Vughin, Cugiu, Viugiu[1], Vugiu[1], Pianfu, Çardandan, Cuigiu, Caguy, Caragian-Kingdom
+                          <br><b style="color:#fff">中文:</b> 杭州, 保山, 福州, 西藏, 大理, 西昌, 解州, 襄阳, 北京, 成都, 仪征, 泉州, 涪陵, 昆明, 东平, 江浙行省, 常州, 西安, 苏州, 邗江, 济宁, 长汀, 建瓯, 沧州, 扬州, 镇江, 河间, 淮安, 广元, 闽侯, 正定, 汉中, Lingiu[2], 太原, 宝应, 安庆, 泰州, 德州, 澉浦, 高邮, 遂昌, 蒲州, 古邳, 衢州, 宿迁, 桐庐, 南通, 长兴, 涿州, 湖州, 丽水, 金华, 吴江, 临汾, 保山, 奉节, 淮阴, Caragian-Kingdom[2].</p> 
+                      -->
+          
+          
+                      <p class="reference_text">[1]As the two locations was identified with the same name in Haw's definition, we deifnded it with other names on edition F so as to clssify them.</p>
+                      <p class="reference_text">[2]As the city does not appear on modern China Map's definition, it is named by Haw's edition.</p>
+          
+          
+                      <br><br>
+          
+          
+                      <h1 class="text-white" style="margin-top:30px"><b>References</b></h1>
+                      <!-- CHANGES: only put banner and markers images source here. Put the image source references to page_4 for under each page_4 image. Remove citation of page_4 in this section -->
+                      <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Markers and Banner Images:</b></p>
+          
+                      <p class="reference_text">Markers on map designed by Freepik</p>
+                      
+          
+                      <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Along_the_River_7-119-3.jpg">Along the River During the Qingming Festival Season (Qing Court Version)</a> by Chen Mei (陳枚), Sun Hu (孫祜), Jin Kun (金昆), Dai Hong (戴洪) and Cheng Zhidao (程志道), 1736, Public Domain</p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk">Sculptural bust of traveler Marco Polo</a> by <a target="_blank" href="https://unsplash.com/@vonshnauzer">Egor Myznik</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ">Image</a> by <a target="_blank" href="https://unsplash.com/@bangyuwang">Bangyu Wang</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Images</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/multicolored-streamers-near-snow-mountain-under-blue-and-white-cloudy-sky-NAdinUQTy2c">Gate of prayers</a> by <a target="_blank" href="https://unsplash.com/@danielesalutari">Daniele Salutari</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Images</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/an-arch-with-a-view-of-a-mountain-and-trees-oxkTY2sZ5FI">窗外的景色</a> by <a target="_blank" href="https://unsplash.com/@samirshadab10">Sam LEGEND</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/a-bridge-over-a-body-of-water-with-tall-buildings-in-the-background-yGB4X6tWX8k">凤雏大桥</a> by <a target="_blank" href="https://unsplash.com/@seanhuchina">Sean Hu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Images</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Images</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+                      
+                      <!-- CHANGES: Text & Books -->
+                      <br/><br/>
+                      <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Text & Books:</b></p>
+                      <p class="reference_text">Haw, Stephen G. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056703412">Marco Polo’s China a Venetian in the Realm of Khubilai Khan</a>. London ; Routledge, 2006.</p>
+                      <p class="reference_text">Polo, Marco.<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412"></a> The Travels. Translated by Nigel Cliff. London: Penguin Classics, 2015.</p>
+                      <p class="reference_text">Vogel, Hans Ulrich. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991001092219703412">Marco Polo Was in China : New Evidence from Currencies, Salts and Revenues</a>. Leiden: Brill, 2013.</p>
+                      <p class="reference_text">曹婉如. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991004094479703412"> 中國古代地图集</a>. 第1集., 文物出版社, 1990.</p>
+                      <p class="reference_text">杨志玖. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991007732299703412">马可波罗在中国 = Marco Polo in China</a>. 第1版 (天津市: 南开大学出版社, 1999),25.</p>
+                      <p class="reference_text">方国瑜, and 林超民.  <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012452069703412">《马可波罗行纪》云南史地丛考</a>. 第1版. 北京: 民族出版社, 1994.</p>
+                      <p class="reference_text">姬庆红. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012822349003412">马可·波罗来华问题研究 = Marco Polo</a>. 第1版. 北京: 中国社会科学出版社, 2019.</p>
+                      <p class="reference_text">刘振宁. “《马可波罗行纪》西南民俗述造解义.” 贵州师范大学学报（社会科学版）, no. 4 (2022): 118–29. </p>
+                      <p class="reference_text"><a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991008775459703412">天一阁藏明代方志选刊续编</a>. 第71册. 上海：上海书店出版社,1990.</p>
+                      <p class="reference_text">严沛, and 范成大. <a target="_blank" href=" https://lbdiscover.hkust.edu.hk/bib/991003588609703412">桂海虞衡志校注</a>. 第1版. 南宁市: 广西人民出版社, 1986.</p>
+          
+                      <br><br>
+
         </div>
     </section>
 
