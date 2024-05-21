@@ -492,7 +492,45 @@
                             
                         }
                         Plotly.newPlot('my_dataviz_1', data, layout, config);
+                        
+                        var getback = 0;
+                        document.getElementById('my_dataviz_1').on('plotly_click', function(data) {
+                            var point = data.points[0];
+                                if(getback==0){
+                                    if(myValue!="Cliff"){
+                                    let indexes = columnValues.map((_, i) => i);
+                                    let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
+                                    let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(point.label));
+                                    if (columnRef[indexOfValue]=="Daidu/Khanbaliq"){
+                                        var go_location="Daidu"
+                                    }else{
+                                        var go_location=columnRef[indexOfValue]
+                                    }
+                                    $("#"+go_location).click();
+                                }else{
+                                    if (point.label=="Daidu/Khanbaliq"){
+                                        var go_location="Daidu"
+                                    }else{
+                                        var go_location=point.label
+                                    }
+                                    $("#"+go_location).click();
+                                }
+                                
+                                $('html, body').stop().animate({
+                                    scrollTop: $("#page_4").offset().top
+                                }, {
+                                    duration:100,
+                                    easing: 'linear'
+                                });
+                                getback++;
+
+                            }else{
+                                getback=0
+                            }
+                            
+                        })
                     })
+
                 </script>
 
                 <script>
@@ -695,67 +733,8 @@
                     yellowIcon = new anyIcon({iconUrl: 'images/yellow.png'});
                     greyIcon = new anyIcon({iconUrl:"images/grey.png"});
                     empty= new  anyIcon({iconUrl:"images/Empty.png"});
-
-                    /*const columnValues = [
-                    'Xingzai',
-                    'Yongchang',
-                    'Fuzhou_City',
-                    'Tibet',
-                    'Qarajang_City',
-                    'Jiandu',
-                    'Xiezhou',
-                    'Xiangyangfu',
-                    'Daidu',
-                    'Chengdufu',
-                    'Zhenzhou',
-                    'Zayton',
-                    'Fuling',
-                    'Yachi',
-                    'Dongpingfu',
-                    'Fuzhou_Kingdom',
-                    'Changzhou',
-                    'ChangAnfu',
-                    'Suzhou',
-                    'Guazhou',
-                    'Xinzhou_Matou',
-                    'Tingzhou',
-                    'Jianningfu',
-                    'Changlu',
-                    'Yangzhou',
-                    'Zhenjiangfu',
-                    'Hejianfu',
-                    'HuaiAnzhou',
-                    'Guangyuan',
-                    'Houguan',
-                    'Aq_Baliq',
-                    'Aq_Baliq_Manzi',
-                    'Liucheng',
-                    'Taiyuanfu',
-                    'Baoying',
-                    'Anqing',
-                    'Taizhou',
-                    'Jiangling',
-                    'Ganpu',
-                    'Gaoyou',
-                    'Suichang',
-                    'Hezhongfu',
-                    'Pizhou',
-                    'Quzhou',
-                    'Suqian',
-                    'Tonglu',
-                    'Tongzhou',
-                    'Changxing',
-                    'Zhuozhou',
-                    'Wuxing',
-                    'Chuzhou',
-                    'Wuzhou',
-                    'Wujiang',
-                    'Pingyangfu',
-                    'Zardandan',
-                    'Kuizhou',
-                    'Huaiyin',
-                    'Qarajang_Kingdom'
-                    ]*/
+             
+          
 
                     var [
                             Xingzai,
@@ -1880,7 +1859,7 @@
         <div style="margin-top:0px">
             <div style="text-align:center; bottom:0px;">
                 <span class="productbtn btn1 btn-click" data-action="section-1" id="Xingzai"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu/Khanbaliq"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu"></span>
                 <span class="productbtn btn2 btn-click" data-action="section-2" id="Yongchang"></span>
                 <span class="productbtn btn3 btn-click" data-action="section-3" id="Fuzhou-City"></span>
                 <span class="productbtn btn4 btn-click" data-action="section-4" id="Tibet"></span>
