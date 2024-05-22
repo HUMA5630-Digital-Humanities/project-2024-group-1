@@ -1,28 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="./images/pattern2.png">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/logo.jpg">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-
-    <script src="./js/leaflet.js"></script>
-
-    <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src="./js/vegas.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.4.4/vegas.min.css" />
+    <!-- CHANGES: organized css, js together -->
+    <!-- css -->
     <link href="css/tooplate-barista.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="css/vegas.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
 
+    <!-- CHANGES: add custom css -->
+    <style>
+        a {
+            color: #c5e1ff;
+            text-decoration: none;
+        }
+        .imgsrc {
+            color: #0b356a;
+            font-size: 14px;
+            padding-top: 5px;
+        }
+        .imgsrc a {
+            color:#3fa2e3;
+        }
+        .arrow:hover {
+            cursor: pointer;
+        }
+        table, td, th {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+
+    <!-- js -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/vegas.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.32.0.min.js'></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.js"></script> 
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> -->
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
 <main>
-    <section id="page_1" class="hero-section d-flex justify-content-center align-items-center">
+    <section class="lang_bar">
+        <input type="checkbox" id="active">
+        <!-- CHANGES: changed L to fa-solid fa-language icon -->
+        <label for="active" class="menu-btn"><i class="fa-solid fa-language"></i></label>
+        <div class="lang_wrapper">
+            <h2 class="lang_exp" style="margin-top:50px;"><b>As The Travels by Marco Polo has been transcribed and translated into various manuscripts and early printed editions, there are several variations in the location names mentioned in the text. To ensure clarity, our website has referred to three sources for displaying the location names: </b></h2>
+            <!-- CHANGES: align to left look more readable -->
+            <h2 class="lang_exp lang_exp_select" style="text-align: left; line-height: 2;">
+                <!-- CHANGES: add hkust library record url for the books -->
+                <mark style="color:#01204d; background-color:#fff"><b>Cliff:</b></mark> From the translation of <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412">"The Travels"</a> by Nigel Cliff, published by Penguin Classics in 2015.
+                <br><mark style="color:#01204d; background-color:#fff"><b>Haw:</b></mark> From the book <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056703412">"Marco Polo's China: A Venetian in the Realm of Khubilai Khan"</a> by Stephen G. Haw, first published in 2006 by Routledge.
+                <br><mark style="color:#01204d; background-color:#fff"><b>中文:</b></mark> From modern China map.</h2>
+            
+            <!-- CHANGES: added "in the map section" in the sentence -->
+            <h2 class="lang_exp" ><b>Please select the version you prefer in the map section.</b></h2>
+            <ul>
+                <li><a class="text-white" onclick="cliff_list()">CLIFF</a></li>
+                <li><a class="text-white" onclick="h_list()">Haw</a></li>
+                <li><a class="text-white" onclick="cn_list()">中文</a></li>
+            </ul>
+        </div>
+
+
+        <script>
+
+        /*function find_list(editionName){
+            d3.csv("csv/name.csv", function(data) {
+                // Access the data in the specified column
+                
+                window.columnValues = data.map(function(row) { return row[editionName]; });
+                //callback(columnValues); // Call the callback function with the column values
+            });
+            if (editionName!="Cliff"){
+                d3.csv("csv/name.csv", function(data) {
+                    window.columnRef = data.map(function(row) { return row["Cliff"]; });
+                });
+            }
+            
+            
+        }*/
+
+        const Haw_col=["Quinsai", "Uncian", "Fugiu", "Tebet", "Caragian-City", "Gaindu", "Caiciu", "Saianfu", "Taidu", "Sindufu", "Singiu", "Çaiton", "Cuigiu-City", "Iaci", "Tundinfu", "Choncha", "Ciangiu", "Quengianfu", "Sugiu", "Caigiu", "Singiu Matu", "Tingiu", "Quenlinfu", "Cianglu", "Yangiu", "Cinghianfu", "Cacanfu", "Coigangiu", "cuncun", "Vuguen", "Achbaluch", "Acbalec Mangi", "Lingiu", "Taianfu", "Paughin", "Namghin", "Tigiu", "Ciangli", "Gampu", "Cauyu", "Cianscian", "Cacionfu", "Pingiu", "Ghiugiu", "Ciugiu", "Tanpigiu", "Cingiu", "Ciangan", "Giogiu", "Vughin", "Cugiu", "Viugiu[1]", "Vugiu[1]", "Pianfu", "Çardandan", "Cuigiu", "Caguy", "Caragian-Kingdom"]
+        const Cliff_col=["Xingzai", "Yongchang", "Fuzhou-City", "Tibet", "Qarajang-City", "Jiandu", "Xiezhou", "Xiangyangfu", "Daidu/Khanbaliq", "Chengdufu", "Zhenzhou", "Zayton", "Fuling", "Yachi", "Dongpingfu", "Fuzhou-Kingdom", "Changzhou", "Chang'anfu", "Suzhou", "Guazhou", "Xinzhou Matou", "Tingzhou", "Jianningfu", "Changlu", "Yangzhou", "Zhenjiangfu", "Hejianfu", "Huai'anzhou", "Guangyuan", "Houguan", "Aq-Baliq", "Aq-Baliq Manzi", "Liucheng", "Taiyuanfu", "Baoying", "Anqing", "Taizhou", "Jiangling", "Ganpu", "Gaoyou", "Suichang", "Hezhongfu", "Pizhou", "Quzhou", "Suqian", "Tonglu", "Tongzhou", "Changxing", "Zhuozhou", "Wuxing", "Chuzhou", "Wuzhou", "Wujiang", "Pingyangfu", "Zardandan", "Kuizhou", "Huaiyin", "Qarajang-Kingdom"]
+        const cn_col=["杭州", "保山", "福州", "西藏", "大理", "西昌", "解州", "襄阳", "北京", "成都", "仪征", "泉州", "涪陵", "昆明", "东平", "江浙行省", "常州", "西安", "苏州", "邗江", "济宁", "长汀", "建瓯", "沧州", "扬州", "镇江", "河间", "淮安", "广元", "闽侯", "正定", "汉中", "Lingiu[2]", "太原", "宝应", "安庆", "泰州", "德州", "澉浦", "高邮", "遂昌", "蒲州", "古邳", "衢州", "宿迁", "桐庐", "南通", "长兴", "涿州", "湖州", "丽水", "金华", "吴江", "临汾", "保山", "奉节", "淮阴", "Caragian-Kingdom[2]"]
+        var columnValues = Haw_col
+        var columnRef = Cliff_col
+        var myValue = "Haw"
+
+        function cliff_list(){
+            location.href = window.location.pathname + '?lang=Cliff';
+        }
+
+        function h_list(){
+            location.href = window.location.pathname + '?lang=Haw';
+        }
+
+        function cn_list(){
+            location.href = window.location.pathname + '?lang=cn';
+        }
+
+        function find_list(editionName){
+            if (editionName=="Cliff"){
+                columnValues = Cliff_col
+            }else if (editionName=="cn"){
+                columnValues = cn_col
+            }
+        }
+        
+
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            myValue = urlParams.get('lang').toString();
+        } catch (error) {
+        }
+
+        find_list(myValue);
+        
+
+        </script>
+    </section>
+
+
+    <section id="page_1" class=" hero-section d-flex justify-content-center align-items-center" style="padding: 0;">
         <div class="container">
             <div class="align-items-center">
                 <div class="text-white">
@@ -30,44 +152,65 @@
                 </div>
             </div>
         </div>
-        <div class="hero-slides" style="filter: brightness(60%);"></div>
+        <div class="hero-slides" style="filter: brightness(60%); "></div>
         
         <script>
             $(function() {
               $('.hero-slides').vegas({
                   slides: [
-                      { src: './images/banner5.jpg' },
-                      { src: './images/banner6.jpg' },
+                      { src: 'images/banner7.jpg' },
+                      { src: 'images/banner6.jpg' },
                   ],
                   timer: false,
                   animation: 'kenburns',
               });
             });
         </script>
-
     </section>
 
-    <section class="barista-section section-padding section-bg1" id="page_2">
-        <div class="container" style="height: 700px">
-            <div class="align-items-center">
-                <p class="text-white" style="text-align:center; font-size:300%;">Introduction</p>
+    <!-- CHANGES: delete this connect-bar seems better, so I hided it -->
+    <!--
+        <section id="connect-bar" style="height:50px; background-color:#ffffff;"></section> 
+    -->
+
+    <section class="barista-section section-padding section-bg1" style="height:150%; padding-top: 50px; padding-bottom: 50px;" id="page_2">
+        <div class="container">
+                <!-- CHANGES: used bootstrap row and col class to make it responsive. In smaller screen, 2 columns become 1 column -->
+                <div class="row">
+                    <div class="col-lg-5 col-sm-12">
+                        <img src="images/Marco_Polo.jpg" style="width: 90%">
+                        <!-- CHANGES: add image source url directly under the image -->
+                        <p style="color: #61a0ff; font-size: 14px; padding-top: 10px;">Image from <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg">Wikimedia</a>: Mosaic of Marco Polo, Municipal Palace of Genoa: Palazzo Grimaldi Doria-Tursi by Salviati, 1867. Public Domain.</p>
+                    </div>
+                    
+                    <div class="col-lg-7 col-sm-12">
+                        <h5 class="intro_marco" style="color:#eaeaea"><mark class="text-white" style="background-color:#61a0ff; font-size:140%">Marco Polo(1254—1324)</mark>, was an Italian merchant and traveler.At the age of 17, he embarked on a journey to the Orient with his father and uncle. During his 17-year stay in China, he explored many regions, including southwest mountain area and the southeastern coastal area. Upon his return to Italy, Marco Polo was captured in a battle and imprisoned. While in prison, he recounted his experiences and adventures during his travels. With the assistance of his cellmate Rustichello, he documented his travels in the famous book ——<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412"><mark class="text-white" style="background-color:#333d4d">The Travels</mark></a>.</h5>
+                    </div>
+                </div>
+
+            <div class="row" style="padding-top: 20px;">
+                <h5 class="intro_marco" style="color:#9f9f9f" ><mark class="text-white" style="background-color:#61a0ff; font-size:140%">The Objective</mark> of this project is to utilize ancient cartographic maps of China, dating back to the time of Marco Polo, to showcase the locations he visited during his travels in China and the concerns he expressed about them in his narratives. Unlike the travelogues of Chinese literati of the same period, Marco Polo's preoccupations were unique. As a merchant, he was naturally interested in local industries and specialties, and meticulously recorded the prices of goods in his books. Additionally, as a devout religious believer, he was also concerned about the state of faith of the local people. Therefore, we decided to present the cities mentioned in Marco Polo's travels in three areas: religion, specialties and economic activities, which he frequently mentioned in his accounts. The website will provide an interactive and informative experience for users, enabling them to explore and comprehend the historical routes of Marco Polo's travels in China, while also gaining insight into the local customs he described.</h5>
             </div>
         </div>
         </section>
     </main>
 
+    <!-- CHANGES: delete this connect-bar seems better, so I hided it -->
+    <!--
+        <section id="connect-bar" style="height:50px; background-color:#ffffff;"></section> 
+    -->
 
-    <section class="barista-section section-padding section-bg2" style="height:800px;" id="page_3">
-        <div style="background-color:#fff;height: 680px;width:100%">
+    <section class="barista-section section-padding section-bg2" style="height:780px" id="page_3">
+        <!--<div style="background-color:#d9e6f3;height: 730px;width:100%">-->
         <div class="container">
             <!--<p class="text-white" style="text-align:center; font-size:300%;font-weight: 1000;">Map</p>-->
             <div style=" float:left; width:50%">
-                <div id="map" style="height: 650px; max-width: 500px;"></div>
-                <p style="line-height:2;font-size:100%;"><em>《九域守令圖》</em></p>
+                <div id="map" style="height: 665px; max-width: 525px;z-index: 20; margin-top: 50px;"></div>
+                <p style="line-height:2;font-size:14px;"><em>《九域守令圖》<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991004094479703412" style="color:#1f93ff;"> 曹婉如. 中國古代地图集. 第1集. 北京: 文物出版社, 1990.</a></em></p>
             </div>
             <div class="align-items-center" style=" float:right; height:650px;width:50%; margin-top:10px;">
-                <div class="rec-1" style="display:inline-block;margin-top:30px;">
-                    <div class="map-select" style="color:#01204d">
+                <div class="rec-1" style="display:inline-block;margin-top:20px;">
+                    <div class="map-select " style="color:#01204d">
                         <div class="my-word">
                             <span class="my-span" style="--i:0.5">W</span>
                             <span class="my-span" style="--i:0.75">h</span>
@@ -87,7 +230,7 @@
                             <span  class="my-span"style="--i:3.25">u&nbsp;</span>
                         </div>
                         <div class="my-word">
-                            <span class="my-span"style="--i:3.5">l</span>
+                            <span class="my-span"style="--i:3.5">L</span>
                             <span class="my-span"style="--i:3.75">i</span>
                             <span class="my-span" style="--i:4">k</span>
                             <span class="my-span" style="--i:4.25">e&nbsp;</span>
@@ -97,7 +240,7 @@
                             <span class="my-span"style="--i:4.75">o&nbsp;</span>
                         </div>
                         <div class="my-word">
-                            <span class="my-span"style="--i:5">l</span>
+                            <span class="my-span"style="--i:5">L</span>
                             <span class="my-span"style="--i:5.25">e</span>
                             <span class="my-span" style="--i:5.5">a</span>
                             <span class="my-span" style="--i:5.75">r</span>
@@ -105,42 +248,64 @@
                             <span class="my-span" style="--i:6.25">?</span>
                         </div>
                         <p><br></p>
+                        <div id="cover" style="position:relative; margin-top:20px">
+                            <form id="search-form" method="get" action="">
+                            <div class="wrap">
+                                <div class="search">
+                                   <input id="search-input" type="text" class="searchTerm" placeholder="Search by Location...">
+                                   <button type="submit" class="search_button">
+                                     <i class="fa fa-search"></i>
+                                  </button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        <p style="color:#143176;margin-top:15px">-------------OR-------------</p>
                         <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2" onclick="overview_map()">Overview</button>
-                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3">Religion</button>
-                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4">Specialty</button>
-                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5">Industry</button>
+                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3"  onclick="button_start()">Religion</button>
+                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4" onclick="button_start()">Specialty</button>
+                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5" onclick="button_start()">Economic Activities</button>
+                        
                     </div>
                 </div>
                 <div class="rec-2" style="height:100%;width:100%;display:none">
-                    <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-2" class="select_text" style="color:#3e5e88; height:15%"><b>The Top 12 Mostly described Chinese Locations</b></p>
-                        <!-- Load d3.js -->
-                        <script src="https://d3js.org/d3.v4.js"></script>
+                    <div id="overview_viz"style="margin-left:20px;height:100%;width:100%">
+                        <p id="map-text-2" class="select_text" style="color:#3e5e88; height:8%"><b>The Top 12 Mostly described Chinese Locations(words)</b></p>
                         <!-- Create a div where the graph will take place -->
-                        <div id="my_dataviz" style="display:inline-block;text-align:center;height:60%;width:100%"></div>
-                        <p style="text-align:center;font-size:120%;height:7%">Number of Chinese Locations Marco-Polo have described: <mark>58</mark></p>
-                        <p style="text-align:center;font-size:120%;height:7%">Average Number of Words used to describe one location: <mark>427</mark></p>
-                        <button  id="button-return-2" class="button-return"onclick="return_rec_1()"><u>Return</u></button>
+                        <div id="my_dataviz_1" class="dataviz-2"style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75">Number of Chinese Locations included in the Project: <mark>58</mark><br>Average Number of Words used to describe one location: <mark>494.9</mark></p>
+                        <p style="text-align:center;height:7%;line-height:1.5;"><br><mark style="background-color:#003179"><b style="color:#ffffff">CLick on Markers to read more about them!</b></mark></p>
+                        <button  id="button-return-2" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-3" style="height:100%;width:100%;display:none">
                     <div style="margin-left:20px;height:100%;width:100%">
                         <p id="map-text-3" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <div id="my_dataviz_2" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75">Over 70% of places were recorded to have Idolaters living</p>
                         <button id="button-return-3" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-4" style="height:100%;width:100%;display:none" >
                     <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <p id="map-text-4" class="select_text" style="color:#01204d;"><b>Specialty</b></p>
+                        <div id="my_dataviz_3" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p class="extra_map_4" style="text-align:left;height:16%;line-height:1.75">
+                            <mark>Crafted Items:</mark>Porcelain, Silk, Cotton cloth, Fabrics, Cloths made from bark, Sendal, Wine, Vessel...
+                            <br><mark>Animal or Animal Products:</mark>Wild animals, Lion, Musk, Mastiffs, Black silky fowl, Fish...
+                            <br><mark>Luxury goods:</mark> Gold, Pearls, Turquoise, Spices (ginger, galangal, cloves, saffron), Sugar, Musk...
+                            <br><mark>Agricultural products:</mark> Wheat, Corn, Rice, Fruit, Peach, Jujube, Grain, Canes...</p>
                         <button id="button-return-4" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
 
                 <div class="rec-5" style="height:100%;width:100%;display:none">
                     <div style="margin-left:20px;height:100%;width:100%">
-                        <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Religion</b></p>
+                        <p id="map-text-5" class="select_text" style="color:#01204d;"><b>Economic Activities</b></p>
+                        <div id="my_dataviz_4" style="display:inline-block;text-align:center;height:72%;width:100%"></div>
+                        <p style="text-align:center;height:11%;line-height:1.75"><mark>Trade</mark> and <mark>Industry</mark> are the two main economic activities described by Marco Polo.</p>
                         <button id="button-return-5" class="button-return" onclick="return_rec_1()"><u>Return</u></button>
                     </div>
                 </div>
@@ -177,8 +342,7 @@
                     console.log(index)
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".rec-" + (index+1));
-                    
-                    
+  
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
@@ -186,8 +350,6 @@
         
                         // Show the current section
                         section.show();
-                        
-
 
                     });
                 });
@@ -218,75 +380,303 @@
                 }
 
                 </script>
-                <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
                 <script>
-                    // set the dimensions and margins of the graph
-                    var margin = {top: 5, right: 10, bottom: 5, left: 10},
-                    //width = 650 - margin.left - margin.right,
-                    //height = 400 - margin.top - margin.bottom;
-                    width = window.innerWidth * 0.4 - margin.left - margin.right,
-                    height =  window.innerHeight * 0.5 - margin.top - margin.bottom;
-                
-                    // append the svg object to the body of the page
-                    var svg_overview = d3.select("#my_dataviz")
-                        .append("svg")
-                        .attr("width", width + margin.left + margin.right)
-                        .attr("height", height + margin.top + margin.bottom)
-                        .append("g")
-                        .attr("transform",
-                                "translate(" + margin.left + "," + margin.top + ")");
+                    // Get the search form and input field
+                    var searchForm = document.getElementById('search-form');
+                    var searchInput = document.getElementById('search-input');
+                  
+                    // Listen for the form submission event
+                    searchForm.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the form from submitting
+                  
+                      // Get the word that the user wants to search
+                        var go_searchWord = searchInput.value.toString();
+                        
+                        /*if (myValue=="Cliff" ){
+                            go_searchWord=go_searchWord.charAt(0).toUpperCase() + go_searchWord.slice(1).toLowerCase()
+                            if(go_searchWord==="Fuzhou"){
+                                go_searchWord="Fuzhou-City";
+                            }else if (go_searchWord==="Kuizhou"){
+                                go_searchWord="Kuizhou-Province";
+                            }else if (go_searchWord==="Chang'anfu"){
+                                go_searchWord="Chang’anfu";
+                            }
+                        }*/
+                        function findBestMatch(arr, inputStr) {
+                            let bestMatch = "";
+                            let highestPercent = 0;
 
-                
-                    // Read data
-                    d3.csv('./csv/wordcount.csv', function(data) {
+                            for (let i = 0; i < arr.length; i++) {
+                                let string = arr[i];
+                                let commonChars = new Set([...inputStr.toLowerCase()].filter(char => string.toLowerCase().includes(char)));
+                                let percent = (commonChars.size / inputStr.length) * 100;
+
+                                if (percent > highestPercent) {
+                                highestPercent = percent;
+                                bestMatch = string;
+                                }
+                            }
+
+                            return bestMatch;
+                        }
+
+                        let bestMatch = findBestMatch(columnValues, go_searchWord);
+
+                        
+                        
+                        console.log(go_searchWord)
+                        console.log('Search word: ' + bestMatch);
+
+                        current_markers.forEach(function(marker) {
+                            if (bestMatch===columnValues[marker.popupContent]){
+                                map.setView([marker.lat,marker.lng],9)
+                            }
+                        })
                     
-                        // stratify the data: reformatting for d3.js
-                        var root = d3.stratify()
-                            .id(function(d) { return d.Location; })   // Name of the entity (column name is name in csv)
-                            .parentId(function(d) { return d.Parent; })   // Name of the parent (column name is parent in csv)
-                            (data);
-                        root.sum(function(d) { return +d.Word })   // Compute the numeric value for each entity
                         
-                        // Then d3.treemap computes the position of each element of the hierarchy
-                        // The coordinates are added to the root object above
-                        d3.treemap()
-                            .size([width, height])
-                            .padding(4)
-                            (root)
-                        
-                            const color = d3.scaleSequential()
-                                .interpolator(d3.interpolateBlues)
-                                .domain([100, 1100]);
-                                //.domain([d3.max(data, d => d.Word), d3.min(data, d => d.Word)]);
+                      // Do something with the search word, such as search a database or display search results
+                      
+                });
+                </script>
 
-                        console.log(root.leaves())
-                        // use this information to add rectangles:
-                        svg_overview
-                            .selectAll("rect")
-                            .data(root.leaves())
-                            .enter()
-                            .append("rect")
-                                .attr('x', function (d) { return d.x0; })
-                                .attr('y', function (d) { return d.y0; })
-                                .attr('width', function (d) { return d.x1 - d.x0; })
-                                .attr('height', function (d) { return d.y1 - d.y0; })
-                                .style("stroke", "black")
-                                .attr("fill", d => color(d.data.Word))
-                                .style("rx","20")
-                        
-                        // and to add the text labels
-                        svg_overview
-                            .selectAll("text")
-                            .data(root.leaves())
-                            .enter()
-                            .append("text")
-                                .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
-                                .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-                                .text(function(d){ return d.data.Location})
-                                .attr("font-size", "15px")
-                                .attr("fill", "white")
-                    })
+                <script>
+                    function createTreemap_Overview() {
+                        var path_name='csv/wordcount.csv'
+                        if (myValue=="Cliff"){
+                            path_name='csv/wordcount.csv'
+                        }else if(myValue=="Haw"){
+                            path_name='csv/wordcount_haw.csv'
+                        }else if(myValue=="cn"){
+                            path_name='csv/wordcount_cn.csv'
+                        }
+                        var plt_width=window.innerWidth*0.4;
+                        function reportWindowSize() {
+                            plt_width= window.innerWidth*0.4;
+                            console.log(plt_width)
+                        }
+                        window.onresize = reportWindowSize;
+
+                        svg_overview = d3.csv(path_name, function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
+                            }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Word'),
+                                labels: unpack(rows, "Location"),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 5,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                // Set the padding of the plot area to 0 pixels
+                                //xaxis: {zeroline:false, showline:false},
+                                //yaxis: {zeroline:false, showline:false},
+                                autosize: true,
+                                width: plt_width
+                                //height:window.innerHieght*0.2
+
+                            }
+                            var config = {
+                                responsive: true,
+                                
+                            }
+                            Plotly.newPlot('my_dataviz_1', data, layout, config);
+                            
+                            var getback = 0;
+                            document.getElementById('my_dataviz_1').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                    if(getback==0){
+                                        if(myValue!="Cliff"){
+                                        let indexes = columnValues.map((_, i) => i);
+                                        let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
+                                        let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(point.label));
+                                        if (columnRef[indexOfValue]=="Daidu/Khanbaliq"){
+                                            var go_location="Daidu"
+                                        }else{
+                                            var go_location=columnRef[indexOfValue]
+                                        }
+                                        $("#"+go_location).click();
+                                    }else{
+                                        if (point.label=="Daidu/Khanbaliq"){
+                                            var go_location="Daidu"
+                                        }else{
+                                            var go_location=point.label
+                                        }
+                                        $("#"+go_location).click();
+                                    }
+                                    
+                                    $('html, body').stop().animate({
+                                        scrollTop: $("#page_4").offset().top
+                                    }, {
+                                        duration:100,
+                                        easing: 'linear'
+                                    });
+                                    getback++;
+
+                                }else{
+                                    getback=0
+                                }
+                                
+                            })
+                        })
+                    }
+                </script>
+
+                <script>
+                    function createTreemap_Religion() {
+                        d3.csv('csv/Religion.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
+                            }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Percent'),
+                                labels: unpack(rows, 'Religion'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                            }
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_2', data, layout, config);
+
+                            
+                            var getback = 0;
+                            document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                religion_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
+                            
+                        })
+                    }
+                </script>
+
+                <script>
+                    function createTreemap_Specialty() {
+                        d3.csv('csv/specialty.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
+                            }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Number'),
+                                labels: unpack(rows, 'Specialty'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                                //height: window.innerHeight*0.6
+                            }
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_3', data, layout, config);
+
+                            var getback = 0;
+                            document.getElementById('my_dataviz_3').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                specialty_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
+                            
+                        })
+                    }
+                </script>
+                <script>
+                    function createTreemap_Econ() {
+                        d3.csv('csv/economics.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
+                            }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Percent'),
+                                labels: unpack(rows, 'economics'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                            }
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_4', data, layout, config);
+
+                            var getback = 0;
+                            document.getElementById('my_dataviz_4').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                economics_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
+                            
+                        })
+                    }
                 </script>
 
             </div>
@@ -304,13 +694,13 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
 
-                map.on('click', function(e) {
+                /*map.on('click', function(e) {
                     alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-                });
+                });*/
 
 
                 //add historical map
-                var imageUrl = "./images/map07.png",
+                var imageUrl = "images/map07.png",
                 //imageBounds = [[10, 80], [60, 130]];
                 imageBounds = [[17, 100], [42, 123]];
                 L.imageOverlay(imageUrl, imageBounds,{opacity:1}).addTo(map);
@@ -318,75 +708,237 @@
                 //logo template
                 var anyIcon = L.Icon.extend({
                     options: {
-                        shadowUrl: './images/shadow2.png',
+                        shadowUrl: 'images/shadow2.png',
                         iconSize:     [35, 35], // size of the icon
                         shadowSize:   [40, 40]
                     }
                 });
 
                 //import logos of different colors
-                var greenIcon = new anyIcon({iconUrl: './images/green.png'}),
-                    redIcon = new anyIcon({iconUrl: './images/red.png'}),
-                    blueIcon = new anyIcon({iconUrl: './images/blue02.png'}),
-                    yellowIcon = new anyIcon({iconUrl: './images/yellow.png'});
-                    greyIcon = new anyIcon({iconUrl:"./images/grey.png"});
+                var greenIcon = new anyIcon({iconUrl: 'images/green.png'}),
+                    greenIcon01 = new anyIcon({iconUrl: 'images/green01.png'}),
+                    greenIcon02 = new anyIcon({iconUrl: 'images/green02.png'}),
+                    greenIcon03 = new anyIcon({iconUrl: 'images/green03.png'}),
+                    greenIcon04 = new anyIcon({iconUrl: 'images/green04.png'}),
+                    redIcon = new anyIcon({iconUrl: 'images/red.png'}),
+                    redIcon01 = new anyIcon({iconUrl: 'images/red01.png'}),
+                    redIcon02 = new anyIcon({iconUrl: 'images/red02.png'}),
+                    redIcon03 = new anyIcon({iconUrl: 'images/red03.png'}),
+                    redIcon04 = new anyIcon({iconUrl: 'images/red04.png'}),
+                    redIcon05 = new anyIcon({iconUrl: 'images/red05.png'}),
+                    redIcon06 = new anyIcon({iconUrl: 'images/red06.png'}),
+                    redIcon07 = new anyIcon({iconUrl: 'images/red07.png'}),
+                    redIcon08 = new anyIcon({iconUrl: 'images/red08.png'}),
+                    redIcon09 = new anyIcon({iconUrl: 'images/red09.png'}),
+                    redIcon10 = new anyIcon({iconUrl: 'images/red10.png'}),
+                    redIcon11 = new anyIcon({iconUrl: 'images/red11.png'}),
+                    redIcon12 = new anyIcon({iconUrl: 'images/red12.png'}),
+                    blueIcon = new anyIcon({iconUrl: 'images/blue02.png'}),
+                    blueIcon01 = new anyIcon({iconUrl: 'images/blue05.png'}),
+                    blueIcon02 = new anyIcon({iconUrl: 'images/blue03.png'}),
+                    blueIcon03 = new anyIcon({iconUrl: 'images/blue.png'}),
+                    yellowIcon = new anyIcon({iconUrl: 'images/yellow.png'});
+                    greyIcon = new anyIcon({iconUrl:"images/grey.png"});
+                    empty= new  anyIcon({iconUrl:"images/Empty.png"});
+             
+          
 
-                //info of each markers
+                    var [
+                            Xingzai,
+                            Yongchang,
+                            Fuzhou_City,
+                            Tibet,
+                            Qarajang_City,
+                            Jiandu,
+                            Xiezhou,
+                            Xiangyangfu,
+                            Daidu,
+                            Chengdufu,
+                            Zhenzhou,
+                            Zayton,
+                            Fuling,
+                            Yachi,
+                            Dongpingfu,
+                            Fuzhou_Kingdom,
+                            Changzhou,
+                            ChangAnfu,
+                            Suzhou,
+                            Guazhou,
+                            Xinzhou_Matou,
+                            Tingzhou,
+                            Jianningfu,
+                            Changlu,
+                            Yangzhou,
+                            Zhenjiangfu,
+                            Hejianfu,
+                            HuaiAnzhou,
+                            Guangyuan,
+                            Houguan,
+                            Aq_Baliq,
+                            Aq_Baliq_Manzi,
+                            Liucheng,
+                            Taiyuanfu,
+                            Baoying,
+                            Anqing,
+                            Taizhou,
+                            Jiangling,
+                            Ganpu,
+                            Gaoyou,
+                            Suichang,
+                            Hezhongfu,
+                            Pizhou,
+                            Quzhou,
+                            Suqian,
+                            Tonglu,
+                            Tongzhou,
+                            Changxing,
+                            Zhuozhou,
+                            Wuxing,
+                            Chuzhou,
+                            Wuzhou,
+                            Wujiang,
+                            Pingyangfu,
+                            Zardandan,
+                            Kuizhou,
+                            Huaiyin,
+                            Qarajang_Kingdom
+                        ] = columnValues;
+
+                    
+
+
+
+                /*var Xingzai, Yongchang, Fuzhou_City, Tibet, Qarajang_City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou_Kingdom, Changzhou, ChangAnfu, Suzhou, Guazhou, Xinzhou_Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, HuaiAnzhou, Guangyuan, Houguan, Aq_Baliq, Aq_Baliq_Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang_Kingdom;
+                let success = false;
+
+                while (!success) {
+                    try {
+                        [
+                            Xingzai,
+                            Yongchang,
+                            Fuzhou_City,
+                            Tibet,
+                            Qarajang_City,
+                            Jiandu,
+                            Xiezhou,
+                            Xiangyangfu,
+                            Daidu,
+                            Chengdufu,
+                            Zhenzhou,
+                            Zayton,
+                            Fuling,
+                            Yachi,
+                            Dongpingfu,
+                            Fuzhou_Kingdom,
+                            Changzhou,
+                            ChangAnfu,
+                            Suzhou,
+                            Guazhou,
+                            Xinzhou_Matou,
+                            Tingzhou,
+                            Jianningfu,
+                            Changlu,
+                            Yangzhou,
+                            Zhenjiangfu,
+                            Hejianfu,
+                            HuaiAnzhou,
+                            Guangyuan,
+                            Houguan,
+                            Aq_Baliq,
+                            Aq_Baliq_Manzi,
+                            Liucheng,
+                            Taiyuanfu,
+                            Baoying,
+                            Anqing,
+                            Taizhou,
+                            Jiangling,
+                            Ganpu,
+                            Gaoyou,
+                            Suichang,
+                            Hezhongfu,
+                            Pizhou,
+                            Quzhou,
+                            Suqian,
+                            Tonglu,
+                            Tongzhou,
+                            Changxing,
+                            Zhuozhou,
+                            Wuxing,
+                            Chuzhou,
+                            Wuzhou,
+                            Wujiang,
+                            Pingyangfu,
+                            Zardandan,
+                            Kuizhou,
+                            Huaiyin,
+                            Qarajang_Kingdom
+                        ] = columnValues;
+                        success = true;
+                    } catch (error) {
+                        
+                    }
+                }*/
+                                
+
                 const original_markers = Object.freeze([
-                    {lat: 28.462896451430616, lng: 118.21728517301383, icon:blueIcon, popupContent: "Xingzai"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yongchang"},
-                    {lat: 25.407554540244227, lng: 118.23925782926383, icon:blueIcon, popupContent: "Fuzhou(City)"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Qarajang"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiandu"},
-                    //{lat: 40, lng: 116, icon:redIcon,  popupContent: "Xiezhou"},
-                    {lat: 30.234391407813202, lng: 110.39501954801383, icon:blueIcon,  popupContent: "Xiangyangfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Daidu"},
-                    {lat: 30.091910087077462, lng: 102.02343751676382, icon:blueIcon,  popupContent: "Chengdufu"},
-                    {lat: 30.215405799706534, lng: 117.32739259488883, icon:blueIcon,  popupContent: "Zhenzhou"},
-                    {lat: 23.89990050209837, lng: 117.51416017301382, icon:blueIcon,  popupContent: "Zayton"},
-                    {lat: 29.3764310567375, lng: 106.15429689176382, icon:blueIcon,  popupContent: "Fuling"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yachi"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Fuzhou(Kingdom)"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chang’anfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guanzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Xinzhou Matou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tingzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jianningfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changlu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Yangzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhenjiangfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Hejianfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Huai'anzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Guangyuan"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Houguan"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Aq-baliq Manzi"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Liucheng"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taiyuanfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Dongpingfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Baoying"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Anqing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Taizhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Jiangling"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Ganpu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Gaoyou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suichang"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pizhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Quzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Suqian"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tonglu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Tongzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Changxing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Zhuozhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuxing"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Chuzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wuzhou"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Wujiang"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Pingyangfu"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "Kuizhou(province)"},
-                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: "huaiyin"}
+                    {lat: 28.462896451430616, lng: 118.21728517301383, icon:blueIcon, popupContent: 0},//Xingzai
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 1},//Yongchang
+                    {lat: 25.20096498200756, lng: 118.43701171455908, icon:blueIcon, popupContent: 2},//Fuzhou_City
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 3},//Tibet
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 4},//Qarajang_City
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 5},//Jiandu
+                    {lat: 34.93638266555324, lng: 109.94458007393405, icon:blueIcon,  popupContent: 6},//Xiezhou
+                    {lat: 30.234391407813202, lng: 110.39501954801383, icon:blueIcon,  popupContent: 7},//Xiangyangfu
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 8},//Daidu
+                    {lat: 30.091910087077462, lng: 102.02343751676382, icon:blueIcon,  popupContent: 9},//Chengdufu
+                    {lat: 30.215405799706534, lng: 117.32739259488883, icon:blueIcon,  popupContent: 10},//Zhenzhou
+                    {lat: 23.89990050209837, lng: 117.51416017301382, icon:blueIcon,  popupContent: 11},//Zayton
+                    {lat: 29.3764310567375, lng: 106.15429689176382, icon:blueIcon,  popupContent: 12},//Fuling
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 13},//Yachi
+                    {lat: 25.437322005354392, lng: 118.27441406145228, icon:blueIcon,  popupContent: 15},//Fuzhou_Kingdom
+                    {lat: 29.346748385638794, lng: 118.58312988071704, icon:blueIcon,  popupContent: 16},//Changzhou
+                    {lat: 34.158181827044466, lng: 107.97802733955905, icon:blueIcon,  popupContent: 17},//ChangAnfu
+                    {lat:  29.241353038543533, lng: 119.11596679477954, icon:blueIcon,  popupContent: 18},//Suzhou
+                    {lat: 30.28895459732805, lng: 117.88714599504603, icon:greyIcon,  popupContent: 19},//Guazhou
+                    {lat: 34.42775477275056, lng: 115.49047851352954, icon:blueIcon,  popupContent: 20},//Xinzhou_Matou
+                    {lat: 25.169150729729605, lng: 115.42895506136121, icon:blueIcon,  popupContent: 21},//Tingzhou
+                    {lat: 26.22346138961486, lng: 115.53881834261122, icon:blueIcon,  popupContent: 22},//Jianningfu
+                    {lat: 39.16243739691719, lng: 116.6440429352224, icon:blueIcon,  popupContent: 23},//Changlu
+                    {lat: 30.422150902195295, lng: 117.87835692521186, icon:blueIcon,  popupContent: 24},//Yangzhou
+                    {lat: 29.8396909258744, lng: 117.84045408479871, icon:blueIcon,  popupContent: 25},//Zhenjiangfu
+                    {lat: 38.477674560489724, lng: 115.2158202789724, icon:blueIcon,  popupContent: 26},//Hejianfu
+                    {lat: 30.98891162142395, lng: 117.72180174943061, icon:blueIcon,  popupContent: 27},//HuaiAnzhou
+                    {lat: 31.838366019860075, lng: 104.6359862945974, icon:blueIcon,  popupContent: 28},//Guangyuan
+                    {lat: 25.184561784536438, lng: 118.14477538224311, icon:blueIcon,  popupContent: 29},//Houguan
+                    {lat: 39.00894014778241, lng: 113.2932128570974, icon:blueIcon,  popupContent: 30},//Aq_Baliq
+                    {lat: 32.14585066537849, lng: 106.1081542633474, icon:blueIcon,  popupContent: 31},//Aq_Baliq_Manzi
+                    {lat: 33.273598383210654, lng: 116.1716308258474, icon:greyIcon,  popupContent: 32},//Liucheng
+                    {lat: 38.237317198200095, lng: 111.90234373323621, icon:blueIcon,  popupContent: 33},//Taiyuanfu
+                    {lat: 35.02819711207845, lng: 115.8969726227224, icon:blueIcon,  popupContent: 14},//Dongpingfu
+                    {lat: 30.758830767273807, lng: 117.81408691196704, icon:greyIcon,  popupContent: 34},//Baoying
+                    {lat: 29.472122570267135, lng: 114.80822752229871, icon:blueIcon,  popupContent: 35},//Anqing
+                    {lat: 30.29132621567163, lng: 118.60400388948621, icon:blueIcon,  popupContent: 36},//Taizhou
+                    {lat: 37.01483496665293, lng: 115.91784666292371, icon:blueIcon,  popupContent: 37},//Jiangling
+                    {lat: 28.658779132996656, lng: 119.37524413224311, icon:greyIcon,  popupContent: 38},//Ganpu
+                    {lat: 30.68941547544074, lng: 118.00744628068061, icon:blueIcon,  popupContent: 39},//Gaoyou
+                    {lat: 36.45486871320746, lng: 110.4257812164724, icon:blueIcon,  popupContent: 41},//Hezhongfu
+                    {lat: 27.027324130533298, lng: 117.69158934708686, icon:greyIcon,  popupContent: 40},//Suichang
+                    {lat: 32.09002109442789, lng: 117.08898925571704, icon:greyIcon,  popupContent: 42},//Pizhou
+                    {lat: 27.681582325137093, lng: 116.7429198883474, icon:blueIcon,  popupContent: 43},//Quzhou
+                    {lat: 32.03508870639029, lng: 117.34057615511122, icon:blueIcon,  popupContent: 44},//Suqian
+                    {lat: 28.215353591268574, lng: 117.7097167633474, icon:blueIcon,  popupContent: 45},//Tonglu
+                    {lat: 29.905424693620244, lng: 119.73120113834739, icon:blueIcon,  popupContent: 46},//Tongzhou
+                    {lat: 28.992766254563122, lng: 118.08215330354872, icon:blueIcon,  popupContent: 47},//Changxing
+                    {lat: 40.95252213976489, lng: 115.05212401505561, icon:blueIcon,  popupContent: 48},//Zhuozhou
+                    {lat: 29.557689977215542, lng: 118.9712219196372, icon:blueIcon,  popupContent: 49},//Wuxing
+                    {lat: 27.018026553504075, lng: 117.9184569977224, icon:blueIcon,  popupContent: 50},//Chuzhou
+                    {lat: 27.512169047288076, lng: 117.69763181917371, icon:blueIcon,  popupContent: 51},//Wuzhou
+                    {lat: 28.987961377194683, lng: 119.40051267854872, icon:blueIcon,  popupContent: 52},//Wujiang
+                    {lat: 35.54831760186836, lng: 110.86523434147239, icon:blueIcon,  popupContent: 53},//Pingyangfu
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 54},//Zardandan
+                    {lat: 29.476904779644936, lng: 108.12304685823621, icon:blueIcon,  popupContent: 55},//Kuizhou
+                    {lat: 30.90599533496887, lng: 117.69763181917371, icon:blueIcon,  popupContent: 56},//Huaiyin
+                    {lat: 0, lng: 0, icon:greyIcon,  popupContent: 57}//Qarajang-Kingdom
                 ]);
 
                 function copyMarker(marker) {
@@ -398,105 +950,682 @@
                     };
                 }
 
-                const current_markers = original_markers.map(copyMarker);
+                var current_markers = original_markers.map(copyMarker);
+
+                var location_overview=[
+                    Xingzai,
+                    Yongchang,
+                    Fuzhou_City,
+                    Tibet,
+                    Qarajang_City,
+                    Jiandu,
+                    Xiezhou,
+                    Xiangyangfu,
+                    Daidu,
+                    Chengdufu,
+                    Zhenzhou,
+                    Zayton
+                ]
                 
-                const location_overview=["Xingzai","Yongchang","Fuzhou(City)","Qarajang","Jiandu","Xiezhou","Xiangyangfu","Chengdufu","Zhenzhou","Zayton","Fuling"]
+                var idolaters_list=[
+                    Xingzai,
+                    Yongchang,
+                    Fuzhou_City,
+                    Tibet,
+                    Qarajang_City,
+                    Jiandu,
+                    Xiangyangfu,
+                    Chengdufu,
+                    Zhenzhou,
+                    Zayton,
+                    Fuling,
+                    Yachi,
+                    Fuzhou_Kingdom,
+                    Changzhou,
+                    ChangAnfu,
+                    Suzhou,
+                    Guazhou,
+                    Xinzhou_Matou,
+                    Changlu,
+                    Yangzhou,
+                    Zhenjiangfu,
+                    Hejianfu,
+                    HuaiAnzhou,
+                    Guangyuan,
+                    Aq_Baliq_Manzi,
+                    Qarajang_Kingdom,
+                    Baoying,
+                    Anqing,
+                    Taizhou,
+                    Jiangling,
+                    Gaoyou,
+                    Suichang,
+                    Hezhongfu,
+                    Quzhou,
+                    Suqian,
+                    Tonglu,
+                    Tongzhou,
+                    Changxing,
+                    Zhuozhou,
+                    Wuxing,
+                    Chuzhou,
+                    Wuzhou
+                ]
+
+                var nes_christ_list=[
+                    Baoying,
+                    Zhenjiangfu,
+                    Xingzai,
+                    Yachi,
+                    Guangyuan,
+                    Daidu,
+                    ChangAnfu,
+                    Hejianfu
+                ]
+
+                var christ_list=[
+                    
+                ]
+
+                var sar_list=[
+                    Yachi,
+                    Daidu,
+                    ChangAnfu,
+                    Guangyuan
+                ]
+
+                var industry_list=[
+                    Chengdufu,
+                    ChangAnfu,
+                    Taiyuanfu,
+                    Hezhongfu,
+                    Wujiang,
+                    Xingzai,
+                    Fuzhou_City,
+                    Xiangyangfu,
+                    Zayton,
+                    Fuling,
+                    Yachi,
+                    Fuzhou_Kingdom,
+                    Changzhou,
+                    Suzhou,
+                    Xinzhou_Matou,
+                    Jianningfu,
+                    Yangzhou,
+                    Zhenjiangfu,
+                    Hejianfu,
+                    Aq_Baliq_Manzi,
+                    Liucheng,
+                    Baoying,
+                    Anqing,
+                    Taizhou,
+                    Gaoyou,
+                    Suichang,
+                    Pizhou,
+                    Quzhou,
+                    Suqian,
+                    Changxing,
+                    Zhuozhou,
+                    Wuxing,
+                    Wuzhou,
+                    Pingyangfu,
+                    Tonglu
+                ]
+
+                var sugar_list=[
+                    Houguan,
+                    Xingzai,
+                    Fuzhou_City
+                ]
+
+                var agri_list=[
+                    Chengdufu,
+                    Guangyuan,
+                    Qarajang_Kingdom
+                ]
+
+                var prostitute_list=[
+                    Xingzai
+                ]
+
+                var ship_list=[
+                    Zhenzhou,
+                    Zayton,
+                    Xinzhou_Matou,
+                    HuaiAnzhou,
+                    Liucheng,
+                    Taizhou,
+                    Ganpu
+                ]
+
+                var herd_list=[
+                    Tibet,
+                    Qarajang_Kingdom
+                ]
+
+                var trade_list=[
+                    Xingzai,
+                    Fuzhou_City,
+                    Xiangyangfu,
+                    Daidu,
+                    Zhenzhou,
+                    Zayton,
+                    Fuling,
+                    Yachi,
+                    Fuzhou_Kingdom,
+                    Changzhou,
+                    ChangAnfu,
+                    Suzhou,
+                    Xinzhou_Matou,
+                    Jianningfu,
+                    Yangzhou,
+                    Zhenjiangfu,
+                    Hejianfu,
+                    HuaiAnzhou,
+                    Aq_Baliq_Manzi,
+                    Liucheng,
+                    Taiyuanfu,
+                    Dongpingfu,
+                    Baoying,
+                    Anqing,
+                    Taizhou,
+                    Jiangling,
+                    Gaoyou,
+                    Suichang,
+                    Hezhongfu,
+                    Pizhou,
+                    Quzhou,
+                    Suqian,
+                    Tonglu,
+                    Changxing,
+                    Zhuozhou,
+                    Wuxing,
+                    Wuzhou,
+                    Wujiang,
+                    Pingyangfu
+                ]
+
+                var military_list=[
+                    Xingzai,
+                    Liucheng
+                ]
+
+                var hunt_list=[
+                    Tibet,
+                    Guangyuan,
+                    Aq_Baliq
+                ]
+
+                var salt_list=[
+                    Xingzai,
+                    Zhenzhou,
+                    Yachi,
+                    Changlu,
+                    HuaiAnzhou,
+                    Tongzhou
+                ]
+
+                var literati_list=[
+                    Xingzai,
+                    Suzhou
+                ]
+
+                var occult_list=[
+                    Xingzai,
+                    Tibet,
+                    Daidu
+                ]
+
+                var lux_list=[
+                    Xingzai,
+                    Fuzhou_City,
+                    Tibet,
+                    Qarajang_City,
+                    Jiandu,
+                    Zayton,
+                    Fuzhou_Kingdom,
+                    Suzhou,
+                    Jianningfu,
+                    Houguan,
+                    Aq_Baliq_Manzi,
+                    Jiangling,
+                    Hezhongfu
+                ]
+
+                var ani_list=[
+                    Fuzhou_City,
+                    Tibet,
+                    Qarajang_City,
+                    Jiandu,
+                    Xiangyangfu,
+                    Chengdufu,
+                    Fuling,
+                    Yachi,
+                    Fuzhou_Kingdom,
+                    Changzhou,
+                    Jianningfu,
+                    Zhenjiangfu,
+                    Guangyuan,
+                    Aq_Baliq,
+                    Liucheng,
+                    Qarajang_Kingdom,
+                    Anqing,
+                    Taizhou,
+                    Gaoyou,
+                    Changxing
+                ]
+
+                var mili_list=[
+                    ChangAnfu,
+                    Yangzhou,
+                    Taiyuanfu
+                ]
+
+                var agri_pro_list=[
+                    Tibet,
+                    Guazhou,
+                    Changlu,
+                    Zhenjiangfu,
+                    Aq_Baliq_Manzi,
+                    Liucheng,
+                    Dongpingfu,
+                    Anqing,
+                    Suqian
+                ]
+
+                var craft_list=[
+                    Xingzai,
+                    Yongchang,
+                    Jiandu,
+                    Daidu,
+                    Xiangyangfu,
+                    Chengdufu,
+                    Fuling,
+                    ChangAnfu,
+                    Suzhou,
+                    Xinzhou_Matou,
+                    Tingzhou,
+                    Jianningfu,
+                    Zhenjiangfu,
+                    Hejianfu,
+                    HuaiAnzhou,
+                    Taiyuanfu,
+                    Dongpingfu,
+                    Baoying,
+                    Anqing,
+                    Taizhou,
+                    Jiangling,
+                    Ganpu,
+                    Hezhongfu,
+                    Pizhou,
+                    Quzhou,
+                    Changxing,
+                    Zhuozhou,
+                    Wuxing,
+                    Pingyangfu
+                ]
+            
+
+                
+                function marker_setup(){
+                    // Loop through the markers array and create a marker for each object
+                    for (var i = 0; i < current_markers.length; i++) {
+                        var marker = L.marker([current_markers[i].lat, current_markers[i].lng],{icon:current_markers[i].icon, opacity:0.7}).addTo(map);
+                        marker.bindPopup(columnValues[current_markers[i].popupContent],{
+                            closeButton: false,
+                            className:'stylePopup'
+                        });
+                        marker.on('mouseover',function (e) {
+                            this.openPopup();
+                            this.setOpacity(1)
+                        });
+                        marker.on('mouseout', function (e) {
+                            this.closePopup();
+                            this.setOpacity(0.7)
+                        });
+                        marker.on('click',function(e) {
+                            if (location_overview.includes(this._popup._content)){
+                                console.log(this._popup._content);
+                                if(myValue!="Cliff"){
+                                    let indexes = columnValues.map((_, i) => i);
+                                    let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
+                                    let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(this._popup._content));
+                                    $("#"+columnRef[indexOfValue]).click();
+                                }else{
+                                    $("#"+this._popup._content).click();
+                                }
+                                
+                                $('html, body').stop().animate({
+                                    scrollTop: $("#page_4").offset().top
+                                }, {
+                                    duration:100,
+                                    easing: 'linear'
+                                });
+                            }
+                        })
+                    };
+
+                }
+                marker_setup()
+                
 
                 function overview_map(){
                     updateMarkerIcons(greenIcon,"overview");
+                    createTreemap_Overview();
+                    createTreemap_Religion();
+                    createTreemap_Specialty();
+                    createTreemap_Econ();
                 }
 
                 function return_map(){
                     updateMarkerIcons(greyIcon,"return");
                 }
 
+                function button_start(){
+                    plt_width=window.innerwidth*0.4
+                    updateMarkerIcons(greyIcon,"none");
+                    createTreemap_Overview();
+                    createTreemap_Religion();
+                    createTreemap_Specialty();
+                    createTreemap_Econ();
+                }
+
+                function religion_map(religion_value,back_value){
+                    console.log(back_value)
+                    if (back_value===0){
+                        if(religion_value==="Idolaters"){
+                            updateMarkerIcons(blueIcon,"religion");
+                        } else if(religion_value==="Nestorian Christians"){
+                            updateMarkerIcons(blueIcon01,"religion");
+                        }else if(religion_value==="Christians"){
+                            updateMarkerIcons(blueIcon02,"religion");
+                        }else if(religion_value==="Saracens"){
+                            updateMarkerIcons(blueIcon03,"religion");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                    
+                }
+
+                function economics_map(economics_value,back_value){
+                    if (back_value===0){
+                        if(economics_value==="Industry"){
+                            updateMarkerIcons(redIcon,"economics");
+                        } else if(economics_value==="Sugar"){
+                            updateMarkerIcons(redIcon01,"economics");
+                        }else if(economics_value==="Agriculture"){
+                            updateMarkerIcons(redIcon02,"economics");
+                        }else if(economics_value==="Prostitute"){
+                            updateMarkerIcons(redIcon03,"economics");
+                        }else if(economics_value==="Shipping"){
+                            updateMarkerIcons(redIcon04,"economics");
+                        }else if(economics_value==="Herding"){
+                            updateMarkerIcons(redIcon05,"economics");
+                        }else if(economics_value==="Trade"){
+                            updateMarkerIcons(redIcon06,"economics");
+                        }else if(economics_value==="Military"){
+                            updateMarkerIcons(redIcon07,"economics");
+                        }else if(economics_value==="Hunting"){
+                            updateMarkerIcons(redIcon08,"economics");
+                        }else if(economics_value==="Salt"){
+                            updateMarkerIcons(redIcon09,"economics");
+                        }else if(economics_value==="literati"){
+                            updateMarkerIcons(redIcon10,"economics");
+                        }else if(economics_value==="occult"){
+                            updateMarkerIcons(redIcon11,"economics");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                }
+
+                function specialty_map(specialty_value,back_value){
+                    if (back_value===0){
+                        if(specialty_value==="Luxury goods"){
+                            updateMarkerIcons(greenIcon,"specialty");
+                        } else if(specialty_value==="Animal or Animal Products"){
+                            updateMarkerIcons(greenIcon01,"specialty");
+                        }else if(specialty_value==="Military Equipments"){
+                            updateMarkerIcons(greenIcon02,"specialty");
+                        }else if(specialty_value==="Agricultural Products"){
+                            updateMarkerIcons(greenIcon03,"specialty");
+                        }else if(specialty_value==="Crafted Items"){
+                            updateMarkerIcons(greenIcon04,"specialty");
+                        }
+                    }else{
+                        updateMarkerIcons(greyIcon,"none");
+                    }
+                }
+
+
                 function updateMarkerIcons(color,check) {
                     // Loop through the markers array and update the icon property
                     current_markers.forEach(function(marker) {
-                        if (check=="overview"){
-                            if (location_overview.includes(marker.popupContent)) {
+                        if (check==="overview"){
+                            if (location_overview.includes(columnValues[marker.popupContent])) {
                                 marker.icon = color;
                             } else {
                                 marker.icon = greyIcon;
                             }
-                        }else if (check=="return"){
+                        }else if (check==="return"){
                             for (var i=0;i<original_markers.length;i++){
-                                if (marker.popupContent==original_markers[i].popupContent){
+                                if (columnValues[marker.popupContent]==columnValues[original_markers[i].popupContent]){
                                     marker.icon=original_markers[i].icon
                                 }
                             }
+                        }else if (check==="religion"){
+                            if (color===blueIcon){
+                                if (idolaters_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon01){
+                                if (nes_christ_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon02){
+                                if (christ_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===blueIcon03){
+                                if (sar_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+
+                        }else if (check==="none"){
+                            marker.icon=greyIcon;
+
+                        }else if (check==="economics"){
+                            if (color===redIcon){
+                                if (industry_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon01){
+                                if (sugar_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon02){
+                                if (agri_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon03){
+                                if (prostitute_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon04){
+                                if (ship_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon05){
+                                if (herd_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon06){
+                                if (trade_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon07){
+                                if (military_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon08){
+                                if (hunt_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon09){
+                                if (salt_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon10){
+                                if (literati_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===redIcon11){
+                                if (occult_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+
+
                         }
+
+                        else if (check==="specialty"){
+                            if (color===greenIcon){
+                                if (lux_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon01){
+                                if (ani_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon02){
+                                if (mili_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon03){
+                                if (agri_pro_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }else if(color===greenIcon04){
+                                if (craft_list.includes(columnValues[marker.popupContent])) {
+                                    marker.icon = color;
+                                } else {
+                                    marker.icon = empty;
+                                }
+                            }
+                        }
+
+
                     });
                     // Loop through the marker layers on the map and update the icon
                     map.eachLayer(function(layer) {
                         if (layer instanceof L.Marker) {
                             var marker = current_markers.find(function(m) {
-                                return m.popupContent === layer.getPopup().getContent();
+                                return columnValues[m.popupContent] === layer.getPopup().getContent();
                             });
                             layer.setIcon(marker.icon);
                         }
                     });
                 }
-    
-
-                // Loop through the markers array and create a marker for each object
-                for (var i = 0; i < current_markers.length; i++) {
-                    var marker = L.marker([current_markers[i].lat, current_markers[i].lng],{icon:current_markers[i].icon, opacity:0.7}).addTo(map);
-                    marker.bindPopup(current_markers[i].popupContent,{
-                        closeButton: false,
-                        className:'stylePopup'
-                    });
-                    marker.on('mouseover',function (e) {
-                        this.openPopup();
-                        this.setOpacity(1)
-                    });
-                    marker.on('mouseout', function (e) {
-                        this.closePopup();
-                        this.setOpacity(0.7)
-                    });
-                    marker.on('click',function(e) {
-                        console.log(this._popup._content);
-                        $("#"+this._popup._content).click();
-                        $('html, body').stop().animate({
-                        scrollTop: 2600
-                    }, {
-                        duration:100,
-                        easing: 'linear'
-                    });
-                    })
-                };
+        
             </script>
     </section>
 
 
     <section id="connect1" style="height:250px; position: relative;">
-        <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 0%; width: 20%; height: 250px;z-index: 0">
-        <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 20%; width: 20%; height: 250px;z-index: 0">
-        <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 40%; width: 20%; height: 250px;z-index: 0">
-        <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 60%; width: 20%; height: 250px;z-index: 0">
-        <img src="./images/pattern.png" style="position: absolute; bottom: 0; left: 80%; width: 20%; height: 250px;z-index: 0">
-        <span style="position: absolute; top: 0; left: 0; height: 50px; width: 100%; background-color: #2a5287;z-index: 1;"></span>
+        <img src="images/pattern02.png" style="position: absolute; bottom: 0; left: 0%; width: 20%; height: 250px;z-index: 0">
+        <img src="images/pattern02.png" style="position: absolute; bottom: 0; left: 20%; width: 20%; height: 250px;z-index: 0">
+        <img src="images/pattern02.png" style="position: absolute; bottom: 0; left: 40%; width: 20%; height: 250px;z-index: 0">
+        <img src="images/pattern02.png" style="position: absolute; bottom: 0; left: 60%; width: 20%; height: 250px;z-index: 0">
+        <img src="images/pattern02.png" style="position: absolute; bottom: 0; left: 80%; width: 20%; height: 250px;z-index: 0">
+        <span style="position: absolute; top: 0; left: 0; height: 50px; width: 100%; background-color: #b9ddff;z-index: 1;"></span>
     </section>
 
-    <section class="section-padding section-bg3" style="height: 715px" id="page_4">
+    <section class="section-padding section-bg3" style="height: 715px;" id="page_4">
         <div class="container">
             <div style="margin-top:5px;margin-bottom:5px;text-align:center;">
-                <img id="scrollToMap" class="arrow" src="./images/arrow.png"style="width:20px; height:20px;margin-top:2px;text-align:center;z-index: 1;" >
+                <img id="scrollToMap" class="arrow" src="images/arrow.png"style="width:20px; height:20px;margin-top:2px;text-align:center;z-index: 1;" >
             </div>
             <div style="margin-top:10px;margin-bottom:10px;text-align:center; ">
+
                 <div class="section-1" style="display:inline-block;">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_1"></b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/quanzhou.jpg">
+                        <img class="shape" src="images/xingzai.jpg">
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE">Tea house in Hangzhou</a> by <a target="_blank" href="https://unsplash.com/@davidveksler">David Veksler</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_1" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-1" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-1" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-1" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-1" class="narrative_bar"><br>&ensp; &ensp; In his narrative, Marco calls Xingzai "the city of Heaven". This may have been influenced by the Chinese proverb "There is a paradise above, and a Suzhou-Hangzhou below," which suggests that there are earthly paradises that are just as beautiful as heaven.At the same time he gives a direct justification for the notation of Xingzai,"it is well worth recording, because this is without doubt the finest and noblest city in the world." <br>&ensp; &ensp; Marco Polo offers a comprehensive description of the city of xingzai, including its architecture, the arrangement of its streets, the state of its commerce and handicrafts, the wedding and funeral customs of its inhabitants, the city's fire protection system, and even the income of the Great Khan.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
+                                </foreignObject>
+                            </switch>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-9"  style="display:none">
+                    <h1 style="text-align:center"><b id="title_9"></b></h1>
+                    <div style=" float:left; width:49%;height:600px">
+                        <img class="shape" src="images/daidu.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Image</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
+                    </div>
+                    <div style="float:left; width:2%;height:570px"></div>
+                    <div style=" float:right; width:49%;height:570px">
+                        <div id="draw_box_9" style="margin-left:20px;height:100%;width:100%">
+                            <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
+                                <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
+                            <switch>
+                                <foreignObject width="100%" height="100%" >
+                                    <p id="text-9"class="narrative_bar">&ensp;&ensp;In Marco Polo's narratives, Khanbaliq was the capital of Cathay, where the Great Khan resided for three months from December. The city was ancient, meaning "The Lord's City," and located across a river from the new city "Daidu," which was built by the Great Khan. Marco Polo provided detailed information about the structure and layout of the two cities, along with their functions.<br>&ensp;&ensp;Additionally, Marco Polo recounted the assassination of one of the 12 barons, a Saracen named Ahmad, who was portrayed as an evil sorcerer who had deceived the Great Khan with his powers. Two Cathayans named Qianhu and Wanhu planned the assassination of Ahmad and sought to rise up against the city authorities. Although the assassination was successful, the uprising failed to materialize. The Great Khan ordered the punishment of the guilty parties according to their deserts. He also discovered Ahmad's abominations. So as to avoid similar incidents in the future, he summoned Saracens and strictly forbade any illegal activities by them.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -506,18 +1635,20 @@
                 
         
                 <div class="section-2" style="display:none;">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_2"></b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg">
+                        <img class="shape" src="images/baoshan.jpg">
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg">Baoshan Evening</a> by Rod Waddington, 2018. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style="float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_2" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-2" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-2" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-2" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-2" class="narrative_bar"><br>&ensp; &ensp; The teeth of the people of Yongchang are covered with gold. "These people do not have idols or churches but worship the head of the house" and "there are no physicians. When someone falls ill he sends for the magicians."<br>&ensp;&ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The custom of Yongchang described by Marco Polo is consistent with historical data, which supports the authenticity of his account.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -526,18 +1657,20 @@
                 </div>
         
                 <div class="section-3"  style="display:none" >
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_3"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/fuzhou.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg">Fuzhou Cityscape (Taixi CBD)</a> by Listwiseafford, 2017. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_3" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-3" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-3" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-3" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-3" class="narrative_bar"><br>&ensp; &ensp; When Marco Polo wrote about Fuzhou, he described the local people's methods of capturing lions and papiones. In Marco's eyes, "it is such a fine city and so well ordered in every respect that it is marvelous beyond words." In addition to describing the local industries and special products, he also mentioned that "there is a sect of people whose religion is a mystery to everyone".<br>&ensp;&ensp;Through persistent visits, Marco and his uncle were eventually able to communicate with the members of this sect. After examining their beliefs, Marco Polo and his uncle concluded that these people were likely Christians.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -547,18 +1680,20 @@
                 </div>
         
                 <div class="section-4"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_4"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/Tibet.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/multicolored-streamers-near-snow-mountain-under-blue-and-white-cloudy-sky-NAdinUQTy2c">Gate of prayers</a> by <a target="_blank" href="https://unsplash.com/@danielesalutari">Daniele Salutari</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_4" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-4" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-4" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-4" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-4" class="narrative_bar"><br>&ensp; &ensp; As an experienced traveling merchant, Marco Polo provides detailed descriptions of the protective measures taken by merchants while traversing through the wilderness. For instance, he describes the practice of throwing bamboo sticks into the fire to create a loud explosion that scares away wild beasts.<br>&ensp; &ensp; In addition to these protective measures, Marco Polo also notes various local customs, he mentions that local people refuse to take virgins as wives. Instead, mothers send their daughters to spend the night with passing merchants, and the woman who receives the most souvenirs is considered the most desirable marriage partner. Marco also mentions “They have no coinage and do not use the Great Khan's paper money but instead use salt as a currency.”</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -567,18 +1702,20 @@
                 </div>
 
                 <div class="section-5"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_5"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/Dali.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Image</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_5" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-5" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-5" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-5" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-5" class="narrative_bar"><br>&ensp; &ensp;Marco Polo devotes a significant portion of his narrative to describing the huge snakes of the Qarajang, including their capture methods and the medicinal properties of their bile.<br>&ensp; &ensp; He also tells of the evil customs of the region before the Khan's rule: "If it happened that a handsome gentleman or anyone with a superior air-a 'good shadow'-came to lodge in the house of an inhabitant of this province, they would murder him during the night by poison or other lethal means." This was because they believed that taking over the souls of the deceased would bless them.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -587,18 +1724,20 @@
                 </div>
 
                 <div class="section-6"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_6"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/Xichang.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Image</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_6" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-6" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-6" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-6" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-6" class="narrative_bar"><br>&ensp; &ensp; Jiandu also implemented the use of salt coins as a circulating currency. Marco Polo provides a detailed account of the process of creating salt coins, as well as the exchange rate between salt coins and gold coins. However, this exchange rate was not fixed and varied depending on the location. In more remote and less developed areas, fewer salt coins could be exchanged for a fixed number of gold coins. <br>&ensp; &ensp;In addition, Marco Polo describes a unique local custom in the area whereby men did not consider it an outrage if a foreigner or another man dishonored him with his wife, daughter, sister, or any woman under his roof. Outsiders would often hang out a sign to indicate a visit when they met with a local woman. Marco attributes this custom to idolatry, with believers thinking that their behavior would be appreciated by the gods.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -607,18 +1746,20 @@
                 </div>
 
                 <div class="section-7"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b  id="title_7"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/Xiezhou.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/an-arch-with-a-view-of-a-mountain-and-trees-oxkTY2sZ5FI">窗外的景色</a> by <a target="_blank" href="https://unsplash.com/@samirshadab10">Sam LEGEND</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_7" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-7" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-7" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-7" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-7" class="narrative_bar"><br>&ensp;&ensp; When Marco Polo arrived in Xiezhou, he dedicated most of his words to describing the castle's builder, the Golden King. Legend has it that the Golden King once rebelled against his master, Ong Khan, also known as Prester John. Due to the castle's impenetrable defences, Prester John was unable to mount a successful military campaign. Instead, Seven henchmen were dispatched to capture the Golden King and succeed when the Golden King let his guard down. To humiliate and intimidate him, Prester John reduced the Golden King to the status of a mere herdsman. After two years of captivity, the Golden King assured Prester John that he could never defeat him and thus he was relieved to Xiezhou, pledging his loyalty to Prester John since then. </p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -627,18 +1768,20 @@
                 </div>
 
                 <div class="section-8"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b id="title_8"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/xiangyangfu.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-bridge-over-a-body-of-water-with-tall-buildings-in-the-background-yGB4X6tWX8k">凤雏大桥</a> by <a target="_blank" href="https://unsplash.com/@seanhuchina">Sean Hu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_8" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-8" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-8" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-8" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-8"class="narrative_bar"><br>&ensp;&ensp; In Marco Polo's words, Xiangyangfu was a prosperous city which was abundant in various products and "has all the superior things befitting a superior city." <br>&ensp;&ensp;He mentioned that the city was one of the latest surrendered cities in Manzi and the war had continued for three years while the army of the Great Khan could only hold a position on one side of the city. Witnessing the difficulties faced by the Great Khan, Marco Polo and his father and uncle instructed their retinue, a German Nestorian Christian, to construct mangonels capable of hurling 300-pound stones. Marco Polo said that it became the key to victory and emphasized his achievement in this regard.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -646,39 +1789,23 @@
                     </div>
                 </div>
 
-                <div class="section-9"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
-                    <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
-                    </div>
-                    <div style="float:left; width:2%;height:570px"></div>
-                    <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
-                            <svg id='rectangle' class="my-svg-9" width="100%" height="100%">
-                                <rect id='stroke'class="my-rec-9" stroke="#3e5e88" rx='50' ry='50'/>
-                            <switch>
-                                <foreignObject width="100%" height="100%" >
-                                    <p id="text-9" class="text-white" style="line-height:5;">any text</p>
-                                </foreignObject>
-                            </switch>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <div class="section-10"  style="display:none" >
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b id="title_10"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/Chengdu.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Image</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_10" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-10" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-10" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-10" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-10" class="narrative_bar"><br>&ensp;&ensp; Marco Polo began his description of Chengdufu by discussing its geography. The city's circumference was approximately twenty miles and was once divided into three parts, each surrounded by walls. Additionally, large rivers, which, at maximum, reach half a mile wide and very deep, flowed through the city. These rivers not only facilitated fishing but also allowed for extensive river traffic, including the passage of large merchant ships. At each end of the bridges spanning the rivers, there were numerous stalls engaged in various trades and handicrafts. These businesses generated no less than 1,000 gold bezants in duties.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -687,18 +1814,20 @@
                 </div>
 
                 <div class="section-11"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b id="title_11"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/yizheng.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Image</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_11" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-11" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-11" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-11" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-11" class="narrative_bar"><br>&ensp;&ensp;According to Marco Polo, all the information he provided about Zhenzhou was related to the great river Yangtze, on which the city was located. The river was so wide that it could reach up to 10 miles in width. It converged countless rivers from every direction, making it a crucial transportation hub that connected the city to many regions. Although the city itself was not particularly large, it was flooded with at least 15,000 boats. Salt and iron were shipped from Zhenzhou, while wood, charcoal, hemp, and many other articles were brought back through the river.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -707,18 +1836,20 @@
                 </div>
 
                 <div class="section-12"  style="display:none">
-                    <h1 style="text-align:center;"><b>Location</b></h1>
+                    <h1 style="text-align:center"><b id="title_12"></b></h1>
                     <div style=" float:left; width:49%; height:600px">
-                        <img class="shape" src="./images/dadu.jpg" >
+                        <img class="shape" src="images/quanzhou.jpg" >
+                        <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ">Image</a> by <a target="_blank" href="https://unsplash.com/@bangyuwang">Bangyu Wang</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:600px"></div>
                     <div style=" float:right; width:49%;height:570px">
-                        <div id="draw_box" style="margin-left:20px;height:100%;width:100%">
+                        <div id="draw_box_12" style="margin-left:20px;height:100%;width:100%">
                             <svg id='rectangle' class="my-svg-12" width="100%" height="100%">
                                 <rect id='stroke'class="my-rec-12" stroke="#3e5e88" rx='50' ry='50'/>
                             <switch>
                                 <foreignObject width="100%" height="100%" >
-                                    <p id="text-12" class="text-white" style="line-height:5;">any text</p>
+                                    <p id="text-12" class="narrative_bar"><br>&ensp;&ensp; Marco Polo described Zayton as a "very large and splendid" city, with a particular emphasis on its port. The city was situated on a large, wide, and fast-flowing river, which served as an ideal location for a port. Marco also provided details about the shape and construction of the five bridges spanning the river. He described the port as one of the busiest in the world, serving as the arrival point for ships from India and the starting point for ships in Manzi. The duty policy imposed on the costly wares traded here generated a significant amount of revenue, contributing greatly to the wealth of the kingdom of Fuzhou. In addition, Marco Polo also provided insights into the local way of life and tattoo culture in Zayton.</p>
+                                    <p class="button-return" style="height:5%;position:fixed;bottom:5px" ><u>Click to See More</u></p>
                                 </foreignObject>
                             </switch>
                             </svg>
@@ -739,21 +1870,21 @@
         
     </section>
 
-    <section class="align-items-center" style="height: 50px" id="navbar">
+    <section class="align-items-center" style="height: 50px;width:100%" id="navbar">
         <div style="margin-top:0px">
             <div style="text-align:center; bottom:0px;">
-                <span class="productbtn btn1 btn-click" data-action="section-1" id="Quanzhou"></span>
-                <span class="productbtn btn2 btn-click" data-action="section-2" id="Dadu"></span>
-                <span class="productbtn btn3 btn-click" data-action="section-3" id="Yangzhou"></span>
-                <span class="productbtn btn4 btn-click" data-action="section-4" id="XiangYangFu"></span>
-                <span class="productbtn btn5 btn-click" data-action="section-5" id="m5"></span>
-                <span class="productbtn btn6 btn-click" data-action="section-6" id="m6"></span>
-                <span class="productbtn btn7 btn-click" data-action="section-7" id="m7"></span>
-                <span class="productbtn btn8 btn-click" data-action="section-8" id="m8"></span>
-                <span class="productbtn btn9 btn-click" data-action="section-9" id="m9"></span>
-                <span class="productbtn btn10 btn-click" data-action="section-10" id="m10"></span>
-                <span class="productbtn btn11 btn-click" data-action="section-11" id="m11"></span>
-                <span class="productbtn btn12 btn-click" data-action="section-12" id="m12"></span>
+                <span class="productbtn btn1 btn-click" data-action="section-1" id="Xingzai"></span>
+                <span class="productbtn btn9 btn-click" data-action="section-9" id="Daidu"></span>
+                <span class="productbtn btn2 btn-click" data-action="section-2" id="Yongchang"></span>
+                <span class="productbtn btn3 btn-click" data-action="section-3" id="Fuzhou-City"></span>
+                <span class="productbtn btn4 btn-click" data-action="section-4" id="Tibet"></span>
+                <span class="productbtn btn5 btn-click" data-action="section-5" id="Qarajang"></span>
+                <span class="productbtn btn6 btn-click" data-action="section-6" id="Jiandu"></span>
+                <span class="productbtn btn7 btn-click" data-action="section-7" id="Xiezhou"></span>
+                <span class="productbtn btn8 btn-click" data-action="section-8" id="Xiangyangfu"></span>
+                <span class="productbtn btn10 btn-click" data-action="section-10" id="Chengdufu"></span>
+                <span class="productbtn btn11 btn-click" data-action="section-11" id="Zhenzhou"></span>
+                <span class="productbtn btn12 btn-click" data-action="section-12" id="Zayton"></span>
             </div>
             <script>
                 $(function(){
@@ -771,7 +1902,7 @@
                 buttons.each(function(index) {
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".section-" + (index+1));
-    
+                    console.log(this)
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
@@ -807,23 +1938,277 @@
 
 
                 }
+
+                for (i=1;i<=12;i++){
+                    var elementId = 'title_' + i;
+                    document.getElementById(elementId).textContent = columnValues[i-1];
+                }
+
+
+                var check_1=0;
+                const textBox_1 = document.getElementById('draw_box_1');
+                const textCont_1 = document.getElementById('text-1');
+
+                var check_2=0;
+                const textBox_2 = document.getElementById('draw_box_2');
+                const textCont_2 = document.getElementById('text-2');
+
+                var check_3=0;
+                const textBox_3 = document.getElementById('draw_box_3');
+                const textCont_3 = document.getElementById('text-3');
+
+                var check_4=0;
+                const textBox_4 = document.getElementById('draw_box_4');
+                const textCont_4 = document.getElementById('text-4');
+
+                var check_5=0;
+                const textBox_5 = document.getElementById('draw_box_5');
+                const textCont_5 = document.getElementById('text-5');
+
+                var check_6=0;
+                const textBox_6 = document.getElementById('draw_box_6');
+                const textCont_6 = document.getElementById('text-6');
+
+                var check_7=0;
+                const textBox_7 = document.getElementById('draw_box_7');
+                const textCont_7 = document.getElementById('text-7');
+
+                var check_8=0;
+                const textBox_8 = document.getElementById('draw_box_8');
+                const textCont_8 = document.getElementById('text-8');
+
+                var check_9=0;
+                const textBox_9 = document.getElementById('draw_box_9');
+                const textCont_9 = document.getElementById('text-9');
+
+                var check_10=0;
+                const textBox_10 = document.getElementById('draw_box_10');
+                const textCont_10 = document.getElementById('text-10');
+
+                var check_11=0;
+                const textBox_11 = document.getElementById('draw_box_11');
+                const textCont_11 = document.getElementById('text-11');
+
+                var check_12=0;
+                const textBox_12 = document.getElementById('draw_box_12');
+                const textCont_12 = document.getElementById('text-12');
+
+                textBox_1.addEventListener('click', function() {
+                    if (check_1==1){
+                        textCont_1.innerHTML = "<br>&ensp; &ensp; In his narrative, Marco calls Xingzai \"the city of Heaven\".This may have been influenced by the Chinese proverb \"There is a paradise above, and a Suzhou-Hangzhou below,\" which suggests that there are earthly paradises that are just as beautiful as heaven. At the same time he gives a direct justification for the notation of xingzai: \"it is well worth recording, because this is without doubt the finest and noblest city in the world.\" <br>&ensp; &ensp; Marco Polo offers a comprehensive description of the city of xingzai, including its architecture, the arrangement of its streets, the state of its commerce and handicrafts, the wedding and funeral customs of its inhabitants, the city's fire protection system, and even the income of the Great Khan.";
+                        check_1=0
+                    }else if(check_1==0){
+                        textCont_1.innerHTML = "<br>&ensp; &ensp; Marco's account is basically similar to some Song and Yuan historical accounts. \"For instance, Marco Polo's account of Xingzai's population was consistent with the record of Wu Zimu in the MengLiangLu: after Emperor Gaozong of the Southern Song Dynasty moved to Hangzhou from Jiankang, there were nearly one million of households in the past two centuries. Furthermore, people lived together in the outer city of Hangzhou, the markets, streets, stores, and wares were so numerous that they could be traversed in a matter of days. This passage not only corroborates Marco Polo's estimate of Xingzai's population but also aligns with his depiction of the thriving markets and stores in the city.”(杨志玖,1999)";
+                        check_1=1
+                    }
+                });
+
+                textBox_2.addEventListener('click', function() {
+                    if (check_2==1){
+                        textCont_2.innerHTML = "<br>&ensp; &ensp; The teeth of the people of Yongchang are covered with gold. \"These people do not have idols or churches but worship the head of the house\" and \"there are no physicians. When someone falls ill he sends for the magicians.\"<br>&ensp;&ensp; Marco Polo provides a detailed account of the unique customs of the region, including Couvade, the process of healing by magicians, and the wars between the armies of the Khan and those of the king of Myanmar and Bengal. The custom of Yongchang described by Marco Polo is consistent with historical data, which supports the authenticity of his account.";
+                        check_2=0
+                    }else if(check_2==0){
+                        textCont_2.innerHTML = "<br>&ensp; &ensp;The description of Couvade can be found in the Ming Dynasty's canonical book, Yunnan Zhi, which states that \"Even the common people regarded their wives as slaves, and the wives were responsible for farming, weaving, trade, and compulsory labour. After giving birth to a child for three days, they handed it over to their husbands to raise and went off to farm and weave on their own.\" (天一阁藏明代方志选刊续编,1990)";
+                        check_2=1
+                    }
+                });
+
+                textBox_3.addEventListener('click', function() {
+                    if (check_3==1){
+                        textCont_3.innerHTML = "<br>&ensp; &ensp; When Marco Polo wrote about Fuzhou, he described the local people's methods of capturing lions and papiones. In Marco's eyes, \"it is such a fine city and so well ordered in every respect that it is marvelous beyond words.\" In addition to describing the local industries and special products, he also mentioned that \"there is a sect of people whose religion is a mystery to everyone\".<br>&ensp;&ensp;Through persistent visits, Marco and his uncle were eventually able to communicate with the members of this sect. After examining their beliefs, Marco Polo and his uncle concluded that these people were likely Christians.";
+                        check_3=0
+                    }else if(check_3==0){
+                        textCont_3.innerHTML = "<br>&ensp; &ensp; While Paul Pelliot testified that they were not Christians but Manichaeans. The reason was that if they had been Christians, they would have been recognized, and the Manichaeans had some texts which might have been mistaken for the Psalms of the Old Testament. The Manichaeans were prevalent in Zhejiang and Fujian during the Song Dynasty, and there were many Manichaeans in Fuzhou, which was a secret religion forbidden by the government, which is why they did not want to be exposed. (杨志玖,1999)";
+                        check_3=1
+                    }
+                });
+
+                textBox_4.addEventListener('click', function() {
+                    if (check_4==1){
+                        textCont_4.innerHTML = "<br>&ensp; &ensp; As an experienced traveling merchant, Marco Polo provides detailed descriptions of the protective measures taken by merchants while traversing through the wilderness. For instance, he describes the practice of throwing bamboo sticks into the fire to create a loud explosion that scares away wild beasts. <br>&ensp; &ensp; In addition to these protective measures, Marco Polo also notes various local customs, he mentions that local people refuse to take virgins as wives. Instead, mothers send their daughters to spend the night with passing merchants, and the woman who receives the most souvenirs is considered the most desirable marriage partner. Marco also mentions,\"they have no coinage and do not use the Great Khan's paper money but instead use salt as a currency.\"";
+                        check_4=0
+                    }else if(check_4==0){
+                        textCont_4.innerHTML = "<br>&ensp; &ensp; Salt has been a highly valued commodity in Tibet for centuries, with its significance dating back to the Tang dynasty. In fact, the importance of salt resources was so great that it sparked a war between the forces of Nan-chao, Tang, and Tibet, as Charles Backus writes, \“perhaps the most essential resource that the tibetans hoped to acquire was salt.\” This value of salt continued through the time of Marco Polo, where it was even used as a form of currency,\“ this accords well with the ramusio passage stating that during Marco polo's time the tibetans were willing to exchange precious goods in order to obtain this indispensable mineral. all this shows that Marco polo's account is in perfect accordance with the particularities of the monetary history in Southwest China.\” (Backus,1981;Vogel,2013) ";
+                        check_4=1
+                    }
+                });
+
+                textBox_5.addEventListener('click', function() {
+                    if (check_5==1){
+                        textCont_5.innerHTML = "<br>&ensp; &ensp; Marco Polo devotes a significant portion of his narrative to describing the huge snakes of the Qarajang, including their capture methods and the medicinal properties of their bile. <br>&ensp;&ensp; He also tells of the evil customs of the region before the Khan's rule: \“If it happened that a handsome gentleman or anyone with a superior air - a 'good shadow' - came to lodge in the house of an inhabitant of this province, they would murder him during the night by poison or other lethal means.”\ This was because they believed that taking over the souls of the deceased would bless them.";
+                        check_5=0
+                    }else if(check_5==0){
+                        textCont_5.innerHTML = "<br>&ensp; &ensp; Although the huge snakes is now extinct in the Dali area, historical records suggest that they were once present in the region. \“The Yuan Dynasty canon Yunnan Tongzhi records an incident from the Tang Dynasty in which a Dali resident named Duan Chicheng beheaded a python that had been devouring people and animals. While the legend may not be entirely accurate, it is possible that the local huge snakes population was considered dangerous.”\  The Southern Song Dynasty scholar Fan Chengda wrote in his work Guihai Yuheng Zhi that \“the gall of a boa, which can grow as large as a pillar, can be used as medicine. Additionally, people in the south have used snake skin to make drums, and snake meat has been consumed as a food source for centuries.\” Even today, snake meat remains a local cuisine in southern China.（方国瑜&林超民,1994;严沛&范成大,1986)";
+                        check_5=1
+                    }
+                });
+
+                textBox_6.addEventListener('click', function() {
+                    if (check_6==1){
+                        textCont_6.innerHTML = "<br>&ensp;&ensp; Jiandu also implemented the use of salt coins as a circulating currency. Marco Polo provides a detailed account of the process of creating salt coins, as well as the exchange rate between salt coins and gold coins. However, this exchange rate was not fixed and varied depending on the location. In more remote and less developed areas, fewer salt coins could be exchanged for a fixed number of gold coins. <br>&ensp;&ensp; In addition, Marco Polo describes a unique local custom in the area whereby men did not consider it an outrage if a foreigner or another man dishonored him with his wife, daughter, sister, or any woman under his roof. Outsiders would often hang out a sign to indicate a visit when they met with a local woman. Marco attributes this custom to idolatry, with believers thinking that their behavior would be appreciated by the gods.";
+                        check_6=0
+                    }else if(check_6==0){
+                        textCont_6.innerHTML = "<br>&ensp;&ensp; According to Yuanshi there were a total of 95 salt wells in the region,  and \“the salt loaves used in the region of Jaindu, as mentioned by Marco polo, were probably made in a place that is now located in southernmost Sichuan, in the saltworks of Yanyuan.\”  It is worth noting that the unique customs described by Marco Polo bear striking similarities to the marriage customs of the Naxi people. They have been inhabiting the Yanyuan area of Sichuan province since the middle of the 4th century. Notably, their customs are \“Men and women do not get married. Instead, both parties in the relationship usually stay at the woman's house overnight after dinner and return to their mother's house the next morning to labor and live.\”  The relationship is not fixed or exclusive, and this free and open sexual relationship is quite similar to what Marco Polo described.(宋濂,1976; Vogel,2013)";
+                        check_6=1
+                    }
+                });
+
+                textBox_7.addEventListener('click', function() {
+                    if (check_7==1){
+                        textCont_7.innerHTML = "<br>&ensp;&ensp; When Marco Polo arrived in Xiezhou, he dedicated most of his words to describing the castle's builder, the Golden King. Legend has it that the Golden King once rebelled against his master, Ong Khan, also known as Prester John. Due to the castle's impenetrable defences, Prester John was unable to mount a successful military campaign. Instead, Seven henchmen were dispatched to capture the Golden King and succeed when the Golden King let his guard down. To humiliate and intimidate him, Prester John reduced the Golden King to the status of a mere herdsman. After two years of captivity, the Golden King assured Prester John that he could never defeat him and thus he was relieved to Xiezhou, pledging his loyalty to Prester John since then. ";
+                        check_7=0
+                    }else if(check_7==0){
+                        textCont_7.innerHTML = "<br>&ensp;&ensp; \“Marco's story about 'King Dor' seems to derive from several semi-historical tales that relate, not to any ruler of the Jin (Gold) dynasty, but to episodes in the history of the ancient state of Jin, which was situated in what later became Shanxi. The names sound almost the same (only the tones are different) but are written with completely different characters in Chinese.\” According to Haw, it is possible that Marco Polo heard the Chinese version of the story but did not fully understand the meaning of the words. It is also possible that he had some knowledge of the Chinese language. \“Marco's story about the Golden King (or King Dor, Roi d'Or) has certain similarities with the story of Baili Xi, though Marco has clearly produced a very distorted version of it. The tale existed in several differing versions, however, so that what Marco was originally told may have been already somewhat confused.\”(Haw,2006) ";
+                        check_7=1
+                    }
+                });
+
+                textBox_8.addEventListener('click', function() {
+                    if (check_8==1){
+                        textCont_8.innerHTML = "<br>&ensp;&ensp;In Marco Polo's words, Xiangyangfu was a prosperous city which was abundant in various products and \"has all the superior things befitting a superior city.\" <br>&ensp;&ensp;He mentioned that the city was one of the latest surrendered cities in Manzi and the war had continued for three years while the army of the Great Khan could only hold a position on one side of the city. Witnessing the difficulties faced by the Great Khan, Marco Polo and his father and uncle instructed their retinue, a German Nestorian Christian, to construct mangonels capable of hurling 300-pound stones. Marco Polo said that it became the key to victory and emphasized his achievement in this regard.";
+                        check_8=0
+                    }else if(check_8==0){
+                        textCont_8.innerHTML = "<br>&ensp;&ensp;It should be noted that the more specific manifestations of the Polos' indispensability are less problematic: their participation, for instance, in the siege of Saianfu (Hsiang yang), which is impossible, given the date (1273), when they could not have yet reached the Far East, and where Chinese sources ascribe their role instead to Muslim mangonel expert.  Not all versions of the text claim any involvement by Marco. According to most versions of the story, the Polos said that 'we have with us in our retinue'. Perhaps the two elder Polos had merely travelled, during their first visit to China, with some of those who made these machines and Rustichello embroidered the story from that. It is certainly true that Xiangyang held out against the Mongols for a very long time (actually longer than Marco states) and that, by the time it fell, the Song dynasty was on the point of collapse. Marco's story is therefore not a complete fabrication. ( Jackson,1998; Haw,2006)";
+                        check_8=1
+                    }
+                });
+
+                textBox_9.addEventListener('click', function() {
+                    if (check_9==1){
+                        textCont_9.innerHTML = "&ensp;&ensp;In Marco Polo's narratives, Khanbaliq was the capital of Cathay, where the Great Khan resided for three months from December. The city was ancient, meaning \"The Lord\'s City,\" and located across a river from the new city \"Daidu,\" which was built by the Great Khan. Marco Polo provided detailed information about the structure and layout of the two cities, along with their functions.<br>&ensp;&ensp;Additionally, Marco Polo recounted the assassination of one of the 12 barons, a Saracen named Ahmad, who was portrayed as an evil sorcerer who had deceived the Great Khan with his powers. Two Cathayans named Qianhu and Wanhu planned the assassination of Ahmad and sought to rise up against the city authorities. Although the assassination was successful, the uprising failed to materialize. The Great Khan ordered the punishment of the guilty parties according to their deserts. He also discovered Ahmad's abominations. So as to avoid similar incidents in the future, he summoned Saracens and strictly forbade any illegal activities by them.";
+                        check_9=0
+                    }else if(check_9==0){
+                        textCont_9.innerHTML = "&ensp;&ensp;The Travels describe \"Daidu\" starting with the palace, \“but there are three inaccuracies in the description of the city of Dadu. Firstly, Daidu is not a square but a rectangular shape with a slightly longer north-south axis. Secondly, Daidu has only eleven gates, not twelve. Thirdly, the area of Daidu is smaller than that described in The Travels.\”  However, Marco Polo's description of the curfew system in Daidu is very accurate. \“The curfew of the Yuan Dynasty used the sound of a bell as a signal, and the night curfew lasted from about 9:00 p.m. to about 5:00 a.m. People were allowed to light lamps for business before the curfew, and they could read and work at home after that. For official duties, emergency illness, death, funeral, and maternity, people could apply for passage, but all other activities were prohibited during curfew hours.\” (欧阳哲生,2016;曹胜高,2021)";
+                        check_9=1
+                    }
+                });
+
+                textBox_10.addEventListener('click', function() {
+                    if (check_10==1){
+                        textCont_10.innerHTML = "<br>&ensp;&ensp; Marco Polo began his description of Chengdufu by discussing its geography. The city's circumference was approximately twenty miles and was once divided into three parts, each surrounded by walls. Additionally, large rivers, which, at maximum, reach half a mile wide and very deep, flowed through the city. These rivers not only facilitated fishing but also allowed for extensive river traffic, including the passage of large merchant ships. At each end of the bridges spanning the rivers, there were numerous stalls engaged in various trades and handicrafts. These businesses generated no less than 1,000 gold bezants in duties.";
+                        check_10=0
+                    }else if(check_10==0){
+                        textCont_10.innerHTML = "<br>&ensp;&ensp; It is believed that Marco Polo's story about \“the old king and his three sons”\ may be related to the historical construction of Chengdu with the cities of Taicheng, Shaocheng, and Luocheng. However, by the time Marco Polo arrived in Chengdu, the three old cities no longer existed, or there were only a few remnants of them. It is possible that the story Marco Polo recounted was a legend he heard. This story is likely related to the history of Chengdu's fortification because the successive Tai Cheng, Shao Cheng, and Luo Cheng built in Chengdu were all interconnected by a common wall, which is in line with Marco Polo's description of the \"divided wall.\" ( 邹重华,1990)";
+                        check_10=1
+                    }
+                });
+
+                textBox_11.addEventListener('click', function() {
+                    if (check_11==1){
+                        textCont_11.innerHTML = "<br>&ensp;&ensp;According to Marco Polo, all the information he provided about Zhenzhou was related to the great river Yangtze, on which the city was located. The river was so wide that it could reach up to 10 miles in width. It converged countless rivers from every direction, making it a crucial transportation hub that connected the city to many regions. Although the city itself was not particularly large, it was flooded with at least 15,000 boats. Salt and iron were shipped from Zhenzhou, while wood, charcoal, hemp, and many other articles were brought back through the river.";
+                        check_11=0
+                    }else if(check_11==0){
+                        textCont_11.innerHTML = "<br>&ensp;&ensp;Zhenzhou was a crucial transshipment city located at the intersection of the Yangtze River and the canal. The geographic location of Zhenzhou was essential for the westward transport of salt from Huainan during the Southern Song Dynasty, merchants who received salt in the Huaidong region had to transfer it from Zhenzhou to the Yangtze River if they wanted to sell it in the inland areas of the Yangtze River Basin. Zhenzhou was also a significant transshipment point for grain. LouYue wrote in the Zhenzhou Xiuchengji that the rice and grain transported to the capital through the river and lake boats was recorded in tens of millions every year, and the most prosperous boat transport is Zhenzhou. Yuanshi also mentions that grain from Huguang and Jiangxi was transported to Zhenzhou and then transferred to the sea . This is consistent with Marco Polo's description of the prosperity of ship transport in Zhenzhou.  (梁庚堯,2013;宋濂,1976)";
+                        check_11=1
+                    }
+                });
                 
+                textBox_12.addEventListener('click', function() {
+                    if (check_12==1){
+                        textCont_12.innerHTML = "<br>&ensp;&ensp;Marco Polo described Zayton as a \"very large and splendid\" city, with a particular emphasis on its port. The city was situated on a large, wide, and fast-flowing river, which served as an ideal location for a port. Marco also provided details about the shape and construction of the five bridges spanning the river. He described the port as one of the busiest in the world, serving as the arrival point for ships from India and the starting point for ships in Manzi. The duty policy imposed on the costly wares traded here generated a significant amount of revenue, contributing greatly to the wealth of the kingdom of Fuzhou. In addition, Marco Polo also provided insights into the local way of life and tattoo culture in Zayton.";
+                        check_12=0
+                    }else if(check_12==0){
+                        textCont_12.innerHTML = "<br>&ensp;&ensp;During the early period of Emperor Taizong of the Northern Song Dynasty (976-979), foreigners came to trade in Quanzhou. Later, in the early period of Emperor Zhezong of the Northern Song Dynasty (around 1087), the Shi-Po-Si was established in Quanzhou to manage foreign trade and levy taxes. When the capital of the Southern Song Dynasty was moved to Jiangnan, foreign trade was specially rewarded, and the status of Quanzhou became even more important than Guangzhou. \“A tax of 10% was levied on pearls, camphor, and small-sized goods, while 30% was levied on tortoise shells, cedar wood, and large-sized goods, which were paid in kind.\”  During the Yuan Dynasty, Quanzhou became a major port for overseas traffic and trade, which is why Marco Polo referred to it as one of the largest ports in the world. (杨志玖,1999; Drège,1994)";
+                        check_12=1
+                    }
+                });
 
     
             </script>
         </div>
     </section>
 
-    <section class="section-bg4" style="height: 800px" id="page_5">
-        <div class="container">
-            <h1 style="display:absolute; top:50px"><b>How Marco Polo view China?</b></h1>
+    <!--<section class="section-bg4 section-padding " style="height: 800px" id="page_5">
+        <div class="container" style="margin-top:100px">
+            <h1 class="text-white"><b>How Marco Polo view China?</b></h1>
         </div>
-    </section>
+    </section>-->
 
-    <section class="barista-section section-padding section-bg5" style="height: 800px" id="page_6">
-        <div class="max-width:100%">
-            <h1 style="text-align:center"><b>References</b></h1>
-            <p style=" word-break: break-all;max-width:100%">cover Copyright © National Palace Museum. https://theme.npm.edu.tw/exh108/npm_anime/AlongtheRiver/ch/index.html</p>
+    <section class="barista-section section-padding section-bg5" style="height: 200%" id="page_6">
+        <div class="container max-width:100%">
+           
+                      <h1 class="text-white" style="margin-top:30px"><b>Remarks</b></h1>
+
+                      <p class="reference_text" style="color:#b8b8b8">
+                          To ensure that our audience can fully immerse themselves in the historical context, we have placed significant emphasis on the historical maps. We understand that the precise locations may not always be available on the historical maps, so we have adopted a two-fold approach:<br><br>
+                      <b style="color:#fff">Pinpointing Locations on Historical Maps:</b> Whenever possible, we have identified and marked the exact locations on the historical maps using <b style="color:#1f93ff">blue markers</b>. This allows our audience to visualize the geographical aspects of each historical site accurately.
+                      <br><br>
+                      <b style="color:#fff">Referring to Real Maps for Missing Locations:</b> In cases where specific locations are not depicted on the historical maps, we marked the points using <b style="color:#8c8c8c">grey markers</b> with reference to the modern geography.</p>
+          
+                      <!-- CHANGES: display in table looks clearer -->
+                      <p class="name3"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project (Haw, Cliff, 中文):</b></p>
+                      <script>
+                          d3.text("csv/name.csv", function(data) {
+                            var parsedCSV = d3.csvParse(data);
+
+                            var container = d3.select(".name3")
+                                .append("table")
+                                .selectAll("tr")
+                                .data(parsedCSV)
+                                .enter()
+                                .append("tr")
+                                .selectAll("td")
+                                .data(function(d) {
+                                return d3.values(d);
+                                })
+                                .enter()
+                                .append("td")
+                                .text(function(d) {
+                                return d;
+                                });
+                            });
+                      </script>
+          
+                      <!-- CHANGES: show in table looks clearer above, hide the original below
+                          <p class="reference_text"  style="color:#b8b8b8"><b style="color:#fff">List of Locations involved in this Project:</b>
+                          <br><b style="color:#fff">Cliff:</b> Xingzai, Yongchang, Fuzhou-City, Tibet, Qarajang-City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou-Kingdom, Changzhou, Chang'anfu, Suzhou, Guazhou, Xinzhou Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, Huai'anzhou, Guangyuan, Houguan, Aq-Baliq, Aq-Baliq Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang-Kingdom.
+                          <br><b style="color:#fff">Haw:</b> Quinsai, Uncian, Fugiu, Tebet, Caragian-City, Gaindu, Caiciu, Saianfu, Taidu, Sindufu, Singiu, Çaiton, Cuigiu-City, Iaci, Tundinfu, Choncha, Ciangiu, Quengianfu, Sugiu, Caigiu, Singiu Matu, Tingiu, Quenlinfu, Cianglu, Yangiu, Cinghianfu, Cacanfu, Coigangiu, cuncun, Vuguen, Achbaluch, Acbalec Mangi, Lingiu, Taianfu, Paughin, Namghin, Tigiu, Ciangli, Gampu, Cauyu, Cianscian, Cacionfu, Pingiu, Ghiugiu, Ciugiu, Tanpigiu, Cingiu, Ciangan, Giogiu, Vughin, Cugiu, Viugiu[1], Vugiu[1], Pianfu, Çardandan, Cuigiu, Caguy, Caragian-Kingdom
+                          <br><b style="color:#fff">中文:</b> 杭州, 保山, 福州, 西藏, 大理, 西昌, 解州, 襄阳, 北京, 成都, 仪征, 泉州, 涪陵, 昆明, 东平, 江浙行省, 常州, 西安, 苏州, 邗江, 济宁, 长汀, 建瓯, 沧州, 扬州, 镇江, 河间, 淮安, 广元, 闽侯, 正定, 汉中, Lingiu[2], 太原, 宝应, 安庆, 泰州, 德州, 澉浦, 高邮, 遂昌, 蒲州, 古邳, 衢州, 宿迁, 桐庐, 南通, 长兴, 涿州, 湖州, 丽水, 金华, 吴江, 临汾, 保山, 奉节, 淮阴, Caragian-Kingdom[2].</p> 
+                      -->
+          
+                      <p class="reference_text">Due to the limited scope of the map, the geographic location and information of Tibet, Jiandu, Qarajang (kingdom), Yachi, Qarajang (city), Zardandan, Yongchang cannot be shown on the map.</p>
+        
+          
+                      <p class="reference_text">[1]As the two locations was identified with the same name in Haw's definition, we deifnded it with other names on edition F so as to clssify them.</p>
+                      <p class="reference_text">[2]As the city does not appear on modern China Map's definition, it is named by Haw's edition.</p>
+          
+          
+                      <br><br>
+          
+          
+                      <h1 class="text-white" style="margin-top:30px"><b>References</b></h1>
+                      <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Markers and Banner Images:</b></p>
+          
+                      <p class="reference_text">Markers on map designed by Freepik</p>
+                      <p class="reference_text"><a target="_blank" href="https://commons.wikimedia.org/wiki/File:Along_the_River_7-119-3.jpg">Along the River During the Qingming Festival Season (Qing Court Version)</a> by Chen Mei (陳枚), Sun Hu (孫祜), Jin Kun (金昆), Dai Hong (戴洪) and Cheng Zhidao (程志道), 1736, Public Domain</p>
+                      <p class="reference_text"><a target="_blank" href="https://unsplash.com/photos/gray-concrete-statue-of-woman-biQBAOtgIOk">Sculptural bust of traveler Marco Polo</a> by <a target="_blank" href="https://unsplash.com/@vonshnauzer">Egor Myznik</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
+
+                      <br/><br/>
+                      <p class="reference_text" style="font-size:120%;color:#b8b8b8"><b>Text & Books:</b></p>
+                      <p class="reference_text">Backus, Charles. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991002080689703412">The Nan-Chao Kingdom and T'ang China's Southwestern Frontier</a>. Cambridge: Cambridge University Press, 1981.</p>                      
+                      <p class="reference_text">Haw, Stephen G. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056703412">Marco Polo's China a Venetian in the Realm of Khubilai Khan</a>. London; Routledge, 2006.</p>
+                      <p class="reference_text">Jackson, Peter. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_proquest_miscellaneous_387040">Marco Polo and His 'Travels.'</a> Bulletin of the School of Oriental and African Studies 61, no. 1 (1998): 82-101. https://doi.org/10.1017/S0041977X00015779.</p>
+                      <p class="reference_text">Pelliot, Paul. Notes on Marco Polo. Paris: Impr. nationale, 1959.</p>
+                      <p class="reference_text">Polo, Marco.<a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991013254056603412"> The Travels.</a> Translated by Nigel Cliff. London: Penguin Classics, 2015.</p>
+                      <p class="reference_text">Vogel, Hans Ulrich. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991001092219703412">Marco Polo Was in China: New Evidence from Currencies, Salts and Revenues</a>. Leiden: Brill, 2013.</p>
+                      <p class="reference_text">曹婉如. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991004094479703412"> 中國古代地图集</a>. 第1集., 文物出版社, 1990.</p>
+                      <p class="reference_text">曹胜高. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_wanfang_journals_rmlt202107030">“古代宵禁的缘由及变通.”</a> 人民论坛, no. 7 (2021): 110-12.</p>
+                      <p class="reference_text">Drège, Jean Pierre. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991002430729703412">絲綢之路: 東方和西方的交流傳奇</a>. 初版. 台北: 時報文化出版企業有限公司, 1994.</p>                    
+                      <p class="reference_text">方国瑜, and 林超民.  <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012452069703412">《马可波罗行纪》云南史地丛考</a>. 第1版. 北京: 民族出版社, 1994.</p>
+                      <p class="reference_text">姬庆红. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012822349003412">马可·波罗来华问题研究 = Marco Polo</a>. 第1版. 北京: 中国社会科学出版社, 2019.</p>
+                      <p class="reference_text">梁庚堯(Ken-Yao Liang). <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_hyweb_hyread_00294768">從南北到東西－宋代真州轉運地位的轉變.”</a> 臺大歷史學報, no. 52 (2013): 053-143. https://doi.org/10.6253/ntuhistory.2013.52.02.</p>
+                      <p class="reference_text">刘振宁. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_wanfang_journals_gzsfdxxb_shkx20">“《马可波罗行纪》西南民俗述造解义.”</a> 贵州师范大学学报（社会科学版）, no. 4 (2022): 118-29. </p>
+                      <p class="reference_text"><a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991011840829703412">纳西族简史</a>. 第1版. 昆明市: 云南人民出版社, 1984.</p>
+                      <p class="reference_text">欧阳哲生. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_wanfang_journals_zggxshkx201601015">“马可波罗眼中的元大都.”</a> 中国高校社会科学, no. 1 (2016): 102-16.</p>
+                      <p class="reference_text">宋濂. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991005261369703412">元史</a>. 第1版. 北京: 中華書局, 1976.</p>                 
+                      <p class="reference_text"><a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991008775459703412">天一阁藏明代方志选刊续编</a>. 第71册. 上海：上海书店出版社,1990.</p>
+                      <p class="reference_text">杨志玖. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991007732299703412">马可波罗在中国 = Marco Polo in China</a>. 第1版. 天津市: 南开大学出版社, 1999.</p>    
+                      <p class="reference_text">严沛, and 范成大. <a target="_blank" href=" https://lbdiscover.hkust.edu.hk/bib/991003588609703412">桂海虞衡志校注</a>. 第1版. 南宁市: 广西人民出版社, 1986.</p>
+                      <p class="reference_text"><a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/991012125719703412">永宁纳西族社会及母系制调查</a>. 第1版. 昆明市: 云南人民出版社, 1986.</p>
+                      <p class="reference_text">邹重华. <a target="_blank" href="https://lbdiscover.hkust.edu.hk/bib/cdi_chongqing_primary_1002995777">“马可·波罗成都之行考辨.”</a> 四川文物, no. 3 (1990): 11-14.</p>    
+          
+                      <br><br>
+
         </div>
     </section>
 
