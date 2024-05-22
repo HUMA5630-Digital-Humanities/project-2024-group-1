@@ -441,235 +441,242 @@
                   </script>
 
                 <script>
-                    var path_name='csv/wordcount.csv'
-                    if (myValue=="Cliff"){
-                        path_name='csv/wordcount.csv'
-                    }else if(myValue=="Haw"){
-                        path_name='csv/wordcount_haw.csv'
-                    }else if(myValue=="cn"){
-                        path_name='csv/wordcount_cn.csv'
-                    }
-                    var plt_width=window.innerWidth*0.4;
-                    function reportWindowSize() {
-                        plt_width= window.innerWidth*0.4;
-                        console.log(plt_width)
-                    }
-                    window.onresize = reportWindowSize;
-
-                    svg_overview = d3.csv(path_name, function (err, rows) {
-                        function unpack(rows, key) {
-                            return rows.map(function (row) {
-                                return row[key]
-                            });
+                    function createTreemap_Overview() {
+                        var path_name='csv/wordcount.csv'
+                        if (myValue=="Cliff"){
+                            path_name='csv/wordcount.csv'
+                        }else if(myValue=="Haw"){
+                            path_name='csv/wordcount_haw.csv'
+                        }else if(myValue=="cn"){
+                            path_name='csv/wordcount_cn.csv'
                         }
-
-                        var data = [{
-                            type: "treemap",
-                            values: unpack(rows, 'Word'),
-                            labels: unpack(rows, "Location"),
-                            textinfo: "label+value",
-                            parents: unpack(rows, ''),
-                        }];
-                        
-                        var layout = {
-                            treemapcolorway: ["royalblue", "lightblue"],
-                            margin: {
-                                l: 0,  // Set the left margin to 50 pixels
-                                r: 5,  // Set the right margin to 50 pixels
-                                b: 0,  // Set the bottom margin to 50 pixels
-                                t: 0   // Set the top margin to 50 pixels
-                            },
-                            // Set the padding of the plot area to 0 pixels
-                            //xaxis: {zeroline:false, showline:false},
-                            //yaxis: {zeroline:false, showline:false},
-                            autosize: true,
-                            width: plt_width
-                            //height:window.innerHieght*0.2
-
+                        var plt_width=window.innerWidth*0.4;
+                        function reportWindowSize() {
+                            plt_width= window.innerWidth*0.4;
+                            console.log(plt_width)
                         }
-                        var config = {
-                            responsive: true,
+                        window.onresize = reportWindowSize;
+
+                        svg_overview = d3.csv(path_name, function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
+                            }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Word'),
+                                labels: unpack(rows, "Location"),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
                             
-                        }
-                        Plotly.newPlot('my_dataviz_1', data, layout, config);
-                        
-                        var getback = 0;
-                        document.getElementById('my_dataviz_1').on('plotly_click', function(data) {
-                            var point = data.points[0];
-                                if(getback==0){
-                                    if(myValue!="Cliff"){
-                                    let indexes = columnValues.map((_, i) => i);
-                                    let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
-                                    let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(point.label));
-                                    if (columnRef[indexOfValue]=="Daidu/Khanbaliq"){
-                                        var go_location="Daidu"
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 5,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                // Set the padding of the plot area to 0 pixels
+                                //xaxis: {zeroline:false, showline:false},
+                                //yaxis: {zeroline:false, showline:false},
+                                autosize: true,
+                                width: plt_width
+                                //height:window.innerHieght*0.2
+
+                            }
+                            var config = {
+                                responsive: true,
+                                
+                            }
+                            Plotly.newPlot('my_dataviz_1', data, layout, config);
+                            
+                            var getback = 0;
+                            document.getElementById('my_dataviz_1').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                    if(getback==0){
+                                        if(myValue!="Cliff"){
+                                        let indexes = columnValues.map((_, i) => i);
+                                        let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
+                                        let indexOfValue = sortedIndexes.indexOf(columnValues.indexOf(point.label));
+                                        if (columnRef[indexOfValue]=="Daidu/Khanbaliq"){
+                                            var go_location="Daidu"
+                                        }else{
+                                            var go_location=columnRef[indexOfValue]
+                                        }
+                                        $("#"+go_location).click();
                                     }else{
-                                        var go_location=columnRef[indexOfValue]
+                                        if (point.label=="Daidu/Khanbaliq"){
+                                            var go_location="Daidu"
+                                        }else{
+                                            var go_location=point.label
+                                        }
+                                        $("#"+go_location).click();
                                     }
-                                    $("#"+go_location).click();
+                                    
+                                    $('html, body').stop().animate({
+                                        scrollTop: $("#page_4").offset().top
+                                    }, {
+                                        duration:100,
+                                        easing: 'linear'
+                                    });
+                                    getback++;
+
                                 }else{
-                                    if (point.label=="Daidu/Khanbaliq"){
-                                        var go_location="Daidu"
-                                    }else{
-                                        var go_location=point.label
-                                    }
-                                    $("#"+go_location).click();
+                                    getback=0
                                 }
                                 
-                                $('html, body').stop().animate({
-                                    scrollTop: $("#page_4").offset().top
-                                }, {
-                                    duration:100,
-                                    easing: 'linear'
-                                });
-                                getback++;
+                            })
+                        })
+                    }
+                </script>
 
-                            }else{
-                                getback=0
+                <script>
+                    function createTreemap_Religion() {
+                        d3.csv('csv/Religion.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
                             }
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Percent'),
+                                labels: unpack(rows, 'Religion'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                            }
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_2', data, layout, config);
+
+                            
+                            var getback = 0;
+                            document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                religion_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
                             
                         })
-                    })
-
+                    }
                 </script>
 
                 <script>
-                    d3.csv('csv/Religion.csv', function (err, rows) {
-                        function unpack(rows, key) {
-                            return rows.map(function (row) {
-                                return row[key]
-                            });
-                        }
-
-                        var data = [{
-                            type: "treemap",
-                            values: unpack(rows, 'Percent'),
-                            labels: unpack(rows, 'Religion'),
-                            textinfo: "label+value",
-                            parents: unpack(rows, ''),
-                        }];
-                        var layout = {
-                            treemapcolorway: ["royalblue", "lightblue"],
-                            margin: {
-                                l: 0,  // Set the left margin to 50 pixels
-                                r: 0,  // Set the right margin to 50 pixels
-                                b: 0,  // Set the bottom margin to 50 pixels
-                                t: 0   // Set the top margin to 50 pixels
-                            },
-                            autosize: true,
-                            width: window.innerWidth*0.4,
-                        }
-                        var config = {
-                            responsive: true
-                        }
-                        Plotly.newPlot('my_dataviz_2', data, layout, config);
-
-                        
-                        var getback = 0;
-                        document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
-                            var point = data.points[0];
-                            console.log(getback)
-                            religion_map(point.label,getback)
-                            if (getback===0){
-                                getback++;
-                            }else{
-                                getback=0
+                    function createTreemap_Specialty() {
+                        d3.csv('csv/specialty.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
                             }
-                        });
-                        
-                    })
-                </script>
 
-                <script>
-                    d3.csv('csv/specialty.csv', function (err, rows) {
-                        function unpack(rows, key) {
-                            return rows.map(function (row) {
-                                return row[key]
-                            });
-                        }
-
-                        var data = [{
-                            type: "treemap",
-                            values: unpack(rows, 'Number'),
-                            labels: unpack(rows, 'Specialty'),
-                            textinfo: "label+value",
-                            parents: unpack(rows, ''),
-                        }];
-                        var layout = {
-                            treemapcolorway: ["royalblue", "lightblue"],
-                            margin: {
-                                l: 0,  // Set the left margin to 50 pixels
-                                r: 0,  // Set the right margin to 50 pixels
-                                b: 0,  // Set the bottom margin to 50 pixels
-                                t: 0   // Set the top margin to 50 pixels
-                            },
-                            autosize: true,
-                            width: window.innerWidth*0.4,
-                            //height: window.innerHeight*0.6
-                        }
-                        var config = {
-                            responsive: true
-                        }
-                        Plotly.newPlot('my_dataviz_3', data, layout, config);
-
-                        var getback = 0;
-                        document.getElementById('my_dataviz_3').on('plotly_click', function(data) {
-                            var point = data.points[0];
-                            console.log(getback)
-                            specialty_map(point.label,getback)
-                            if (getback===0){
-                                getback++;
-                            }else{
-                                getback=0
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Number'),
+                                labels: unpack(rows, 'Specialty'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                                //height: window.innerHeight*0.6
                             }
-                        });
-                        
-                    })
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_3', data, layout, config);
+
+                            var getback = 0;
+                            document.getElementById('my_dataviz_3').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                specialty_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
+                            
+                        })
+                    }
                 </script>
                 <script>
-                    d3.csv('csv/economics.csv', function (err, rows) {
-                        function unpack(rows, key) {
-                            return rows.map(function (row) {
-                                return row[key]
-                            });
-                        }
-
-                        var data = [{
-                            type: "treemap",
-                            values: unpack(rows, 'Percent'),
-                            labels: unpack(rows, 'economics'),
-                            textinfo: "label+value",
-                            parents: unpack(rows, ''),
-                        }];
-                        var layout = {
-                            treemapcolorway: ["royalblue", "lightblue"],
-                            margin: {
-                                l: 0,  // Set the left margin to 50 pixels
-                                r: 0,  // Set the right margin to 50 pixels
-                                b: 0,  // Set the bottom margin to 50 pixels
-                                t: 0   // Set the top margin to 50 pixels
-                            },
-                            autosize: true,
-                            width: window.innerWidth*0.4,
-                        }
-                        var config = {
-                            responsive: true
-                        }
-                        Plotly.newPlot('my_dataviz_4', data, layout, config);
-
-                        var getback = 0;
-                        document.getElementById('my_dataviz_4').on('plotly_click', function(data) {
-                            var point = data.points[0];
-                            console.log(getback)
-                            economics_map(point.label,getback)
-                            if (getback===0){
-                                getback++;
-                            }else{
-                                getback=0
+                    function createTreemap_Econ() {
+                        d3.csv('csv/economics.csv', function (err, rows) {
+                            function unpack(rows, key) {
+                                return rows.map(function (row) {
+                                    return row[key]
+                                });
                             }
-                        });
-                        
-                    })
+
+                            var data = [{
+                                type: "treemap",
+                                values: unpack(rows, 'Percent'),
+                                labels: unpack(rows, 'economics'),
+                                textinfo: "label+value",
+                                parents: unpack(rows, ''),
+                            }];
+                            var layout = {
+                                treemapcolorway: ["royalblue", "lightblue"],
+                                margin: {
+                                    l: 0,  // Set the left margin to 50 pixels
+                                    r: 0,  // Set the right margin to 50 pixels
+                                    b: 0,  // Set the bottom margin to 50 pixels
+                                    t: 0   // Set the top margin to 50 pixels
+                                },
+                                autosize: true,
+                                width: window.innerWidth*0.4,
+                            }
+                            var config = {
+                                responsive: true
+                            }
+                            Plotly.newPlot('my_dataviz_4', data, layout, config);
+
+                            var getback = 0;
+                            document.getElementById('my_dataviz_4').on('plotly_click', function(data) {
+                                var point = data.points[0];
+                                console.log(getback)
+                                economics_map(point.label,getback)
+                                if (getback===0){
+                                    getback++;
+                                }else{
+                                    getback=0
+                                }
+                            });
+                            
+                        })
+                    }
                 </script>
 
             </div>
@@ -1304,6 +1311,10 @@
 
                 function overview_map(){
                     updateMarkerIcons(greenIcon,"overview");
+                    createTreemap_Overview();
+                    createTreemap_Religion();
+                    createTreemap_Specialty();
+                    createTreemap_Econ();
                 }
 
                 function return_map(){
@@ -1313,6 +1324,10 @@
                 function button_start(){
                     plt_width=window.innerwidth*0.4
                     updateMarkerIcons(greyIcon,"none");
+                    createTreemap_Overview();
+                    createTreemap_Religion();
+                    createTreemap_Specialty();
+                    createTreemap_Econ();
                 }
 
                 function religion_map(religion_value,back_value){
