@@ -1,14 +1,14 @@
-Location,Religion,Specialty,Industry,Region,Currency,Funeral,Word,Parent
-origin,,,,,,,,
-Xingzai,"idolaters,nestorian christian","silk,hot bath,salt,sugar","trade,prostitute,astrologer,doctor,literati,artisans,craft,military,salt,sugar",Manzi,paper money,,4904,origin
-Yongchang,idolaters,wine with rice and spices,,,"gold, cowries",,2759,origin
-Fuzhou-City,"idolaters,christian","vessel,papiones,geese,lion,sugar,stones(pearl)","trade,craft,military,shipbuilding",Manzi,,,1694,origin
-Tibet,idolaters,"canes, savage beasts, musk, camlets, the most skilled enchanters and the best astrologers,mastiffs, falcons","hunting, herding",,salt,,1480,origin
-Qarajang,idolaters,"gold,Huge snakes and serpents,horse",,,white cowries,,1283,origin
-Jiandu,idolaters,"pearls, turquoise, musk, fish,wild animals,wine with rice and spices, cloves, spices",,,"gold bars, salt blocks",,1179,origin
-Xiezhou,,,,,,,921,origin
-Xiangyangfu,idolaters,"silk,animals","trade,handicraft",,paper money,burn the bodies of the dead,862,origin
-Daidu/Khanbaliq,,,,,,,3994,origin
-Chengdufu,idolaters,"wild animals,sendal","farming, industry",on the border,,,612,origin
-Zhenzhou,idolaters,salt,"shipping,trade",,paper money,,536,origin
-Zayton,idolaters ,,"trade,craft,shipping",,,,521,origin
+Location,Word,Parent
+origin,,
+Xingzai,4904,origin
+Yongchang,2759,origin
+Fuzhou-City,1694,origin
+Tibet,1480,origin
+Qarajang,1283,origin
+Jiandu,1179,origin
+Xiezhou,921,origin
+Xiangyangfu,862,origin
+Daidu/Khanbaliq,3994,origin
+Chengdufu,612,origin
+Zhenzhou,536,origin
+Zayton,521,origin
