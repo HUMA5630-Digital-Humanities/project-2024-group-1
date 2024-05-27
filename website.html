@@ -321,7 +321,7 @@
     
                 // Iterate over each button
                 rectangles.each(function(index) {
-                    console.log(index)
+                    
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".rec-" + (index+1));
   
@@ -405,11 +405,6 @@
 
                         let bestMatch = findBestMatch(columnValues, go_searchWord);
 
-                        
-                        
-                        console.log(go_searchWord)
-                        console.log('Search word: ' + bestMatch);
-
                         current_markers.forEach(function(marker) {
                             if (bestMatch===columnValues[marker.popupContent]){
                                 map.setView([marker.lat,marker.lng],9)
@@ -424,7 +419,7 @@
 
                 <script>
                     function createTreemap_Overview() {
-                        var path_name='csv/wordcount.csv'
+                        var path_name='csv/wordcount_haw.csv'
                         if (myValue=="Cliff"){
                             path_name='csv/wordcount.csv'
                         }else if(myValue=="Haw"){
@@ -435,7 +430,6 @@
                         var plt_width=window.innerWidth*0.4;
                         function reportWindowSize() {
                             plt_width= window.innerWidth*0.4;
-                            console.log(plt_width)
                         }
                         window.onresize = reportWindowSize;
 
@@ -552,7 +546,6 @@
                             var getback = 0;
                             document.getElementById('my_dataviz_2').on('plotly_click', function(data) {
                                 var point = data.points[0];
-                                console.log(getback)
                                 religion_map(point.label,getback)
                                 if (getback===0){
                                     getback++;
@@ -601,7 +594,6 @@
                             var getback = 0;
                             document.getElementById('my_dataviz_3').on('plotly_click', function(data) {
                                 var point = data.points[0];
-                                console.log(getback)
                                 specialty_map(point.label,getback)
                                 if (getback===0){
                                     getback++;
@@ -648,7 +640,6 @@
                             var getback = 0;
                             document.getElementById('my_dataviz_4').on('plotly_click', function(data) {
                                 var point = data.points[0];
-                                console.log(getback)
                                 economics_map(point.label,getback)
                                 if (getback===0){
                                     getback++;
@@ -697,30 +688,30 @@
                 });
 
                 //import logos of different colors
-                var greenIcon = new anyIcon({iconUrl: 'images/green.png'}),
-                    greenIcon01 = new anyIcon({iconUrl: 'images/green01.png'}),
-                    greenIcon02 = new anyIcon({iconUrl: 'images/green02.png'}),
-                    greenIcon03 = new anyIcon({iconUrl: 'images/green03.png'}),
-                    greenIcon04 = new anyIcon({iconUrl: 'images/green04.png'}),
-                    redIcon = new anyIcon({iconUrl: 'images/red.png'}),
-                    redIcon01 = new anyIcon({iconUrl: 'images/red01.png'}),
-                    redIcon02 = new anyIcon({iconUrl: 'images/red02.png'}),
-                    redIcon03 = new anyIcon({iconUrl: 'images/red03.png'}),
-                    redIcon04 = new anyIcon({iconUrl: 'images/red04.png'}),
-                    redIcon05 = new anyIcon({iconUrl: 'images/red05.png'}),
-                    redIcon06 = new anyIcon({iconUrl: 'images/red06.png'}),
-                    redIcon07 = new anyIcon({iconUrl: 'images/red07.png'}),
-                    redIcon08 = new anyIcon({iconUrl: 'images/red08.png'}),
-                    redIcon09 = new anyIcon({iconUrl: 'images/red09.png'}),
-                    redIcon10 = new anyIcon({iconUrl: 'images/red10.png'}),
-                    redIcon11 = new anyIcon({iconUrl: 'images/red11.png'}),
-                    redIcon12 = new anyIcon({iconUrl: 'images/red12.png'}),
-                    blueIcon = new anyIcon({iconUrl: 'images/blue02.png'}),
-                    blueIcon01 = new anyIcon({iconUrl: 'images/blue05.png'}),
-                    blueIcon02 = new anyIcon({iconUrl: 'images/blue03.png'}),
-                    blueIcon03 = new anyIcon({iconUrl: 'images/blue.png'}),
-                    yellowIcon = new anyIcon({iconUrl: 'images/yellow.png'});
-                    greyIcon = new anyIcon({iconUrl:"images/grey.png"});
+                var greenIcon = new anyIcon({iconUrl: 'images/marker/green.png'}),
+                    greenIcon01 = new anyIcon({iconUrl: 'images/marker/green01.png'}),
+                    greenIcon02 = new anyIcon({iconUrl: 'images/marker/green02.png'}),
+                    greenIcon03 = new anyIcon({iconUrl: 'images/marker/green03.png'}),
+                    greenIcon04 = new anyIcon({iconUrl: 'images/marker/green04.png'}),
+                    redIcon = new anyIcon({iconUrl: 'images/marker/red.png'}),
+                    redIcon01 = new anyIcon({iconUrl: 'images/marker/red01.png'}),
+                    redIcon02 = new anyIcon({iconUrl: 'images/marker/red02.png'}),
+                    redIcon03 = new anyIcon({iconUrl: 'images/marker/red03.png'}),
+                    redIcon04 = new anyIcon({iconUrl: 'images/marker/red04.png'}),
+                    redIcon05 = new anyIcon({iconUrl: 'images/marker/red05.png'}),
+                    redIcon06 = new anyIcon({iconUrl: 'images/marker/red06.png'}),
+                    redIcon07 = new anyIcon({iconUrl: 'images/marker/red07.png'}),
+                    redIcon08 = new anyIcon({iconUrl: 'images/marker/red08.png'}),
+                    redIcon09 = new anyIcon({iconUrl: 'images/marker/red09.png'}),
+                    redIcon10 = new anyIcon({iconUrl: 'images/marker/red10.png'}),
+                    redIcon11 = new anyIcon({iconUrl: 'images/marker/red11.png'}),
+                    redIcon12 = new anyIcon({iconUrl: 'images/marker/red12.png'}),
+                    blueIcon = new anyIcon({iconUrl: 'images/marker/blue02.png'}),
+                    blueIcon01 = new anyIcon({iconUrl: 'images/marker/blue05.png'}),
+                    blueIcon02 = new anyIcon({iconUrl: 'images/marker/blue03.png'}),
+                    blueIcon03 = new anyIcon({iconUrl: 'images/marker/blue.png'}),
+                    yellowIcon = new anyIcon({iconUrl: 'images/marker/yellow.png'});
+                    greyIcon = new anyIcon({iconUrl:"images/marker/grey.png"});
                     empty= new  anyIcon({iconUrl:"images/Empty.png"});
              
           
@@ -1267,7 +1258,6 @@
                         });
                         marker.on('click',function(e) {
                             if (location_overview.includes(this._popup._content)){
-                                console.log(this._popup._content);
                                 if(myValue!="Cliff"){
                                     let indexes = columnValues.map((_, i) => i);
                                     let sortedIndexes = indexes.sort((a, b) => columnValues[a] - columnValues[b]);
@@ -1313,7 +1303,6 @@
                 }
 
                 function religion_map(religion_value,back_value){
-                    console.log(back_value)
                     if (back_value===0){
                         if(religion_value==="Idolaters"){
                             updateMarkerIcons(blueIcon,"religion");
@@ -1884,7 +1873,6 @@
                 buttons.each(function(index) {
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".section-" + (index+1));
-                    console.log(this)
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
