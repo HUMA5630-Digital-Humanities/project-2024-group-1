@@ -244,9 +244,9 @@
                         </div>
                         <p style="color:#143176;margin-top:15px">-------------OR-------------</p>
                         <button class="button-map button02 rec-click rec2" role="button" data-react="rec-2" onclick="overview_map()">Overview</button>
-                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3"  onclick="button_start()">Religion</button>
-                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4" onclick="button_start()">Specialty</button>
-                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5" onclick="button_start()">Economic Activities</button>
+                        <button class="button-map button01 rec-click rec3" role="button" data-react="rec-3"  onclick="religion_button_start()">Religion</button>
+                        <button class="button-map button01 rec-click rec4" role="button" data-react="rec-4" onclick="specialty_button_start()">Specialty</button>
+                        <button class="button-map button01 rec-click rec5" role="button" data-react="rec-5" onclick="econ_button_start()">Economic Activities</button>
                         
                     </div>
                 </div>
@@ -1284,21 +1284,27 @@
                 function overview_map(){
                     updateMarkerIcons(greenIcon,"overview");
                     createTreemap_Overview();
-                    createTreemap_Religion();
-                    createTreemap_Specialty();
-                    createTreemap_Econ();
+                    //createTreemap_Religion();
+                    //createTreemap_Specialty();
+                    //createTreemap_Econ();
                 }
 
                 function return_map(){
                     updateMarkerIcons(greyIcon,"return");
                 }
 
-                function button_start(){
-                    plt_width=window.innerwidth*0.4
+                function religion_button_start(){
                     updateMarkerIcons(greyIcon,"none");
-                    createTreemap_Overview();
                     createTreemap_Religion();
+                }
+
+                function specialty_button_start(){
+                    updateMarkerIcons(greyIcon,"none");
                     createTreemap_Specialty();
+                }
+
+                function econ_button_start(){
+                    updateMarkerIcons(greyIcon,"none");
                     createTreemap_Econ();
                 }
 
@@ -1563,7 +1569,7 @@
                 <div class="section-1" style="display:inline-block;">
                     <h1 style="text-align:center"><b  id="title_1"></b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="images/xingzai.jpg">
+                        <img class="shape" id="img-1" >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/orange-and-black-gazebo-scenery-CyvoE5akJuE">Tea house in Hangzhou</a> by <a target="_blank" href="https://unsplash.com/@davidveksler">David Veksler</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1585,7 +1591,7 @@
                 <div class="section-9"  style="display:none">
                     <h1 style="text-align:center"><b id="title_9"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/daidu.jpg" >
+                        <img class="shape" id="img-9" >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/brown-and-red-temple-during-daytime-6qXPU-et7MA">Image</a> by <a target="_blank" href="https://unsplash.com/@zihoowong">wong zihoo</a> under <a target="_blank" href="https://unsplash.com/license">Unsplash License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1608,7 +1614,7 @@
                 <div class="section-2" style="display:none;">
                     <h1 style="text-align:center"><b  id="title_2"></b></h1>
                     <div style="float:left; width:49%;height:600px">
-                        <img class="shape" src="images/baoshan.jpg">
+                        <img class="shape" id="img-2" >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Baoshan_Evening_(29947417367).jpg">Baoshan Evening</a> by Rod Waddington, 2018. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1630,7 +1636,7 @@
                 <div class="section-3"  style="display:none" >
                     <h1 style="text-align:center"><b  id="title_3"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/fuzhou.jpg" >
+                        <img class="shape" id="img-3"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Fuzhou_Cityscape_(Taixi_CBD).jpg">Fuzhou Cityscape (Taixi CBD)</a> by Listwiseafford, 2017. Wikimedia. Public Domain </p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1653,7 +1659,7 @@
                 <div class="section-4"  style="display:none">
                     <h1 style="text-align:center"><b  id="title_4"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/Tibet.jpg" >
+                        <img class="shape" id="img-4"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/multicolored-streamers-near-snow-mountain-under-blue-and-white-cloudy-sky-NAdinUQTy2c">Gate of prayers</a> by <a target="_blank" href="https://unsplash.com/@danielesalutari">Daniele Salutari</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1675,7 +1681,7 @@
                 <div class="section-5"  style="display:none">
                     <h1 style="text-align:center"><b  id="title_5"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/Dali.jpg" >
+                        <img class="shape" id="img-5"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/white-and-brown-concrete-building-vH_O17suSLU">Image</a> by <a target="_blank" href="https://unsplash.com/@liuguangxi">Guangxi Liu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1697,7 +1703,7 @@
                 <div class="section-6"  style="display:none">
                     <h1 style="text-align:center"><b  id="title_6"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/Xichang.jpg" >
+                        <img class="shape" id="img-6"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-city-on-the-water-vQRE4wGyZyc">Image</a> by <a target="_blank" href="https://unsplash.com/@juniperphoton">JuniperPhoton</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1719,7 +1725,7 @@
                 <div class="section-7"  style="display:none">
                     <h1 style="text-align:center"><b  id="title_7"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/Xiezhou.jpg" >
+                        <img class="shape" id="img-7"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/an-arch-with-a-view-of-a-mountain-and-trees-oxkTY2sZ5FI">窗外的景色</a> by <a target="_blank" href="https://unsplash.com/@samirshadab10">Sam LEGEND</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1741,7 +1747,7 @@
                 <div class="section-8"  style="display:none">
                     <h1 style="text-align:center"><b id="title_8"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/xiangyangfu.jpg" >
+                        <img class="shape" id="img-8"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-bridge-over-a-body-of-water-with-tall-buildings-in-the-background-yGB4X6tWX8k">凤雏大桥</a> by <a target="_blank" href="https://unsplash.com/@seanhuchina">Sean Hu</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1765,7 +1771,7 @@
                 <div class="section-10"  style="display:none" >
                     <h1 style="text-align:center"><b id="title_10"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/Chengdu.jpg" >
+                        <img class="shape" id="img-10"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/white-and-black-panda-HFgxFulbsF4">Image</a> by <a target="_blank" href="https://unsplash.com/@billow926">billow926</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1787,7 +1793,7 @@
                 <div class="section-11"  style="display:none">
                     <h1 style="text-align:center"><b id="title_11"></b></h1>
                     <div style=" float:left; width:49%;height:600px">
-                        <img class="shape" src="images/yizheng.jpg" >
+                        <img class="shape" id="img-11" >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/people-riding-on-boat-during-daytime-CLwzS2h4uNQ">Image</a> by <a target="_blank" href="https://unsplash.com/@quanquan1115">Yusong He</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:570px"></div>
@@ -1809,7 +1815,7 @@
                 <div class="section-12"  style="display:none">
                     <h1 style="text-align:center"><b id="title_12"></b></h1>
                     <div style=" float:left; width:49%; height:600px">
-                        <img class="shape" src="images/quanzhou.jpg" >
+                        <img class="shape" id="img-12"  >
                         <p class="imgsrc">Image source: <a target="_blank" href="https://unsplash.com/photos/a-view-of-a-city-with-a-lot-of-tall-buildings-yvyv6cYGgLQ">Image</a> by <a target="_blank" href="https://unsplash.com/@bangyuwang">Bangyu Wang</a> under <a target="_blank" href="https://unsplash.com/license">License</a></p>
                     </div>
                     <div style="float:left; width:2%;height:600px"></div>
@@ -1837,6 +1843,8 @@
             arrowElement.addEventListener("click", function() {
                 mapElement.scrollIntoView({ behavior: "smooth" });
             });
+
+            
         </script>
         
     </section>
@@ -1858,9 +1866,27 @@
                 <span class="productbtn btn12 btn-click" data-action="section-12" id="Zayton"></span>
             </div>
             <script>
+
+                const img_src=["images/xingzai.jpg" ,
+                "images/baoshan.jpg" ,
+                "images/fuzhou.jpg" ,
+                "images/Tibet.jpg" ,
+                "images/Dali.jpg" ,
+                "images/Xichang.jpg" ,
+                "images/Xiezhou.jpg" ,
+                "images/xiangyangfu.jpg" ,
+                "images/daidu.jpg" ,
+                "images/Chengdu.jpg" ,
+                "images/yizheng.jpg" ,
+                "images/quanzhou.jpg"]
+
+                document.getElementById("img-"+1).src = img_src[0];
+
                 $(function(){
                     $(".btn-click").click(function(){
                         var target = $(this).data("action");
+                        var index = parseInt(target.split("-")[1]);
+                        document.getElementById("img-"+index).src = img_src[index-1];
                     $("."+target).show().siblings("div[class*=section-]").hide();
                 })
                 }); 
@@ -1868,11 +1894,14 @@
                 $(function() {
                 // Get all the buttons with class "btn"
                 var buttons = $(".btn");
+
+                
     
                 // Iterate over each button
                 buttons.each(function(index) {
                     // Get the corresponding section with class "section-{index+1}"
                     var section = $(".section-" + (index+1));
+                    
                     // Add a click event listener to the button
                     $(this).click(function() {
                     // Hide all sections except the current one
