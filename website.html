@@ -33,7 +33,7 @@
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <script src="js/d3_v4.js"></script> 
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> -->
-    <script src="js/d3-scale."></script>
+    <script src="js/d3-scale.js"></script>
     
 
     <!-- font 
@@ -68,22 +68,6 @@
 
 
         <script>
-
-        /*function find_list(editionName){
-            d3.csv("csv/name.csv", function(data) {
-                // Access the data in the specified column
-                
-                window.columnValues = data.map(function(row) { return row[editionName]; });
-                //callback(columnValues); // Call the callback function with the column values
-            });
-            if (editionName!="Cliff"){
-                d3.csv("csv/name.csv", function(data) {
-                    window.columnRef = data.map(function(row) { return row["Cliff"]; });
-                });
-            }
-            
-            
-        }*/
 
         const Haw_col=["Quinsai", "Uncian", "Fugiu", "Tebet", "Caragian-City", "Gaindu", "Caiciu", "Saianfu", "Taidu", "Sindufu", "Singiu", "Çaiton", "Cuigiu-City", "Iaci", "Tundinfu", "Choncha", "Ciangiu", "Quengianfu", "Sugiu", "Caigiu", "Singiu Matu", "Tingiu", "Quenlinfu", "Cianglu", "Yangiu", "Cinghianfu", "Cacanfu", "Coigangiu", "cuncun", "Vuguen", "Achbaluch", "Acbalec Mangi", "Lingiu", "Taianfu", "Paughin", "Namghin", "Tigiu", "Ciangli", "Gampu", "Cauyu", "Cianscian", "Cacionfu", "Pingiu", "Ghiugiu", "Ciugiu", "Tanpigiu", "Cingiu", "Ciangan", "Giogiu", "Vughin", "Cugiu", "Viugiu[1]", "Vugiu[1]", "Pianfu", "Çardandan", "Cuigiu", "Caguy", "Caragian-Kingdom"]
         const Cliff_col=["Xingzai", "Yongchang", "Fuzhou-City", "Tibet", "Qarajang-City", "Jiandu", "Xiezhou", "Xiangyangfu", "Daidu/Khanbaliq", "Chengdufu", "Zhenzhou", "Zayton", "Fuling", "Yachi", "Dongpingfu", "Fuzhou-Kingdom", "Changzhou", "Chang'anfu", "Suzhou", "Guazhou", "Xinzhou Matou", "Tingzhou", "Jianningfu", "Changlu", "Yangzhou", "Zhenjiangfu", "Hejianfu", "Huai'anzhou", "Guangyuan", "Houguan", "Aq-Baliq", "Aq-Baliq Manzi", "Liucheng", "Taiyuanfu", "Baoying", "Anqing", "Taizhou", "Jiangling", "Ganpu", "Gaoyou", "Suichang", "Hezhongfu", "Pizhou", "Quzhou", "Suqian", "Tonglu", "Tongzhou", "Changxing", "Zhuozhou", "Wuxing", "Chuzhou", "Wuzhou", "Wujiang", "Pingyangfu", "Zardandan", "Kuizhou", "Huaiyin", "Qarajang-Kingdom"]
@@ -374,17 +358,7 @@
                   
                       // Get the word that the user wants to search
                         var go_searchWord = searchInput.value.toString();
-                        
-                        /*if (myValue=="Cliff" ){
-                            go_searchWord=go_searchWord.charAt(0).toUpperCase() + go_searchWord.slice(1).toLowerCase()
-                            if(go_searchWord==="Fuzhou"){
-                                go_searchWord="Fuzhou-City";
-                            }else if (go_searchWord==="Kuizhou"){
-                                go_searchWord="Kuizhou-Province";
-                            }else if (go_searchWord==="Chang'anfu"){
-                                go_searchWord="Chang’anfu";
-                            }
-                        }*/
+
                         function findBestMatch(arr, inputStr) {
                             let bestMatch = "";
                             let highestPercent = 0;
@@ -776,81 +750,6 @@
                             Huaiyin,
                             Qarajang_Kingdom
                         ] = columnValues;
-
-                    
-
-
-
-                /*var Xingzai, Yongchang, Fuzhou_City, Tibet, Qarajang_City, Jiandu, Xiezhou, Xiangyangfu, Daidu, Chengdufu, Zhenzhou, Zayton, Fuling, Yachi, Dongpingfu, Fuzhou_Kingdom, Changzhou, ChangAnfu, Suzhou, Guazhou, Xinzhou_Matou, Tingzhou, Jianningfu, Changlu, Yangzhou, Zhenjiangfu, Hejianfu, HuaiAnzhou, Guangyuan, Houguan, Aq_Baliq, Aq_Baliq_Manzi, Liucheng, Taiyuanfu, Baoying, Anqing, Taizhou, Jiangling, Ganpu, Gaoyou, Suichang, Hezhongfu, Pizhou, Quzhou, Suqian, Tonglu, Tongzhou, Changxing, Zhuozhou, Wuxing, Chuzhou, Wuzhou, Wujiang, Pingyangfu, Zardandan, Kuizhou, Huaiyin, Qarajang_Kingdom;
-                let success = false;
-
-                while (!success) {
-                    try {
-                        [
-                            Xingzai,
-                            Yongchang,
-                            Fuzhou_City,
-                            Tibet,
-                            Qarajang_City,
-                            Jiandu,
-                            Xiezhou,
-                            Xiangyangfu,
-                            Daidu,
-                            Chengdufu,
-                            Zhenzhou,
-                            Zayton,
-                            Fuling,
-                            Yachi,
-                            Dongpingfu,
-                            Fuzhou_Kingdom,
-                            Changzhou,
-                            ChangAnfu,
-                            Suzhou,
-                            Guazhou,
-                            Xinzhou_Matou,
-                            Tingzhou,
-                            Jianningfu,
-                            Changlu,
-                            Yangzhou,
-                            Zhenjiangfu,
-                            Hejianfu,
-                            HuaiAnzhou,
-                            Guangyuan,
-                            Houguan,
-                            Aq_Baliq,
-                            Aq_Baliq_Manzi,
-                            Liucheng,
-                            Taiyuanfu,
-                            Baoying,
-                            Anqing,
-                            Taizhou,
-                            Jiangling,
-                            Ganpu,
-                            Gaoyou,
-                            Suichang,
-                            Hezhongfu,
-                            Pizhou,
-                            Quzhou,
-                            Suqian,
-                            Tonglu,
-                            Tongzhou,
-                            Changxing,
-                            Zhuozhou,
-                            Wuxing,
-                            Chuzhou,
-                            Wuzhou,
-                            Wujiang,
-                            Pingyangfu,
-                            Zardandan,
-                            Kuizhou,
-                            Huaiyin,
-                            Qarajang_Kingdom
-                        ] = columnValues;
-                        success = true;
-                    } catch (error) {
-                        
-                    }
-                }*/
                                 
 
                 const original_markers = Object.freeze([
@@ -1284,9 +1183,6 @@
                 function overview_map(){
                     updateMarkerIcons(greenIcon,"overview");
                     createTreemap_Overview();
-                    //createTreemap_Religion();
-                    //createTreemap_Specialty();
-                    //createTreemap_Econ();
                 }
 
                 function return_map(){
@@ -2116,12 +2012,6 @@
             </script>
         </div>
     </section>
-
-    <!--<section class="section-bg4 section-padding " style="height: 800px" id="page_5">
-        <div class="container" style="margin-top:100px">
-            <h1 class="text-white"><b>How Marco Polo view China?</b></h1>
-        </div>
-    </section>-->
 
     <section class="barista-section section-padding section-bg5" style="height: 200%" id="page_6">
         <div class="container max-width:100%">
