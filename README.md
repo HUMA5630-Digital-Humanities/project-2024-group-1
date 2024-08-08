@@ -18,3 +18,6 @@ https://huma5630-digital-humanities.github.io/project-2024-group-1/website.html
 [PPT version](https://github.com/HUMA5630-Digital-Humanities/project-2024-group-1/blob/main/Final%20Project%20.pptx) | [PDF version](https://github.com/HUMA5630-Digital-Humanities/project-2024-group-1/blob/main/Final%20Project%20.pdf)
 
 ![preview_presentation-slides_group1](preview_presentation-slides_group1.png)
+
+# Sharing
+HKUST Library's Research Bridge: [Seeing China through Marco Polo’s Eyes](https://library.hkust.edu.hk/sc/china-marco-huma-5630/)
